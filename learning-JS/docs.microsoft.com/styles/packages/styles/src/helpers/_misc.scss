@@ -1,0 +1,308 @@
+.is-fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: $zindex-fixed;
+}
+
+.is-full-height {
+	height: 100%;
+}
+
+.is-full-height-mobile {
+	@include mobile {
+		height: 100%;
+	}
+}
+
+.has-height-zero {
+	height: 0 !important;
+}
+
+.has-height-auto {
+	height: auto !important;
+}
+
+.is-absolute-fills {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+// list
+
+.is-unstyled {
+	list-style-type: none !important;
+}
+
+//Shorten texts with an ellipsis. The maximum width
+//of the truncated text can be changed by overriding
+//the max-width.
+//Loosely modeled after https://github.com/primer/primer/blob/master/modules/primer-truncate/lib/truncate.scss
+
+.is-inline-truncated {
+	display: inline-block;
+	max-width: 125px;
+	@include has-overflow-ellipsis;
+
+	&.has-max-width-200 {
+		max-width: 200px;
+	}
+}
+
+.is-vertically-scrollable {
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.has-line-height-reset {
+	line-height: 1.3 !important;
+}
+
+.has-outline-hover:hover {
+	outline: 1px solid $primary;
+}
+
+.has-heavy-shadow-hover:hover {
+	box-shadow: $box-shadow-heavy !important;
+	transition: all 300ms cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.is-text-left {
+	text-align: left !important;
+}
+
+.is-text-centered {
+	text-align: center;
+}
+
+.is-text-centered-tablet {
+	@include tablet {
+		text-align: center;
+	}
+}
+
+.is-text-right {
+	text-align: right;
+}
+
+.is-text-right-tablet {
+	@include tablet {
+		text-align: right;
+	}
+}
+
+.is-full-width {
+	width: 100% !important;
+}
+
+.is-full-width-mobile {
+	@include mobile {
+		width: 100% !important;
+	}
+}
+
+.is-one-third-width {
+	width: 33% !important;
+}
+
+@include tablet {
+	.is-one-third-width-tablet {
+		width: 33% !important;
+	}
+}
+
+@include desktop {
+	.is-one-quarter-width-desktop {
+		width: 25% !important;
+	}
+}
+
+.has-two-lines-height {
+	min-height: 2.5em;
+}
+
+.has-four-lines-height {
+	min-height: 5em;
+}
+
+.has-min-height-256 {
+	min-height: 256px;
+}
+
+.has-max-height-eight-lines {
+	max-height: 10em;
+}
+
+.has-max-height-twelve-lines-tablet {
+	@include tablet {
+		max-height: 15em;
+	}
+}
+
+.has-max-height-260 {
+	max-height: 260px;
+}
+
+.has-max-height-300 {
+	max-height: 300px;
+}
+
+.delete {
+	@include delete;
+}
+
+.expanded-indicator {
+	transition: transform 0.15s;
+
+	[aria-expanded='true'] & {
+		transform: rotateX(180deg);
+	}
+}
+
+.is-radiusless {
+	border-radius: 0 !important;
+}
+
+.has-overflow-hidden {
+	overflow: hidden !important;
+}
+
+.has-overflow-scroll {
+	overflow: scroll !important;
+}
+
+.is-comma-delimited {
+	> :not(:last-child):after {
+		content: ', ';
+	}
+}
+
+.is-dot-separated:not(:last-of-type):not(:only-of-type):after {
+	padding-#{$user-left}: 5px;
+	padding-#{$user-right}: 5px;
+	content: '•';
+}
+
+.has-z-index-one {
+	z-index: 1;
+}
+
+.has-min-height-567-tablet {
+	@include tablet {
+		min-height: 567px;
+	}
+}
+
+.has-two-text-columns {
+	@include tablet {
+		columns: 2;
+	}
+}
+
+.has-three-text-columns {
+	@include tablet {
+		columns: 3;
+	}
+}
+
+.has-three-text-columns-list-items {
+	break-inside: avoid;
+}
+
+.has-fluid-text-columns {
+	@include tablet {
+		columns: 3;
+	}
+
+	@include widescreen {
+		columns: 5;
+	}
+}
+
+.has-appearance-none {
+	appearance: none;
+}
+
+.has-cursor-default {
+	cursor: default !important;
+}
+
+.has-background-linethrough {
+	position: relative;
+	z-index: 1;
+}
+
+.has-background-linethrough:before {
+	border-top: $border-width solid $border;
+	content: '';
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+.is-scaled-marketing-image {
+	transform: scale(1.6) translate(0%, 23%);
+
+	@include desktop {
+		transform: scale(2.2) translate(20%, 17%);
+	}
+}
+
+.is-downward-translated-marketing-image {
+	box-shadow: $box-shadow-extra-heavy;
+	transform-origin: left center;
+	transform: translateY(35%);
+
+	@include desktop {
+		transform: translateY(50%) scale(1.2);
+	}
+}
+
+.has-backdrop-filter-blur {
+	backdrop-filter: blur(2px);
+}
+
+.has-text-hyphens {
+	hyphens: auto;
+}
+
+.previous-sibling-overlay-l-desktop {
+	@include desktop {
+		margin-top: -7rem;
+	}
+}
+
+.previous-sibling-overlay-m-tablet {
+	@include tablet {
+		margin-top: -5rem;
+	}
+}
+
+.opacity-none {
+	opacity: 0;
+}
+
+[dir='rtl'] .flip-rtl {
+	transform: scaleX(-1);
+}
+
+// 4em is just an eyeball guess. Could be 3em?
+.table-of-contents {
+	min-height: 4.5em;
+}
+
+.timer {
+	gap: 2px;
+	grid-template-columns: minmax(min-content, auto) repeat(2, min-content auto);
+	box-shadow: inset 0 0 4px $box-shadow-color-extra-heavy;
+}

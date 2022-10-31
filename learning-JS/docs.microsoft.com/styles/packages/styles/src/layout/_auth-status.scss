@@ -1,0 +1,9 @@
+[data-auth-status-determined='false'] .auth-status-determined,
+[data-auth-status-determined='true'] .auth-status-awaiting {
+	visibility: hidden !important;
+}
+
+[data-authenticated='true'] .not-authenticated,
+[data-authenticated='false'] .authenticated {
+	display: none !important;
+}

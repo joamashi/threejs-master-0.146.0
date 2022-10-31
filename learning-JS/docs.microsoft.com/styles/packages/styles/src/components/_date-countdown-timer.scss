@@ -1,0 +1,79 @@
+$countdown-mobile-size: 3rem;
+$countdown-mobile-expired-size: 2.875rem;
+$countdown-title-size: 4.5rem;
+$countdown-title-expired-size: 3.5rem;
+$countdown-title-widescreen-size: 5.375rem;
+$countdown-title-widescreen-expired-size: 4.375rem;
+
+.date-countdown-timer {
+	&:not(:last-child) {
+		margin-bottom: 1.5rem;
+	}
+
+	align-items: center;
+	justify-content: space-between;
+	display: flex;
+
+	.timer-item {
+		align-items: center;
+		display: flex;
+		flex-grow: 0;
+		flex-shrink: 0;
+		justify-content: center;
+
+		.title,
+		.subtitle {
+			margin-bottom: 0;
+		}
+
+		@include mobile {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+	}
+
+	.countdown-title {
+		font-weight: 100;
+
+		@include mobile {
+			font-size: $countdown-mobile-size;
+		}
+
+		@include tablet {
+			font-size: $countdown-title-size;
+		}
+
+		@include desktop {
+			font-size: $countdown-title-size;
+			transform: scale(1.3);
+		}
+
+		@include widescreen {
+			font-size: $countdown-title-widescreen-size;
+		}
+	}
+}
+
+.expired-date-title {
+	line-height: 1.3 !important;
+	text-align: center;
+	font-weight: 100;
+
+	@include mobile {
+		font-size: $countdown-mobile-expired-size;
+	}
+
+	@include tablet {
+		font-size: $countdown-title-expired-size;
+	}
+
+	@include desktop {
+		font-size: $countdown-title-expired-size;
+		transform: scale(1.3);
+	}
+
+	@include widescreen {
+		font-size: $countdown-title-widescreen-expired-size;
+	}
+}

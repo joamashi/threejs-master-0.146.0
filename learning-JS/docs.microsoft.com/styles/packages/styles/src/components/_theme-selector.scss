@@ -1,0 +1,11 @@
+$theme-button-selected-border-color: $primary !default;
+
+.theme-selector {
+	.theme-selector-icon {
+		width: 24px !important;
+	}
+
+	.theme-control.is-selected:not(.focus-visible) {
+		border: 1px solid $theme-button-selected-border-color;
+	}
+}

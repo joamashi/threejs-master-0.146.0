@@ -1,0 +1,199 @@
+html.tutorial {
+	.tutorial-row-aside {
+		margin-top: 24px;
+	}
+
+	&.ap-layout,
+	&.hasPageActions,
+	&.is-chromeless {
+		.tutorial-row-aside {
+			display: none;
+		}
+	}
+
+	@include widescreen {
+		.tutorial-row {
+			display: flex;
+			flex-flow: row nowrap;
+		}
+
+		.tutorial-row-main {
+			flex: 0 1 calc(100% - 300px);
+			width: calc(100% - 300px); // leaves space for tutorial-row-aside
+		}
+
+		.tutorial-row-aside {
+			flex: 0 0 300px;
+			margin-top: 0;
+			margin-left: 24px;
+		}
+	}
+
+	.tutorial-nav {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: stretch;
+		margin-top: 48px;
+	}
+
+	.content[dir='rtl'] {
+		.tutorial-nav {
+			flex-direction: row-reverse;
+		}
+	}
+
+	.tutorial-nav-button {
+		flex-shrink: 0;
+		flex-grow: 0;
+		min-width: 80px;
+		padding: 6px 8px;
+		text-align: center;
+		@include tablet {
+			padding: 6px 24px;
+		}
+	}
+
+	.tutorial-nav-description {
+		flex-shrink: 1;
+		flex-grow: 1;
+		color: $text-subtle;
+		border-style: solid;
+		border-color: $border;
+		border-width: 1px 0;
+
+		&:first-child {
+			border-left-width: 1px;
+		}
+
+		&:last-child {
+			border-right-width: 1px;
+		}
+
+		padding: 4px 8px;
+		text-align: center;
+	}
+
+	.tutorial-nav-button-previous {
+		color: $primary;
+		border: 1px solid $border;
+
+		&:visited {
+			color: $primary;
+		}
+	}
+
+	.tutorial-nav-button-next {
+		color: $primary-invert;
+		background-color: $primary;
+
+		&:hover,
+		&:visited {
+			color: $primary-invert;
+		}
+	}
+
+	.tutorial-card-group {
+		@include tablet {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+
+			.tutorial-card {
+				max-width: 300px;
+				display: flex;
+				flex-direction: column;
+				flex-basis: 50%;
+				flex-shrink: 1;
+
+				&:last-child {
+					border-left-width: 0;
+				}
+			}
+
+			.tutorial-card-body {
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+
+				> p:last-of-type {
+					flex-grow: 1;
+				}
+			}
+		}
+	}
+
+	.tutorial-card {
+		border: 1px solid $border;
+		margin-top: 24px;
+
+		&.launch-interactive-card {
+			margin-top: 0;
+		}
+	}
+
+	.tutorial-card-header {
+		background-color: $body-background-medium;
+		padding: 8px 16px;
+		border-bottom: 1px solid $border;
+	}
+
+	.tutorial-card-body {
+		padding: 16px 16px 0;
+
+		> * {
+			margin: 0 0 16px !important;
+		}
+	}
+
+	.tutorial-toc {
+		flex-grow: 1;
+		flex-shrink: 1;
+		font-size: 0.875rem;
+		box-sizing: border-box;
+
+		li {
+			display: block;
+			box-sizing: border-box;
+			align-items: center;
+			padding: 0;
+		}
+
+		a {
+			display: flex;
+			align-items: center;
+			box-sizing: content-box;
+			color: $text;
+			padding: 6px 0;
+			line-height: normal;
+			margin: 0 !important; // defeat RTL
+			span {
+				margin: 0 !important;
+			} // defeat RTL
+		}
+
+		.check-mark {
+			width: 18px;
+			height: 18px;
+			visibility: hidden;
+			flex-shrink: 0;
+			padding: 0 10px;
+			fill: $success;
+		}
+
+		.completed-step .check-mark {
+			visibility: visible;
+		}
+
+		.active-step {
+			a {
+				font-weight: $weight-semibold;
+				background-color: $secondary-background;
+			}
+		}
+	}
+
+	.tutorial-feedback > .modal-card {
+		width: 800px !important;
+	}
+}

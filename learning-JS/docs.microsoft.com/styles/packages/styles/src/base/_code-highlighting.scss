@@ -1,0 +1,178 @@
+/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+
+pre > code mark {
+	background-color: $code-highlight-background;
+}
+
+.line-highlight {
+	background-color: #ffc;
+}
+
+.hljs-comment {
+	color: #008000;
+}
+
+.hljs-pscommand,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-string .hljs-subst,
+.hljs-tag {
+	color: #0101fd;
+}
+
+.hljs-literal {
+	color: darken(#09885a, 5%);
+}
+
+//Substrings, such as in C# interpolation https://github.com/dotnet/docfx/issues/3226
+.hljs-string .hljs-subst,
+.hljs-attr {
+	color: #0451a5;
+}
+
+.hljs-string,
+.hljs-string .hljs-subst .hljs-string,
+.hljs-section,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-deletion,
+.hljs-code {
+	color: #a31515;
+}
+
+.hljs-parameter,
+.hljs-type,
+.hljs-attribute,
+.hljs-title,
+.hljs-addition,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+	color: darken(#007d9a, 5%);
+}
+
+.hljs-doctag {
+	color: darken(#737373, 5%);
+}
+
+.hljs-control {
+	color: #af00db;
+}
+
+.hljs-helper {
+	color: #795e26;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+	color: darken(#0071e1, 5%);
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: $weight-semibold;
+}
+
+.hljs-reserved,
+.hljs-constant {
+	color: #cd3131;
+}
+
+// Dark theme and High Contrast use the same colors
+
+.theme-dark,
+.theme-high-contrast {
+	.line-highlight {
+		background-color: darkgreen;
+	}
+
+	.hljs-comment {
+		color: lighten(#57a64a, 5%);
+	}
+
+	.hljs-number {
+		color: #b5cea8;
+	}
+
+	.hljs-pscommand,
+	.hljs-keyword,
+	.hljs-selector-tag,
+	.hljs-built_in,
+	.hljs-name,
+	.hljs-tag {
+		color: #569cd6;
+	}
+
+	.hljs-literal {
+		color: #569cd6;
+	}
+
+	.hljs-title {
+		color: #4ec9b0;
+	}
+	//Substrings, such as in C# interpolation https://github.com/dotnet/docfx/issues/3226
+	.hljs-string .hljs-subst,
+	.hljs-attr {
+		color: #9cdcfe;
+	}
+
+	.hljs-string,
+	.hljs-string .hljs-subst .hljs-string,
+	.hljs-section,
+	.hljs-attribute,
+	.hljs-template-tag,
+	.hljs-template-variable,
+	.hljs-deletion,
+	.hljs-type,
+	.hljs-code {
+		color: #ce9178;
+	}
+
+	.hljs-addition,
+	.hljs-selector-attr,
+	.hljs-selector-pseudo,
+	.hljs-meta {
+		color: #2b91af;
+	}
+
+	.hljs-parameter,
+	.hljs-type,
+	.hljs-attribute,
+	.hljs-title,
+	.hljs-addition,
+	.hljs-selector-attr,
+	.hljs-selector-pseudo,
+	.hljs-meta {
+		color: lighten(#007d9a, 20%);
+	}
+
+	.hljs-control {
+		color: #c586c0;
+	}
+
+	.hljs-helper {
+		color: #dcdcaa;
+	}
+
+	.hljs-doctag,
+	.hljs-symbol,
+	.hljs-bullet,
+	.hljs-link {
+		color: lighten(#808080, 15%);
+	}
+
+	.hljs-reserved,
+	.hljs-constant {
+		color: lighten(#f44747, 10%);
+	}
+}

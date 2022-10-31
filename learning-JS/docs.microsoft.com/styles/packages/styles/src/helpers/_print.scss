@@ -1,0 +1,53 @@
+@use 'sass:map';
+
+$printDisplays: 'block', 'flex', 'none';
+$displayPositions: 'fixed', 'absolute';
+$paper-size: (
+	'a4': (
+		'short-side': 210mm,
+		'long-side': 297mm
+	)
+);
+
+@include print {
+	@each $item in $printDisplays {
+		.display-#{$item}-print {
+			display: #{$item} !important; // overrides atlas display
+		}
+	}
+	@each $item in $displayPositions {
+		.position-#{$item}-print {
+			position: #{$item} !important; // overrides atlas position
+		}
+	}
+	@each $type, $dimensions in $paper-size {
+		.size-#{$type}-print-landscape {
+			height: map.get($dimensions, 'short-side');
+			width: map.get($dimensions, 'long-side');
+		}
+	}
+	.is-fullscreen-print-landscape {
+		height: 100vmin;
+		width: 100vmax !important; // overrides _container.scss
+		max-width: 100vmax !important; // overrides _container.scss
+	}
+	.is-fullwidth-print {
+		width: 100% !important;
+	}
+	.color-adjust-exact {
+		color-adjust: exact;
+	}
+	.padding-xxl-print {
+		padding: 6rem !important; // overrides atlas spacing
+	}
+	@media (orientation: portrait) {
+		// @include orientation-portrait limited to screens in atlas
+		.rotate-270-print-portrait {
+			transform: rotate(270deg) translate(-100%, 0);
+			transform-origin: 0 0;
+		}
+	}
+	.break-inside-avoid {
+		break-inside: avoid;
+	}
+}

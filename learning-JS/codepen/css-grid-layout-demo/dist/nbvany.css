@@ -1,0 +1,55 @@
+.support {
+	align-items: center;
+	background: tomato;
+	color: #fff;
+	display: flex;
+	font-size: .9rem;
+	padding: 0 10px 0 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: auto;
+	z-index: 100;
+
+	a { 
+		color: #fff;
+		padding: 10px 0;
+		text-decoration: none;
+	}
+	
+	@supports ( display: grid ) {
+		background: rgb(5,138,110);
+		right: 40px;
+		transform: translateX(100%);
+		transition: right .5s ease-in-out, transform .5s ease-in-out;
+
+		&:hover {
+			right: 0;
+			transform: translateX(0%);
+		}
+	}
+}
+
+.support svg {
+	fill: #ffffff;
+	height: 30px;
+	margin-right: 5px;
+	padding: 5px;
+	width: 30px;
+}
+
+.unsupported {
+	display: block;
+	
+	@supports ( display: grid ) {
+		display: none;
+	}
+}
+
+.supported {
+	display: none;
+	
+	@supports ( display: grid ) {
+		display: block;
+	}
+}

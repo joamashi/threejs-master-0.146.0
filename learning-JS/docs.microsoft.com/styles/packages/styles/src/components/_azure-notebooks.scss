@@ -1,0 +1,19 @@
+.content {
+	.notebooks-main-toolbar-container {
+		border: 1px solid $text-subtle !important;
+	}
+
+	#jupyter-notebook {
+		margin-top: 32px !important; // match the spacing between code blocks and text
+
+		.notebook-container {
+			overflow-y: hidden !important; // override auto value from the notebook's aznb-bundle.css v1.3
+		}
+
+		.nteract-cell-outputs.cell-code-outputs {
+			code {
+				background-color: transparent !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,86 @@
+$body-size: 16px;
+$body-rendering: optimizeLegibility !default;
+
+html {
+	font-size: $body-size;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	text-rendering: $body-rendering;
+	text-size-adjust: 100%;
+
+	box-sizing: border-box;
+	min-height: 100vh;
+	outline-color: $text;
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: inherit;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 100%;
+	background-color: $body-background;
+	color: $text;
+	line-height: 160%;
+	min-height: 100vh;
+}
+
+// outline not needed on active and conflicts with focus styles
+
+.mainContainer {
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	.primary-holder,
+	.left-container,
+	.right-container {
+		padding-top: $universal-top-margin; // should be the only provider of space at the top of the page
+	}
+
+	// profile list has two modes, one works with the normal method, one doesn't
+
+	html.profilelist & {
+		.primary-holder,
+		.left-container {
+			padding-top: 0;
+		}
+	}
+}
+
+@media print {
+	body,
+	body > .mainContainer > .columns,
+	body > .mainContainer > .columns > .primary-holder > .columns {
+		display: block !important;
+		margin: 0 auto !important;
+	}
+
+	body > :not(.mainContainer),
+	body > .mainContainer > .columns > .primary-holder > .columns > :not(.column),
+	.left-container,
+	.right-container,
+	.feedback-section {
+		display: none !important;
+	}
+
+	.mainContainer,
+	.primary-holder,
+	.uhf-container {
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+
+	pre {
+		white-space: pre-wrap !important;
+		overflow-wrap: break-word !important;
+		word-wrap: break-word !important;
+		word-break: break-word !important;
+		hyphens: auto !important;
+	}
+}

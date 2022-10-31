@@ -1,0 +1,181 @@
+$fixed-content-header-height: 56px;
+
+.action-panel {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	left: 100%;
+	width: 100%;
+	background-color: $body-background;
+	border-left: 1px solid $border;
+}
+
+// "ap-expanded" and "ap-collapsed" classes: used to show/hide elements based on the action panel's state.
+
+html:not(.ap-layout-finished) .ap-expanded,
+html.ap-layout-finished .ap-collapsed {
+	display: none;
+}
+
+html:not(.hasSidebar) .contents-button {
+	display: none;
+}
+
+html:not(.hasSidebar) .action-container-tablet {
+	display: none !important;
+}
+
+html:not(.ap-layout) .content-header .content-header-controls {
+	display: none;
+}
+
+html.ap-layout-animates {
+	.content-header,
+	#article-header {
+		display: none;
+	}
+}
+
+html.ap-layout {
+	overflow: hidden !important;
+
+	.action-panel {
+		// show the action panel components
+		display: block;
+	}
+}
+
+html.ap-layout-animates {
+	$out-duration: 100ms;
+	$in-duration: 100ms;
+
+	.header-holder,
+	.content-header,
+	#article-header,
+	#affixed-left-container,
+	.action-panel,
+	#main-column,
+	footer {
+		transition-property: transform, opacity;
+	}
+
+	.header-holder,
+	#affixed-left-container,
+	footer {
+		transition-duration: $out-duration;
+		transition-timing-function: ease-in;
+	}
+
+	.action-panel,
+	#main-column,
+	.content-header,
+	#article-header {
+		transition-duration: $in-duration;
+		transition-timing-function: ease-out;
+		@include tablet {
+			transition-delay: $out-duration;
+		}
+	}
+}
+
+html.ap-layout-in {
+	.action-panel {
+		transform: translateX(-100%);
+	}
+
+	@include tablet {
+		footer {
+			transform: translateY(100%);
+		}
+		.content-header,
+		#article-header {
+			transform: translateY(-100px);
+		}
+		#affixed-left-container {
+			transform: translateX(-50vw) translateX(calc(-100% - 5vw));
+		}
+
+		#main-column {
+			transform: translate(-260px, -30px) translate(calc(-260px - 5vw), -30px);
+			overflow-y: scroll;
+			overflow-x: hidden;
+			padding: 24px;
+			margin: 0;
+
+			main {
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		.action-panel {
+			width: 50vw;
+		}
+
+		.tutorial-row-main {
+			flex: 1 1 100% !important;
+			width: 100% !important;
+		}
+	}
+}
+
+html.ap-layout-finished {
+	footer,
+	#affixed-left-container,
+	.right-container,
+	#article-header {
+		display: none !important;
+	}
+
+	.header-holder {
+		display: flex;
+		position: static;
+		top: 0;
+		right: 0;
+		left: 0;
+
+		> *:not(.content-header) {
+			display: none;
+		}
+
+		.content-header {
+			z-index: 3;
+
+			> :not(.content-header-controls) {
+				display: none !important;
+			}
+		}
+	}
+
+	#main-column {
+		visibility: hidden;
+	}
+
+	.content-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		transform: none;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		max-width: 100%; // override doc blocks
+
+		// add a border in fixed-mode
+		border-bottom: 1px solid $border;
+	}
+
+	@include tablet {
+		#main-column {
+			visibility: visible;
+			position: fixed;
+			box-sizing: border-box;
+			bottom: 0;
+			left: 0;
+			width: 50vw;
+			margin: 0 !important;
+			transform: none;
+		}
+	}
+}

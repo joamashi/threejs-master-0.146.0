@@ -1,0 +1,47 @@
+.content-header {
+	margin: 0;
+	border-bottom: 1px solid $border;
+
+	@include mobile {
+		padding: 0;
+	}
+
+	@include tablet {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0;
+	}
+
+	html.ap-layout-finished & {
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+.content-header-controls {
+	flex-grow: 1;
+	justify-content: space-between;
+	align-items: flex-end;
+	flex-wrap: wrap;
+
+	@include tablet {
+		display: none;
+	}
+
+	html.ap-layout-finished & {
+		display: flex;
+		margin: 8px;
+		width: auto;
+
+		@include mobile {
+			button {
+				flex-grow: 1;
+				margin-bottom: 4px;
+			}
+			margin: 4px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}

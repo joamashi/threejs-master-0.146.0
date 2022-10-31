@@ -1,0 +1,403 @@
+$card-color: $text !default;
+$card-shadow: $box-shadow-light;
+
+$card-header-background-color: transparent !default;
+$card-header-shadow: 0 1px 2px $box-shadow-color-light !default;
+$card-header-weight: $weight-semibold !default;
+
+$card-content-background-color: transparent !default;
+
+$card-footer-background-color: transparent !default;
+$card-footer-border-top: 1px solid $border !default;
+$card-padding: 1.5rem;
+$card-border-radius: 0.125rem;
+
+$card-branded-spacing: 1rem;
+$card-branded-header-padding: 1.75rem;
+
+.card {
+	border: 1px solid $border-white-high-contrast;
+	box-shadow: $card-shadow;
+	background-color: $body-background;
+	outline-color: $text;
+	color: $card-color;
+	max-width: 100%;
+	position: relative;
+	padding: $card-padding 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border-radius: $card-border-radius;
+
+	& > :first-child {
+		border-top-right-radius: $card-border-radius;
+		border-top-left-radius: $card-border-radius;
+	}
+
+	& > :last-child {
+		border-bottom-right-radius: $card-border-radius;
+		border-bottom-left-radius: $card-border-radius;
+	}
+
+	&.is-uniform {
+		padding: $card-padding !important;
+	}
+
+	.card-header,
+	.card-content,
+	.card-footer {
+		padding-#{$user-left}: $card-padding;
+		padding-#{$user-right}: $card-padding;
+
+		&:first-child {
+			padding-top: $card-padding;
+			margin-top: -$card-padding;
+		}
+	}
+
+	&.is-standalone {
+		width: 304px;
+	}
+
+	.card-tag {
+		position: absolute;
+		top: $card-padding;
+		right: $card-padding + 0.5rem;
+
+		// xp-tags are the worst. Sincerely, The person who wrote .xp-tag
+		.xp-tag {
+			min-width: inherit;
+			font-size: $font-size-extra-small;
+			top: 0 !important;
+			right: 0 !important;
+		}
+	}
+
+	.card-header {
+		position: relative;
+		margin-bottom: 1.125rem;
+
+		.card-header-image {
+			position: relative;
+			height: 64px;
+			width: 64px;
+
+			img,
+			svg {
+				@include overlay;
+
+				display: block;
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+
+	.card-content {
+		flex-grow: 1;
+		margin-bottom: 1.125rem;
+
+		> *:not(:first-child) {
+			margin-top: 0.5rem;
+		}
+
+		.card-content-super-title {
+			letter-spacing: $letter-spacing-wide;
+			line-height: 1;
+			text-transform: uppercase;
+			font-size: $font-size-extra-small;
+		}
+
+		// optional prescriptive elements
+		.card-content-title {
+			flex-grow: 1;
+			font-weight: $weight-semibold;
+			line-height: 1.25;
+			font-size: $font-size-body;
+			text-align: $user-left;
+			@include truncated(3);
+
+			&:first-child {
+				margin-top: none;
+			}
+
+			&:only-child {
+				margin: 0;
+			}
+		}
+
+		button.card-content-title {
+			appearance: none;
+			border: none;
+			padding: 0;
+			margin: 0;
+			color: $primary;
+
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			&:visited {
+				color: $primary;
+			}
+		}
+
+		a.card-content-title {
+			color: $primary;
+
+			&:visited {
+				color: $visited;
+			}
+		}
+
+		ul.card-content-metadata {
+			color: $text-subtle;
+			font-size: $font-size-extra-small;
+			line-height: $font-size-small;
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+			margin-bottom: 0;
+			margin-right: 0;
+			margin-left: 0;
+			padding: 0;
+
+			.star-rating-display {
+				.star,
+				.before-text,
+				.explanation-text {
+					font-weight: normal;
+					font-size: $font-size-extra-small;
+					line-height: $font-size-small;
+				}
+
+				.star {
+					color: $text-subtle;
+				}
+			}
+
+			> li {
+				list-style: none;
+				display: flex;
+				flex-basis: auto;
+				margin-bottom: $spacing-1;
+
+				&:not(:only-child):not(:last-child) {
+					margin-#{$user-right}: 0.75rem;
+				}
+
+				&:not(:only-child):not(:first-child) {
+					padding-#{$user-right}: 0.75rem;
+				}
+
+				&:first-of-type,
+				&:only-of-type {
+					margin-#{$user-left}: 0;
+				}
+
+				&:last-of-type {
+					@include mobile {
+						margin-#{$user-left}: 0;
+					}
+				}
+			}
+
+			&.has-bullets {
+				.docon {
+					font-size: 13px;
+					line-height: inherit;
+					margin-#{$user-right}: 5px;
+					width: 14px;
+				}
+
+				> li:not(:last-of-type):not(:only-of-type) {
+					&:after {
+						padding-#{$user-left}: 5px;
+						padding-#{$user-right}: 5px;
+						content: '\2022'/ '';
+					}
+
+					&.has-text-danger {
+						&:after {
+							color: $text-subtle;
+						}
+					}
+				}
+			}
+		}
+
+		p.card-content-description {
+			line-height: 1.25;
+			font-size: $font-size-small;
+
+			@supports (display: grid) {
+				@include truncated(4);
+				max-height: inherit !important;
+				padding-bottom: 0 !important;
+				&:after {
+					display: none;
+				}
+			}
+
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+				@include overflow-fade;
+			}
+		}
+	}
+
+	.card-footer {
+		border-top: 1px solid $border;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		padding-#{$user-left}: $card-padding;
+		padding-#{$user-right}: $card-padding - 0.75rem;
+
+		// Artificial alignment of card item, intended for use on when there's only a single .card-footer-items
+
+		&.is-left,
+		&.is-right {
+			.card-footer-item {
+				flex-grow: 0;
+			}
+		}
+
+		&.is-left {
+			justify-content: flex-start;
+		}
+
+		&.is-right {
+			justify-content: flex-end;
+		}
+
+		.card-footer-item {
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 1;
+			align-items: center;
+			padding-top: 0.375rem;
+			padding-bottom: 0.375rem;
+			margin-bottom: $spacing-1;
+			margin-top: $spacing-1;
+
+			> .buttons {
+				margin-top: -0.375rem;
+				margin-bottom: -0.375rem;
+
+				> .button {
+					margin-bottom: 0;
+				}
+			}
+
+			> .progress {
+				margin-top: 0.375rem;
+				margin-bottom: 0.375rem;
+				max-width: 5rem;
+			}
+
+			> .progress + .progress-label {
+				font-size: $font-size-extra-small;
+				color: $text-subtle;
+				padding-#{$user-left}: 0.5rem;
+			}
+
+			> .progress-label {
+				font-size: $font-size-extra-small;
+				color: $success;
+				text-transform: uppercase;
+
+				.docon {
+					padding-#{$user-left}: 0.25rem;
+				}
+			}
+
+			&:first-child,
+			&:only-child {
+				justify-content: flex-start;
+			}
+
+			&:last-child {
+				justify-content: flex-end;
+			}
+
+			&:not(:last-child):not(:first-child):not(:only-child) {
+				justify-content: center;
+			}
+		}
+	}
+
+	@include tablet {
+		&.is-horizontal {
+			flex-direction: row;
+			flex-wrap: wrap;
+
+			.card-content {
+				padding-#{$user-left}: 0;
+				max-width: calc(100% - 7rem);
+				padding-#{$user-right}: $spacing-6 + 2rem;
+			}
+
+			.card-footer {
+				width: 100%;
+				flex-shrink: 0;
+				flex-grow: 1;
+			}
+		}
+	}
+
+	&.is-branded {
+		border-top-left-radius: $border-radius-lg;
+		border-top-right-radius: $border-radius-lg;
+		border-color: transparent;
+		border: 1px solid $border-white-high-contrast;
+
+		& > :first-child {
+			border-top-right-radius: $border-radius-lg;
+			border-top-left-radius: $border-radius-lg;
+		}
+
+		.card-header {
+			margin-top: -26px;
+			margin-left: -1px;
+			margin-right: -1px;
+			border-bottom: 1px solid $border-white-high-contrast;
+
+			&:first-child {
+				padding-top: 0;
+			}
+		}
+
+		.card-header-image {
+			top: $card-branded-header-padding;
+		}
+
+		.card-content {
+			margin-top: $card-branded-spacing;
+
+			.card-content-title {
+				margin-bottom: $card-branded-spacing;
+			}
+		}
+
+		.card-tag {
+			position: absolute;
+			top: $card-branded-spacing;
+			right: 0;
+
+			.xp-tag-hexagon {
+				margin-right: -1px;
+
+				&:after {
+					content: '';
+					#{$content-right}: 0;
+					background-color: transparent;
+					border-#{$content-left}: 0;
+					border-#{$content-right}: 0;
+					border-bottom: 0;
+					border-top: 0;
+				}
+			}
+		}
+	}
+}

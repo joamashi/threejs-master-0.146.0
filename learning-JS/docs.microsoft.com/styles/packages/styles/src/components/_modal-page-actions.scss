@@ -1,0 +1,23 @@
+$page-actions-menu-width: 100vw !default;
+
+.page-actions-menu {
+	width: $page-actions-menu-width;
+	background-color: $body-background;
+
+	.menu-divider {
+		overflow: hidden;
+
+		.menu-divider-line,
+		.menu-divider-line:before,
+		.menu-divider-line:after {
+			position: absolute;
+			#{$content-left}: 0;
+		}
+
+		.menu-divider-line:after {
+			content: '';
+			width: $page-actions-menu-width;
+			border-top: 1px solid $secondary;
+		}
+	}
+}

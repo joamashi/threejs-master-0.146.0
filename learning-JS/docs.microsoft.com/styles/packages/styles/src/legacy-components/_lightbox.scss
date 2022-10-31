@@ -1,0 +1,82 @@
+a.lightbox-enabled {
+	position: relative;
+	text-decoration: none !important; /* !important for IE 11 */
+
+	&:hover,
+	&.focus-visible {
+		cursor: zoom-in;
+
+		&:after {
+			background-color: $body-background;
+			color: $text;
+		}
+	}
+
+	&:after {
+		content: get-icon-code('inspect');
+		position: absolute;
+		display: flex;
+		height: 40px;
+		width: 40px;
+		bottom: 20px;
+		#{$content-right}: 10px;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		background-color: $secondary-box-shadow;
+		color: $text-subtle;
+		font-family: 'docons';
+		font-size: 20px;
+		text-decoration: none !important;
+	}
+}
+
+.image-browser {
+	figure {
+		margin: 0;
+		max-width: 1200px; // width taken from image-browser.ts
+		overflow: hidden;
+
+		div,
+		figcaption {
+			max-height: 75vh;
+			max-width: 95vw;
+
+			@include tablet {
+				max-height: 80vh;
+				max-width: 80vw;
+			}
+		}
+
+		div {
+			overflow: hidden;
+			background-color: $body-background;
+			border: 1px solid transparent;
+		}
+
+		img {
+			display: block;
+			max-width: none;
+			margin: 0 auto;
+			touch-action: none;
+			transition: opacity 0.5s ease-in 0.3s;
+		}
+
+		figcaption {
+			padding: 8px;
+			background-color: $body-background;
+		}
+	}
+}
+
+.image-browser-expandable {
+	cursor: zoom-in;
+}
+
+.image-browser-pannable {
+	cursor: move;
+}
+
+.image-browser-transition {
+	transition: all 0.3s linear;
+}

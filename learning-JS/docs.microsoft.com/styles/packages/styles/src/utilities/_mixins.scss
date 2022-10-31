@@ -1,0 +1,656 @@
+@use 'sass:math';
+
+@mixin center($width, $height: 0) {
+	position: absolute;
+
+	@if $height != 0 {
+		left: calc(50% - (#{$width} / 2));
+		top: calc(50% - (#{$height} / 2));
+	} @else {
+		left: calc(50% - (#{$width} / 2));
+		top: calc(50% - (#{$width} / 2));
+	}
+}
+
+// Responsiveness
+
+@mixin from($device) {
+	@media screen and (min-width: $device) {
+		@content;
+	}
+}
+
+@mixin until($device) {
+	@media screen and (max-width: $device - 1px),
+		screen and (min-resolution: 120dpi) and (max-width: $device - 0.1px) {
+		@content;
+	}
+}
+
+@mixin mobile-lg {
+	@media screen and (min-width: $mobile-lg), print {
+		@content;
+	}
+}
+
+// Standard Bulma breakpoints
+
+@mixin mobile {
+	@media screen and (max-width: $tablet - 1px),
+		screen and (min-resolution: 120dpi) and (max-width: $tablet - 0.1px) {
+		@content;
+	}
+}
+
+@mixin tablet-only {
+	@media screen and (min-width: $tablet) and (max-width: $desktop - 1px),
+		screen and (min-resolution: 120dpi) and (min-width: $tablet) and (max-width: $desktop - 0.1px) {
+		@content;
+	}
+}
+
+@mixin touch {
+	@media screen and (max-width: $desktop - 1px),
+		screen and (min-resolution: 120dpi) and (max-width: $desktop - 0.1px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media screen and (min-width: $desktop) {
+		@content;
+	}
+}
+
+@mixin desktop-only {
+	@media screen and (min-width: $desktop) and (max-width: $widescreen - 1px),
+		screen and (min-resolution: 120dpi) and (min-width: $desktop) and (max-width: $widescreen - 0.1px) {
+		@content;
+	}
+}
+
+@mixin until-widescreen {
+	@media screen and (max-width: $widescreen - 1px),
+		screen and (min-resolution: 120dpi) and (max-width: $widescreen - 0.1px) {
+		@content;
+	}
+}
+
+@mixin widescreen {
+	@media screen and (min-width: $widescreen) {
+		@content;
+	}
+}
+
+//remove widescreen-only after template rebuild
+@mixin widescreen-only {
+	@media screen and (min-width: $widescreen) {
+		@content;
+	}
+}
+
+@mixin uhf-mobile {
+	@media screen and (max-width: $uhf-tablet - 1px) {
+		@content;
+	}
+}
+
+@mixin uhf-tablet {
+	@media screen and (min-width: $uhf-tablet), print {
+		@content;
+	}
+}
+
+@mixin uhf-desktop {
+	@media screen and (min-width: $uhf-desktop), print {
+		@content;
+	}
+}
+
+@mixin uhf-widescreen {
+	@media screen and (min-width: $uhf-widescreen), print {
+		@content;
+	}
+}
+
+// Interactive
+
+@mixin not-interactive {
+	html:not(.has-interactive) & {
+		@content;
+	}
+}
+
+@mixin interactive {
+	html.has-interactive & {
+		@content;
+	}
+}
+
+@mixin reset-to-full-width() {
+	.container-legacy.mainContainer,
+	.container-legacy.mainContainer > .primary-holder {
+		margin: 0 !important;
+		padding: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	main.content {
+		min-height: calc(
+			100vh - 350px
+		); // deals with IE on pages like previous-versions, where there isn't enough content to push the footer down.
+	}
+}
+
+// Bulma blocks
+
+%block {
+	&:not(:last-child) {
+		margin-bottom: 1.5rem;
+	}
+}
+
+@mixin block {
+	@extend %block;
+}
+
+// Accessibility
+
+@mixin visually-hidden() {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+%transparent-effects {
+	appearance: none;
+	background-color: transparent;
+	outline-color: inherit;
+
+	&:not(:hover),
+	&:not(.focus-visible) {
+		background-color: transparent;
+	}
+}
+
+@mixin transparent-effects {
+	@extend %transparent-effects;
+}
+
+@mixin double-caret($foreground, $background, $direction: left, $offset: 11px, $size: 8px) {
+	$border-style: solid solid outset;
+	@if $direction == top or $direction == bottom {
+		$border-style: outset outset solid;
+	}
+
+	$offset-direction: top;
+	@if $direction == top or $direction == bottom {
+		$offset-direction: left;
+	}
+
+	&:after,
+	&:before {
+		position: absolute;
+		#{$offset-direction}: $offset;
+		#{opposite-direction($direction)}: 100%;
+		#{$direction}: $size * 2 * -1;
+		display: block;
+		width: 0;
+		height: 0;
+		pointer-events: none;
+		content: ' ';
+		border-color: transparent;
+		border-style: $border-style;
+	}
+
+	&:after {
+		margin-#{$offset-direction}: 1px;
+		margin-#{$direction}: 2px;
+		border-width: $size - 1;
+		border-#{opposite-direction($direction)}-color: $foreground;
+	}
+
+	&:before {
+		border-width: $size;
+		border-#{opposite-direction($direction)}-color: $background;
+	}
+}
+
+@function opposite-direction($directions) {
+	$opposite-directions: ();
+	$direction-map: (
+		'top': 'bottom',
+		'right': 'left',
+		'bottom': 'top',
+		'left': 'right',
+		'center': 'center',
+		'ltr': 'rtl',
+		'rtl': 'ltr'
+	);
+
+	@each $direction in $directions {
+		$direction: to-lower-case($direction);
+
+		@if map-has-key($direction-map, $direction) {
+			$opposite-directions: append(
+				$opposite-directions,
+				unquote(map-get($direction-map, $direction))
+			);
+		} @else {
+			@warn 'No opposite direction can be found for `#{$direction}`. Direction omitted.';
+		}
+	}
+
+	@return $opposite-directions;
+}
+
+@mixin placeholder {
+	$placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
+
+	@each $placeholder in $placeholders {
+		&:#{$placeholder}-placeholder {
+			@content;
+		}
+	}
+}
+
+%arrow {
+	border: 3px solid transparent;
+	border-radius: 2px;
+	border-right: 0;
+	border-top: 0;
+	content: ' ';
+	display: block;
+	height: 0.625em;
+	margin-top: -0.4375em;
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+	transform: rotate(-45deg);
+	transform-origin: center;
+	width: 0.625em;
+}
+
+@mixin arrow($color) {
+	@extend %arrow;
+
+	border-color: $color;
+}
+
+%loader {
+	animation: spinAround 500ms infinite linear;
+	border: 2px solid $border;
+	border-radius: $border-radius-rounded;
+	border-right-color: transparent;
+	border-top-color: transparent;
+	content: '';
+	display: block;
+	height: 1em;
+	position: relative;
+	width: 1em;
+}
+
+@mixin loader {
+	@extend %loader;
+}
+
+%unselectable {
+	/* stylelint-disable */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	/* stylelint-enable */
+	user-select: none;
+}
+
+@mixin unselectable {
+	@extend %unselectable;
+}
+
+%overlay {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+@mixin overlay($offset: 0) {
+	@extend %overlay;
+
+	@if $offset != 0 {
+		bottom: $offset;
+		left: $offset;
+		right: $offset;
+		top: $offset;
+	}
+}
+
+%delete {
+	@extend %unselectable;
+
+	color: inherit;
+	/* stylelint-disable */
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/* stylelint-enable */
+	background-color: transparent;
+	border: none;
+	border-radius: $border-radius-rounded;
+	cursor: pointer;
+	display: inline-block;
+	flex-grow: 0;
+	flex-shrink: 0;
+	font-size: 0;
+	height: 20px;
+	max-height: 20px;
+	max-width: 20px;
+	min-height: 20px;
+	min-width: 20px;
+	outline: none;
+	position: relative;
+	vertical-align: top;
+	width: 20px;
+
+	&:before,
+	&:after {
+		background-color: currentColor;
+		content: '';
+		display: block;
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%) rotate(45deg);
+		transform-origin: center center;
+		border: 1px solid transparent;
+	}
+
+	&:before {
+		width: 50%;
+	}
+
+	&:after {
+		height: 50%;
+	}
+
+	&:hover,
+	&.focus-visible {
+		&:before,
+		&:after {
+			border-color: currentColor;
+		}
+	}
+
+	&:active {
+		&:before,
+		&:after {
+			border-color: $text-subtle;
+		}
+	}
+
+	// Sizes
+
+	&.delete-sm {
+		height: 16px;
+		max-height: 16px;
+		max-width: 16px;
+		min-height: 16px;
+		min-width: 16px;
+		width: 16px;
+	}
+
+	&.delete-md {
+		height: 24px;
+		max-height: 24px;
+		max-width: 24px;
+		min-height: 24px;
+		min-width: 24px;
+		width: 24px;
+	}
+
+	&.delete-lg {
+		height: 32px;
+		max-height: 32px;
+		max-width: 32px;
+		min-height: 32px;
+		min-width: 32px;
+		width: 32px;
+	}
+}
+
+@mixin delete {
+	@extend %delete;
+}
+
+@mixin overflow-touch {
+	-webkit-overflow-scrolling: touch;
+}
+
+@mixin has-overflow-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	wbr {
+		display: none;
+	}
+}
+
+@mixin hamburger($dimensions) {
+	cursor: pointer;
+	display: block;
+	height: $dimensions;
+	position: relative;
+	width: $dimensions;
+
+	span {
+		border-top: 1px solid currentColor;
+		display: block;
+		height: 1px;
+		@media screen and (min-resolution: 120dpi) {
+			height: 1.5px;
+		}
+		left: calc(50% - 8px);
+		position: absolute;
+		transform-origin: center;
+		transition-duration: $nav-bar-transition-duration;
+		transition-property: background-color, opacity, transform;
+		transition-timing-function: ease-out;
+		width: 16px;
+
+		&:nth-child(1) {
+			top: calc(50% - 6px);
+		}
+
+		&:nth-child(2) {
+			top: calc(50% - 1px);
+		}
+
+		&:nth-child(3) {
+			top: calc(50% + 4px);
+		}
+	}
+
+	&:hover {
+		background-color: $box-shadow-color-heavy;
+	}
+
+	// Modifers
+	&[aria-expanded='true'] {
+		span {
+			&:nth-child(1) {
+				transform: translateY(5px) rotate(45deg);
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:nth-child(3) {
+				transform: translateY(-5px) rotate(-45deg);
+			}
+		}
+	}
+}
+
+// Trucation
+%truncated {
+	/*stylelint-disable*/
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+@mixin truncated($lines: '') {
+	@extend %truncated;
+
+	@if $lines != '' {
+		-webkit-line-clamp: $lines;
+	}
+}
+
+@mixin overflow-fade {
+	position: relative;
+	overflow: hidden;
+	max-height: 4rem;
+	padding-bottom: 1rem;
+
+	&:after {
+		position: absolute;
+		z-index: 2;
+		bottom: -1px;
+		right: 0;
+		left: 0;
+		height: 1rem;
+		content: '';
+
+		.theme-light & {
+			background-color: linear-gradient(rgba(255, 255, 255, 0), $palette-white 50%);
+		}
+		.theme-dark & {
+			background-color: linear-gradient(rgba(0, 0, 0, 0), $palette-grey-120 50%);
+		}
+		.theme-high-contrast & {
+			background-color: linear-gradient(rgba(0, 0, 0, 0), $palette-black 50%);
+		}
+	}
+}
+
+@mixin stretch-content {
+	display: flex;
+	align-content: stretch;
+	align-items: stretch;
+
+	> * {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+@mixin details-reset {
+	// Remove marker added by the display: list-item browser default
+	> summary {
+		list-style: none;
+	}
+	// Remove marker added by details polyfill
+	> summary::before {
+		display: none;
+	}
+	// Remove marker added by Chrome
+	> summary::-webkit-details-marker {
+		display: none;
+	}
+}
+
+@mixin external-link-selection {
+	&[href*="//"]:not([href*="docs.microsoft.com"]):not([href*="docs.azure.cn"]):not([href*="startups.microsoft.com"]):not([href*="rd.microsoft.com"]):not([href*="developer.microsoft.com"]):not([href*="localhost:"]):after
+	{
+		@content;
+	}
+}
+
+$indicator-base-size: 0.75em !default;
+$indicator-padding: math.div($indicator-base-size, 2);
+$indicator-clip-size: math.div(1em - $indicator-padding, 2);
+$indicator-horizontal-spacing: 0.125rem !default;
+$indicator-clip-size-ios: 0.25em;
+
+%external-indicator-base {
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2048 2048' %3E%3Cpath d='M1792 256v640h-128V475l-851 850-90-90 850-851h-421V256h640zm-512 1007h128v529H256V640h529v128H384v896h896v-401z' /%3E%3C/svg%3E");
+	background-color: currentColor !important;
+	content: '';
+	mask-repeat: no-repeat;
+	mask-position: center;
+}
+
+// External link Indicator used for inline elements
+%external-link-indicator {
+	&:not(.button):not(.nav-bar-button) {
+		@include external-link-selection {
+			@extend %external-indicator-base;
+			mask-size: $indicator-base-size 1.5em;
+			padding: 0 $indicator-padding;
+			margin: 0 $indicator-horizontal-spacing;
+			clip-path: padding-box inset(#{$indicator-clip-size} 0);
+			/* CSS specific to iOS devices */
+			@supports (-webkit-touch-callout: none) {
+				clip-path: border-box inset(#{$indicator-clip-size-ios} 0) !important;
+			}
+
+			/**
+			 * Ensure icon appears in high-contrast/forced-colors mode.
+			 * Uses `LinkText` (as opposed to `$hyperlink` to tap into
+			 * the system color set by the user for forced-colors mode.
+			 * @see https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
+			 */
+			@media (forced-colors: active) {
+				// Prevent forced colors mode from removing background image.
+				forced-color-adjust: none;
+
+				// Force icon color to the user's system color for hyperlinks
+				background-color: LinkText !important;
+			}
+		}
+	}
+}
+
+@mixin external-indicator {
+	@extend %external-link-indicator;
+}
+
+// External link indicator used for flex elements
+%external-indicator-flex {
+	@include external-link-selection {
+		@extend %external-indicator-base;
+		width: 1em;
+		height: 1em;
+		margin-#{$user-left}: 0.25em;
+	}
+}
+
+@mixin external-indicator-flex {
+	@extend %external-indicator-flex;
+}
+
+// Deprecated CSS class
+
+%deprecation-outline {
+	outline: 4px solid red;
+}
+
+@mixin deprecate() {
+	html.show-deprecation-warning & {
+		& {
+			@extend %deprecation-outline;
+		}
+	}
+}

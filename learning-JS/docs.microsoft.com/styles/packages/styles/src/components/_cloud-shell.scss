@@ -1,0 +1,34 @@
+.cloud-shell {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.cloud-shell-header {
+	flex-shrink: 0;
+	border-bottom: 1px solid currentColor;
+
+	.button {
+		color: inherit;
+		background-color: transparent;
+
+		&:hover,
+		&.focus-visible {
+			color: $secondary;
+			background-color: transparent;
+		}
+	}
+}
+
+.cloud-shell-header-title {
+	color: inherit;
+	border-#{$user-left}: 1px solid currentColor;
+	line-height: 1;
+}
+
+.cloud-shell-frame {
+	flex-grow: 1;
+	flex-shrink: 1;
+	width: 100%;
+}

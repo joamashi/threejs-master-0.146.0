@@ -1,0 +1,89 @@
+$title-size: $font-size-3 !default;
+$title-weight: $weight-semibold !default;
+$title-line-height: 1.125 !default;
+$title-strong-weight: inherit !default;
+$title-sub-size: 0.75em !default;
+$title-sup-size: 0.75em !default;
+
+$subtitle-size: $font-size-body !default;
+$subtitle-weight: $weight-normal !default;
+$subtitle-line-height: 1.25 !default;
+$subtitle-strong-weight: $weight-semibold !default;
+$subtitle-negative-margin: -1.25rem !default;
+
+$supertitle-size: $font-size-small !default;
+$supertitle-line-height: 1.25 !default;
+$supertitle-negative-margin: -0.25rem !default;
+
+.title,
+.subtitle {
+	@include block;
+
+	word-break: break-word;
+
+	em,
+	span {
+		font-weight: inherit;
+	}
+
+	sub {
+		font-size: $title-sub-size;
+	}
+
+	sup {
+		font-size: $title-sup-size;
+	}
+
+	.tag {
+		vertical-align: middle;
+	}
+}
+
+.title {
+	font-size: $title-size;
+	font-weight: $title-weight;
+	line-height: $title-line-height;
+
+	strong {
+		font-weight: $title-strong-weight;
+	}
+
+	// Sizes
+	@for $i from 1 to (length($font-heading-sizes) + 1) {
+		&.is-#{$i} {
+			font-size: nth($font-heading-sizes, $i);
+
+			&.is-responsive {
+				@include responsive-font-size(nth($font-heading-sizes, $i));
+			}
+		}
+	}
+
+	// Temporary definition, until all content is rebuild after font migration
+	&.is-8 {
+		font-size: $font-size-extra-small;
+	}
+}
+
+.subtitle {
+	font-size: $subtitle-size; // 1 rem
+	font-weight: $subtitle-weight;
+	line-height: $subtitle-line-height;
+
+	strong {
+		font-weight: $subtitle-strong-weight;
+	}
+
+	.title ~ &:not(.is-spaced) {
+		margin-top: $subtitle-negative-margin;
+	}
+}
+
+.supertitle {
+	font-size: $supertitle-size;
+	line-height: $supertitle-line-height;
+
+	&:not(.is-spaced) + .title {
+		margin-top: $supertitle-negative-margin;
+	}
+}

@@ -1,0 +1,14 @@
+$breakpoint-320: 320px;
+$breakpoint-511: 511px;
+
+// media query
+@mixin min_wight {
+  @media screen and (max-width: #{$breakpoint-320}) {
+    @content;
+  }
+}
+@mixin max_wight_511 {
+  @media screen and (min-width: 511px) {
+    @content;
+  }
+}

@@ -1,0 +1,120 @@
+.api-search-field {
+	.content > & {
+		@include mobile {
+			margin-bottom: $gap;
+		}
+	}
+
+	> label {
+		position: relative;
+		display: block;
+		width: 100%;
+	}
+
+	a {
+		position: absolute;
+		display: inline-block;
+		top: 7px;
+		right: 6px;
+
+		&:before {
+			display: inline-block;
+			padding: 0 4px;
+
+			font-family: 'docons';
+			content: get-icon-code('navigate-close');
+			color: $text;
+		}
+	}
+
+	input.empty + a {
+		display: none;
+	}
+}
+
+.api-search-quick-filter {
+	display: none;
+
+	html:not(.has-moniker-or-term) & {
+		display: flex;
+	}
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	> div,
+	h2 {
+		flex-basis: 100%;
+	}
+	@include tablet {
+		> div {
+			flex-basis: calc((100% - 24px - 24px) / 3);
+		}
+	}
+}
+
+.api-search-results {
+	table-layout: fixed;
+	width: 100%;
+
+	th {
+		text-align: left;
+	}
+
+	html:not(.apiBrowserPage) & td,
+	html:not(.apiBrowserPage) & th {
+		margin: 0;
+		padding: 6px 4px 6px 0;
+		line-height: 18px;
+		font-size: 14px;
+	}
+
+	td > img {
+		margin-bottom: -4px;
+	}
+
+	td:nth-child(1) {
+		span {
+			color: $text-subtle;
+		}
+	}
+
+	td:nth-child(2),
+	th:nth-child(2) {
+		display: none;
+	}
+
+	@include tablet {
+		html.apiBrowserPage & th:nth-child(1) {
+			width: 30%;
+		}
+
+		html.apiBrowserPage & td:nth-child(2),
+		html.apiBrowserPage & th:nth-child(2) {
+			display: table-cell;
+		}
+	}
+}
+
+.api-search-results-heading {
+	display: none;
+
+	@include tablet {
+		& {
+			display: block;
+			margin: 35px 0 20px;
+		}
+	}
+
+	.moniker-version {
+		font-size: 1rem;
+		color: $text-subtle;
+	}
+}
+
+// In "not mobile", hide the content's api search components (they're in the TOC instead).
+@include tablet {
+	html:not(.apiBrowserPage) .content .api-search-field,
+	html:not(.apiBrowserPage) .content .api-search-results-container {
+		display: none;
+	}
+}

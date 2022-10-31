@@ -1,0 +1,13 @@
+/* 
+* Blog Comments
+* Sample page https://docs.microsoft.com/en-us/archive/blogs/deva/exchange-server-quarterly-servicing-updates-changes-zero-day-vulnerability-fixes-released 
+*/
+.user-comments {
+	.comment-body > p {
+		margin-top: 0;
+	}
+
+	ul li {
+		list-style-position: inside;
+	}
+}

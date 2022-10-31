@@ -1,0 +1,702 @@
+$icon-font-size: $font-size-7;
+$icon-sm-font-size: $font-size-8;
+$icon-lg-font-size: $font-size-6;
+$icon-size: 2.25em;
+
+$icon-color: $secondary-background !default;
+$icon-active-color: $secondary !default;
+
+$file-border-color: $border !default;
+$file-radius: $border-radius !default;
+
+$file-cta-background-color: $body-background-medium !default;
+$file-cta-background-color-hover: $body-background-medium !default;
+$file-cta-background-color-active: $body-background-medium !default;
+$file-cta-color: $text-subtle !default;
+$file-cta-hover-color: $text !default;
+$file-cta-active-color: $text !default;
+$file-cta-focus-outline-color: $primary !default;
+
+$file-name-border-color: $border !default;
+$file-name-border-style: solid !default;
+$file-name-border-width: 1px 1px 1px 0 !default;
+$file-name-max-width: 16em !default;
+
+.has-background-docs {
+	.input {
+		&.focus-visible {
+			box-shadow: 0 0 0 0.125rem $docs-focus-static;
+		}
+	}
+}
+
+.select {
+	&.is-loading {
+		&:after {
+			@include loader;
+
+			margin-top: 0;
+			position: absolute;
+			inset-inline-end: 0.625em;
+			top: 0.625em;
+			transform: none;
+		}
+	}
+}
+
+// Remove after templates rebuild
+.input,
+.textarea {
+	&.is-large {
+		@include control-lg;
+	}
+}
+//Remove END
+
+.file {
+	@include unselectable;
+
+	align-items: stretch;
+	display: flex;
+	justify-content: flex-start;
+	position: relative;
+
+	// Colors
+	@each $name, $color-set in $colors {
+		$base: nth($color-set, $effect-index-base);
+		$background: nth($color-set, $effect-index-background);
+		$dark: nth($color-set, $effect-index-dark);
+		$hover: nth($color-set, $effect-index-hover);
+		$active: nth($color-set, $effect-index-active);
+		$invert: nth($color-set, $effect-index-invert);
+		$box-shadow: nth($color-set, $effect-index-box-shadow);
+
+		&.is-#{$name} {
+			.file-cta {
+				background-color: $base;
+				border-color: transparent;
+				color: $invert;
+			}
+
+			.file-cta {
+				&:hover,
+				&.is-hovered {
+					background-color: $background;
+					border-color: transparent;
+					color: $invert;
+				}
+			}
+
+			.file-input.focus-visible + .file-cta {
+				background-color: $invert;
+				color: $base;
+				border-color: $base;
+				box-shadow: $input-focus-box-shadow-size $box-shadow;
+			}
+		}
+	}
+
+	// Sizes
+
+	&.is-small {
+		font-size: $font-size-small;
+	}
+
+	&.is-medium {
+		font-size: $font-size-body;
+
+		.file-icon {
+			.docon {
+				font-size: 21px;
+			}
+		}
+	}
+
+	&.is-large {
+		font-size: $font-size-large;
+
+		.file-icon {
+			.docon {
+				font-size: 28px;
+			}
+		}
+	}
+
+	// Modifiers
+
+	&.has-name {
+		.file-cta {
+			border-bottom-right-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		.file-name {
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 0;
+		}
+
+		&.is-empty {
+			.file-cta {
+				border-radius: $file-radius;
+			}
+
+			.file-name {
+				display: none;
+			}
+		}
+	}
+
+	&.is-boxed {
+		.file-label {
+			flex-direction: column;
+		}
+
+		.file-cta {
+			flex-direction: column;
+			height: auto;
+			padding: 1em 3em;
+		}
+
+		.file-name {
+			border-width: 0 1px 1px;
+		}
+
+		.file-icon {
+			height: 1.5em;
+			width: 1.5em;
+
+			.docon {
+				font-size: 21px;
+			}
+		}
+
+		&.is-small {
+			.file-icon .docon {
+				font-size: 14px;
+			}
+		}
+
+		&.is-medium {
+			.file-icon .docon {
+				font-size: 28px;
+			}
+		}
+
+		&.is-large {
+			.file-icon .docon {
+				font-size: 35px;
+			}
+		}
+
+		&.has-name {
+			.file-cta {
+				border-radius: $file-radius $file-radius 0 0;
+			}
+
+			.file-name {
+				border-radius: 0 0 $file-radius $file-radius;
+				border-width: 0 1px 1px;
+			}
+		}
+	}
+
+	&.is-centered {
+		justify-content: center;
+	}
+
+	&.is-fullwidth {
+		.file-label {
+			width: 100%;
+		}
+
+		.file-name {
+			flex-grow: 1;
+			max-width: none;
+		}
+	}
+
+	&.is-right {
+		justify-content: flex-end;
+
+		.file-cta {
+			border-radius: 0 $file-radius $file-radius 0;
+		}
+
+		.file-name {
+			border-radius: $file-radius 0 0 $file-radius;
+			border-width: 1px 0 1px 1px;
+			order: -1;
+		}
+	}
+}
+
+.file-label {
+	align-items: stretch;
+	display: flex;
+	cursor: pointer;
+	justify-content: flex-start;
+	position: relative;
+
+	&:hover {
+		.file-cta {
+			background-color: $file-cta-background-color-hover;
+			color: $file-cta-hover-color;
+		}
+
+		.file-name {
+			border-color: $file-cta-background-color-hover;
+		}
+	}
+
+	&:active {
+		.file-cta {
+			background-color: $file-cta-background-color-active;
+			color: $file-cta-active-color;
+		}
+
+		.file-name {
+			border-color: $file-cta-background-color-active;
+		}
+	}
+}
+
+.file-input {
+	height: 0.01em;
+	inset-inline-start: 0;
+	outline: none;
+	position: absolute;
+	top: 0;
+	width: 0.01em;
+
+	&.focus-visible {
+		outline: none;
+
+		& + .file-cta {
+			@include focus;
+			z-index: 1;
+		}
+	}
+}
+
+.file-cta,
+.file-name {
+	@include control;
+
+	border-color: $file-border-color;
+	border-radius: $file-radius;
+	font-size: 1em;
+	padding-inline-start: 1em;
+	padding-inline-end: 1em;
+	white-space: nowrap;
+}
+
+.file-cta {
+	background-color: $file-cta-background-color;
+	color: $file-cta-color;
+}
+
+.file-name {
+	border-color: $file-name-border-color;
+	border-style: $file-name-border-style;
+	border-width: $file-name-border-width;
+	display: block;
+	max-width: $file-name-max-width;
+	overflow: hidden;
+	text-align: left;
+	text-overflow: ellipsis;
+}
+
+.file-icon {
+	align-items: center;
+	display: flex;
+	height: 1em;
+	justify-content: center;
+	margin-inline-end: 0.5em;
+	width: 1em;
+
+	.docon {
+		font-size: 14px;
+	}
+}
+
+.required-indicator:after {
+	color: $danger-dark;
+	vertical-align: baseline;
+	content: '*';
+}
+
+// Containers
+
+.field {
+	&:not(:last-child) {
+		margin-bottom: 0.75rem;
+	}
+
+	// Modifiers
+
+	&.has-addons {
+		display: flex;
+		justify-content: flex-start;
+
+		.control {
+			&:not(:last-child) {
+				margin-inline-end: -1px;
+			}
+
+			&:not(:first-child):not(:last-child) {
+				.button,
+				.input,
+				.select select {
+					border-radius: 0;
+				}
+			}
+
+			&:first-child {
+				.button,
+				.input,
+				.select select {
+					border-bottom-right-radius: 0;
+					border-top-right-radius: 0;
+				}
+			}
+
+			&:last-child {
+				.button,
+				.input,
+				.select select {
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+
+			.button,
+			.input,
+			.select select {
+				&:hover,
+				&.is-hovered {
+					z-index: $zindex-hover;
+				}
+
+				&.focus-visible,
+				&.is-focused,
+				&:active,
+				&.is-active {
+					z-index: $zindex-active;
+
+					&:hover {
+						z-index: $zindex-multi;
+					}
+				}
+			}
+
+			&.is-expanded {
+				flex-grow: 1;
+			}
+		}
+
+		&.has-addons-centered {
+			justify-content: center;
+		}
+
+		&.has-addons-right {
+			justify-content: flex-end;
+		}
+
+		&.has-addons-fullwidth {
+			.control {
+				flex-grow: 1;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	&.is-grouped {
+		display: flex;
+		justify-content: flex-start;
+
+		& > .control {
+			flex-shrink: 0;
+
+			&:not(:last-child) {
+				margin-bottom: 0;
+				margin-inline-end: 0.75rem;
+			}
+
+			&.is-expanded {
+				flex-grow: 1;
+				flex-shrink: 1;
+			}
+		}
+
+		&.is-grouped-centered {
+			justify-content: center;
+		}
+
+		&.is-grouped-right {
+			justify-content: flex-end;
+		}
+
+		&.is-grouped-multiline {
+			flex-wrap: wrap;
+
+			& > .control {
+				&:last-child,
+				&:not(:last-child) {
+					margin-bottom: 0.75rem;
+				}
+			}
+
+			&:last-child {
+				margin-bottom: -0.75rem;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&.is-horizontal {
+		@include tablet {
+			display: flex;
+		}
+	}
+}
+
+.field-label {
+	.label {
+		font-size: inherit;
+	}
+
+	@include mobile {
+		margin-bottom: 0.5rem;
+	}
+
+	@include tablet {
+		flex-basis: 0;
+		flex-grow: 1;
+		flex-shrink: 0;
+		margin-inline-end: 1.5rem;
+		text-align: right;
+
+		&.is-small {
+			font-size: $font-size-small;
+			padding-top: 0.375em;
+		}
+
+		&.is-normal {
+			padding-top: 0.375em;
+		}
+
+		&.is-medium {
+			font-size: $font-size-body;
+			padding-top: 0.375em;
+		}
+
+		&.is-large {
+			font-size: $font-size-large;
+			padding-top: 0.375em;
+		}
+
+		&.is-side-by-side {
+			align-self: flex-end;
+			flex-basis: auto;
+			text-align: left;
+		}
+	}
+}
+
+.field-body {
+	.field .field {
+		margin-bottom: 0;
+	}
+
+	@include tablet {
+		display: flex;
+		flex-basis: 0;
+		flex-grow: 5;
+		flex-shrink: 1;
+
+		.field {
+			margin-bottom: 0;
+		}
+
+		& > .field {
+			flex-shrink: 1;
+
+			&:not(.is-narrow) {
+				flex-grow: 1;
+			}
+
+			&:not(:last-child) {
+				margin-inline-end: 0.75rem;
+			}
+		}
+	}
+
+	&.extend-input-field {
+		flex-basis: auto;
+	}
+}
+
+.control {
+	font-size: $font-size-body;
+	position: relative;
+	text-align: left;
+
+	&.has-icon {
+		.icon {
+			color: $icon-color;
+			font-size: $icon-font-size;
+			width: $icon-size;
+			height: $icon-size;
+			pointer-events: none;
+			position: absolute;
+			top: 0;
+			z-index: 4;
+		}
+
+		.input {
+			&.focus-visible {
+				& + .icon {
+					color: $icon-active-color;
+				}
+			}
+
+			&.input-sm {
+				& + .icon {
+					font-size: $icon-sm-font-size;
+				}
+			}
+
+			// Remove 'is-large' after templates rebuild
+			&.is-large,
+			&.input-lg {
+				& + .icon {
+					font-size: $icon-lg-font-size;
+				}
+			}
+		}
+
+		&:not(.has-icon-right) {
+			.docon {
+				inset-inline-start: 0;
+			}
+
+			.input {
+				padding-inline-start: $icon-size;
+			}
+		}
+
+		&.has-icon-right {
+			.icon {
+				inset-inline-end: 0;
+			}
+
+			.input {
+				padding-inline-end: $icon-size;
+			}
+		}
+	}
+
+	&.has-icons-left,
+	&.has-icons-right {
+		.input,
+		.select {
+			&.focus-visible {
+				& ~ .icon {
+					color: $icon-active-color;
+				}
+			}
+
+			~ .icon {
+				font-size: $icon-font-size;
+			}
+
+			&.input-sm,
+			&.select-sm {
+				~ .icon {
+					font-size: $icon-sm-font-size;
+				}
+			}
+
+			// Remove 'is-large' after templates rebuild
+			&.is-large,
+			&.input-lg,
+			&.select-lg {
+				~ .icon {
+					font-size: $icon-lg-font-size;
+				}
+			}
+		}
+
+		.icon {
+			color: $icon-color;
+			width: $icon-size;
+			height: $icon-size;
+			pointer-events: none;
+			position: absolute;
+			top: 0;
+			z-index: 4;
+		}
+	}
+
+	&.has-icons-left {
+		.input,
+		.select select {
+			padding-inline-start: $icon-size;
+		}
+
+		.icon.is-left {
+			inset-inline-start: 0;
+		}
+	}
+
+	&.has-icons-right {
+		.input,
+		.select select {
+			padding-inline-end: $icon-size;
+		}
+
+		// Chromium browsers need to reposition and hide their date picker icon.
+		& .input[type='date'] {
+			position: relative;
+
+			&::-webkit-calendar-picker-indicator {
+				color: transparent;
+				background: none;
+				position: absolute;
+				#{$user-right}: 0;
+				width: 1.5em;
+				z-index: $zindex-dropdown;
+			}
+		}
+
+		.icon.is-right {
+			inset-inline-end: 0;
+		}
+	}
+
+	&.is-loading {
+		&:after {
+			@include loader;
+
+			position: absolute !important;
+			inset-inline-end: 0.625em;
+			top: 0.625em;
+			z-index: 4;
+		}
+
+		&.is-small:after {
+			font-size: $font-size-small;
+		}
+
+		&.is-medium:after {
+			font-size: $font-size-body;
+		}
+
+		&.is-large:after {
+			font-size: $font-size-large;
+		}
+	}
+}

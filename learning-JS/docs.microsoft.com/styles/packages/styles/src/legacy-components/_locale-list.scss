@@ -1,0 +1,24 @@
+html.localelist {
+	.content {
+		ul {
+			margin: 32px 0 0 0;
+			list-style-type: none;
+
+			> li {
+				list-style-type: none;
+
+				> a:not(:hover):not(.focus-visible) {
+					color: $text;
+				}
+			}
+		}
+
+		.selected {
+			font-weight: $weight-semibold;
+		}
+	}
+
+	.locale-selector-link {
+		display: none;
+	}
+}

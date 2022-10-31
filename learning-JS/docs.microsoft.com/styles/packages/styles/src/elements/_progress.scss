@@ -1,0 +1,223 @@
+@use 'sass:math';
+
+$progress-bar-background-color: $secondary-background-glow-high-contrast !default;
+$progress-value-background-color: $secondary-invert !default;
+$progress-indeterminate-duration: 1.5s !default;
+$hexagonal-progress-height: 12px !default;
+$hexagonal-progress-diagonal: math.div($hexagonal-progress-height, sqrt(2)) !default;
+$hexagonal-progress-width: 100px !default;
+$hexagonal-progress-progress-width: 100px !default;
+$hexagonal-progress-square-background: $secondary !default;
+
+.progress {
+	@include block;
+	appearance: none;
+	border: none;
+	border-radius: 0;
+	display: block;
+	height: $font-size-body;
+	max-width: 100%;
+	overflow: hidden;
+	padding: 0;
+	background-color: $progress-bar-background-color;
+
+	&::-webkit-progress-bar {
+		background-color: $progress-bar-background-color;
+	}
+
+	&::-webkit-progress-value {
+		background-color: $progress-value-background-color;
+	}
+
+	&::-moz-progress-bar {
+		background-color: $progress-value-background-color;
+	}
+
+	.theme-high-contrast & {
+		&::-webkit-progress-value {
+			background-color: $primary;
+		}
+
+		&::-moz-progress-bar {
+			background-color: $primary;
+		}
+	}
+
+	&::-ms-fill {
+		background-color: hsla(
+			0,
+			0%,
+			0%,
+			1
+		); // Bug where CSS vars will not work for -ms-fill in Edge/IE :(
+
+		.theme-dark & {
+			background-color: hsla(0, 0%, 89%, 1);
+		}
+
+		.theme-high-contrast & {
+			background-color: hsla(0, 0%, 37%, 1);
+		}
+
+		border: none;
+	}
+
+	&.is-extra-small {
+		height: $spacing-1;
+	}
+
+	// Colors
+
+	&.is-success {
+		&::-webkit-progress-value {
+			background-color: $success;
+		}
+
+		&::-moz-progress-bar {
+			background-color: $success;
+		}
+
+		&::-ms-fill {
+			background-color: hsla(120, 77%, 30%, 1); // success-base
+			.theme-high-contrast & {
+				background-color: hsla(120, 77%, 80%, 1);
+			}
+		}
+	}
+
+	&.is-primary {
+		&::-webkit-progress-value {
+			background-color: $primary;
+		}
+
+		&::-moz-progress-bar {
+			background-color: $primary;
+		}
+
+		&::-ms-fill {
+			background-color: $primary;
+			.theme-high-contrast & {
+				background-color: $primary;
+			}
+		}
+	}
+
+	&.is-docs {
+		&::-webkit-progress-value {
+			background-color: $docs-static;
+		}
+
+		&::-moz-progress-bar {
+			background-color: $docs-static;
+		}
+
+		&::-ms-fill {
+			background-color: $docs-static;
+			.theme-high-contrast & {
+				background-color: $docs-invert;
+			}
+		}
+	}
+
+	// Remove has-border-white-high-contrast after templates rebuild
+	&.has-border-white-high-contrast {
+		border: 1px solid $border-white-high-contrast;
+		@include deprecate();
+	}
+
+	&.border-white-high-contrast {
+		border: 1px solid $border-white-high-contrast;
+	}
+
+	&:indeterminate {
+		animation-duration: $progress-indeterminate-duration;
+		animation-iteration-count: infinite;
+		animation-name: moveIndeterminate;
+		animation-timing-function: linear;
+		background-color: $progress-bar-background-color;
+		background-image: linear-gradient(to right, $primary 30%, $progress-bar-background-color 30%);
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: 150% 150%;
+		&::-webkit-progress-bar {
+			background-color: transparent;
+		}
+		&::-moz-progress-bar {
+			background-color: transparent;
+		}
+		&::-ms-fill {
+			animation: none;
+		}
+	}
+}
+
+@keyframes moveIndeterminate {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+.progress-percentage {
+	display: inline-block;
+	min-width: 50px;
+}
+
+// Hexagonal progress
+
+%square {
+	position: absolute;
+	top: 2px;
+	height: $hexagonal-progress-diagonal;
+	width: $hexagonal-progress-diagonal;
+	transform: rotate(45deg);
+}
+
+.hexagonal-progress {
+	display: flex;
+	max-width: $hexagonal-progress-progress-width;
+	position: relative;
+	margin: 0 12px;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+
+	.progress {
+		height: $hexagonal-progress-height;
+		margin: 0 !important;
+		&:indeterminate {
+			animation: none;
+			background: none;
+		}
+	}
+
+	&:before,
+	&:after {
+		content: '';
+		@extend %square;
+	}
+
+	&:before {
+		#{$user-left}: math.div(-$hexagonal-progress-diagonal, 2);
+		background-color: $success;
+	}
+
+	&:after {
+		#{$user-right}: math.div(-$hexagonal-progress-diagonal, 2);
+		background-color: $progress-bar-background-color;
+	}
+}
+
+.hexagonal-progress-marker {
+	@extend %square;
+	background-color: $success;
+	z-index: 1;
+	border: 2px solid transparent;
+
+	@for $i from 0 to 101 {
+		progress[value='#{$i}'] ~ & {
+			#{$user-left}: #{$i - 4}px;
+		}
+	}
+}

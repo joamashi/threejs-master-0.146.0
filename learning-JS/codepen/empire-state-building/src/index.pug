@@ -1,0 +1,17 @@
+- var blocks = 32;
+
+.container
+  .surface
+    - for (var b = 1;b <= blocks;++b) {
+      div(class="block b" + b)
+        .block-inner
+          .front
+          .back
+          .top
+          .left
+          .right
+    - }
+    
+form
+  label(for="rotate")="Rotation"
+  input(id="rotate",type="range",min="-180",max="180",value="-45",aria-label="degrees")

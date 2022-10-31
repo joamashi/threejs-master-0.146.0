@@ -1,0 +1,31 @@
+// remove after 2/14/22
+.has-width-100 {
+	width: 100px !important;
+}
+
+.has-width-auto {
+	width: auto !important;
+	@include deprecate();
+}
+
+.has-width-330 {
+	width: 330px !important;
+	@include deprecate();
+}
+
+@include widescreen {
+	.has-width-450-widescreen {
+		width: 450px !important;
+	}
+}
+
+// sass throws error if using include in another mixin
+.has-width-450-widescreen {
+	@include deprecate();
+}
+
+// end remove after 2/14/22
+
+.is-reading-width {
+	max-width: $reading-max-width !important;
+}

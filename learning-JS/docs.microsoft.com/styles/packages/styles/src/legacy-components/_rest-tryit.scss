@@ -1,0 +1,234 @@
+.rest-tryit-form {
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	background-color: $body-background-medium;
+
+	h3 {
+		margin-top: 0;
+		font-weight: $weight-semibold;
+		font-size: 1rem;
+	}
+
+	.signin-section {
+		background-color: $body-background;
+		border-top: 1px solid $border;
+	}
+
+	.request-section,
+	.response-section {
+		.small {
+			font-size: 0.75rem;
+		}
+
+		.tall {
+			min-height: 200px;
+		}
+
+		.action:before {
+			margin-left: 3px;
+		}
+
+		> *:not(hr):not(.is-success):not(.button-success) {
+			margin: 0;
+			padding: 12px 24px;
+			@media screen and (min-width: 640px) {
+				padding: 12px 52px 30px;
+			}
+		}
+	}
+
+	.subscription-id {
+		padding: 0 5px;
+	}
+
+	.signin-section {
+		display: block;
+		padding: 24px 52px;
+
+		@media screen and (min-width: 640px) {
+			padding: 24px 52px;
+		}
+
+		@media screen and (max-width: 640px) {
+			display: block;
+			padding: 24px;
+		}
+
+		> h2 {
+			font-size: 1.75rem;
+			margin: 0;
+		}
+	}
+
+	.request-section {
+		& > *:not(.is-success):not(.button-success) {
+			border-top: 1px solid $border;
+		}
+
+		.textarea {
+			box-sizing: border-box;
+			padding: 32px;
+			margin-bottom: 15px;
+		}
+
+		.url-group {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+			width: 100%;
+			min-height: 45px;
+			margin-bottom: 24px;
+
+			& > *:not(.is-success):not(.button-success) {
+				border: 1px solid $border;
+				height: 45px;
+				margin: 0;
+				padding: 0;
+			}
+
+			.http-verb {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				outline: none;
+				border-radius: 0;
+				border: 1px solid $border;
+				background-color: $border;
+				padding: 0 0.75em;
+				color: $text;
+			}
+
+			.url-input {
+				flex-grow: 1;
+				padding-left: 0.75rem;
+				padding-right: 0.75rem;
+				font-size: 90%;
+
+				html.theme-dark & {
+					border-color: $text-subtle;
+				}
+			}
+		}
+
+		.request-body {
+			-moz-osx-font-smoothing: auto;
+			-webkit-font-smoothing: auto;
+			font-family: $monospace-font-stack;
+			line-height: 19px;
+		}
+
+		.param-heading {
+			padding: 1.5em 0 0.5em;
+			padding-#{$content-left}: 1.5em;
+			text-align: $content-right;
+		}
+
+		.param-name {
+			padding: 0.5em 0;
+			padding-#{$content-left}: 1.5em;
+			align-self: flex-start;
+			justify-content: flex-end;
+			text-align: $content-right;
+
+			input {
+				text-align: $content-right;
+			}
+		}
+
+		.param-value {
+			padding: 0.5em 0;
+			padding-#{$content-left}: 1em;
+			align-self: flex-start;
+		}
+
+		.add-button,
+		.delete-button {
+			padding-top: 0.5em;
+
+			& .button {
+				background-color: $body-background-medium;
+				border: none;
+
+				&.is-transparent:hover {
+					border-color: none;
+				}
+			}
+		}
+
+		.docon {
+			display: flex;
+		}
+
+		.field-label {
+			font-family: $monospace-font-stack;
+			font-size: $font-size-extra-small;
+			margin-right: 0;
+		}
+
+		.field-body {
+			align-self: center;
+			justify-content: flex-end;
+
+			& .control {
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+		}
+
+		.error-message {
+			color: $danger;
+			font-size: $font-size-small;
+			width: 100%;
+			padding-top: 5px;
+			padding-left: 5px;
+			text-align: right;
+		}
+
+		.action {
+			padding: 8px;
+			background-color: transparent;
+			border: 0 solid $border;
+			color: $text-subtle;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			line-height: normal;
+		}
+
+		.action:after {
+			display: inline-block;
+			margin-left: 3px;
+			margin-right: 3px;
+			width: 0.8rem;
+		}
+	}
+
+	.response-section {
+		background-color: $body-background;
+		border-top: 1px solid $border;
+
+		h2 {
+			padding-top: 24px;
+		}
+
+		pre > code {
+			padding: 24px;
+		}
+
+		.status-success {
+			color: $success;
+			font-weight: $weight-semibold;
+		}
+
+		.status-warning {
+			color: $warning;
+			font-weight: $weight-semibold;
+		}
+
+		.status-fail {
+			color: $danger;
+			font-weight: $weight-semibold;
+		}
+	}
+}

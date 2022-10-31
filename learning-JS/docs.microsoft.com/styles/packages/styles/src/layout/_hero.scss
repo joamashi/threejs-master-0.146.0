@@ -1,0 +1,229 @@
+// greenfield
+// how does it work? https://bulma.io/documentation/layout/hero/
+// Removed: .is-bold, video, and navigation elements
+
+$hero-image-tablet-max-height: 325px;
+$hero-image-desktop-max-height: 500px;
+
+$hero-mobile-overlap-margin: 220px;
+
+.hero {
+	align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+
+	@each $name, $color-set in $colors {
+		$base: nth($color-set, $effect-index-base);
+		$invert: nth($color-set, $effect-index-invert);
+
+		&.is-#{$name} {
+			background-color: $base;
+			color: $invert;
+			outline-color: $invert;
+
+			a:not(.button):not(.dropdown-item):not(.tag),
+			strong {
+				color: inherit;
+			}
+
+			.title,
+			.subtitle {
+				color: $invert;
+			}
+
+			a:not(.button),
+			strong {
+				color: $invert;
+			}
+		}
+	}
+
+	// Modifiers: Removed .is-bold, as sass lighten/darken functions do not work on our var-- colors
+
+	// Sizes
+
+	&.is-small .hero-body {
+		padding-bottom: 1.5rem;
+		padding-top: 1.5rem;
+	}
+
+	&.is-medium {
+		@include tablet {
+			.hero-body {
+				padding-bottom: 9rem;
+				padding-top: 9rem;
+			}
+		}
+	}
+
+	&.is-large {
+		@include tablet {
+			.hero-body {
+				padding-bottom: 18rem;
+				padding-top: 18rem;
+			}
+		}
+	}
+
+	&.is-halfheight,
+	&.is-fullheight .hero-body {
+		align-items: center;
+		display: flex;
+
+		& > .container {
+			flex-grow: 1;
+			flex-shrink: 1;
+		}
+	}
+
+	&.is-halfheight {
+		min-height: 50vh;
+	}
+
+	&.is-fullheight {
+		min-height: 100vh;
+	}
+
+	@include mobile {
+		&.has-overlap-bottom-mobile {
+			padding-bottom: $hero-mobile-overlap-margin;
+			margin-bottom: -$hero-mobile-overlap-margin;
+		}
+	}
+
+	// Components : Removed hero Video
+
+	.hero-buttons {
+		margin-top: 1.5rem;
+
+		.button {
+			display: flex;
+
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+
+			@include tablet {
+				display: flex;
+				justify-content: center;
+
+				.button:not(:last-child) {
+					margin-right: 1.5rem;
+				}
+			}
+		}
+	}
+
+	// Containers
+
+	.hero-head,
+	.hero-foot {
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+
+	.hero-body {
+		flex-grow: 1;
+		flex-shrink: 0;
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+		@extend %uhf-container-margin;
+		z-index: 1;
+	}
+
+	.hero-card {
+		position: relative;
+		z-index: 1;
+		border: none;
+		background-color: transparent;
+		padding: $spacing-3;
+
+		@include tablet {
+			padding: $spacing-5;
+		}
+
+		@include desktop {
+			border-bottom: 1px solid $border;
+			border-left: 1px solid $border;
+			border-right: 1px solid $border;
+			border-bottom-left-radius: $border-radius-lg;
+			border-bottom-right-radius: $border-radius-lg;
+		}
+
+		&.is-dark {
+			color: $white-static;
+			outline-color: $text-invert;
+
+			@include desktop {
+				color: $primary-invert;
+				background-color: $secondary-dark;
+			}
+		}
+	}
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+
+		video,
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.hero-background-image {
+		position: absolute;
+		top: 0;
+		z-index: 0;
+		overflow: hidden;
+		width: 100%;
+
+		@include until($desktop) {
+			bottom: 0;
+		}
+
+		@include mobile-lg {
+			max-height: $hero-image-tablet-max-height;
+		}
+
+		@include desktop {
+			max-height: $hero-image-desktop-max-height;
+		}
+
+		img {
+			width: auto;
+			height: 100%;
+			max-height: 100%;
+			max-width: none;
+
+			@include desktop {
+				width: 100%;
+			}
+
+			@include widescreen {
+				margin-top: -5%;
+			}
+		}
+
+		svg {
+			width: 100%;
+			height: 100%;
+			max-height: 100%;
+			max-width: none;
+		}
+	}
+
+	& .is-full-max-height {
+		max-height: 100% !important;
+	}
+}

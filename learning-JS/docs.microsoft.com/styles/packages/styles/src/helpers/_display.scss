@@ -1,0 +1,209 @@
+// remove after template rebuild 1/31/2022
+$displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
+
+@each $display in $displays {
+	.is-#{$display} {
+		display: #{$display} !important;
+		@include deprecate();
+	}
+
+	@include mobile {
+		.is-#{$display}-mobile {
+			display: #{$display} !important;
+		}
+	}
+}
+
+// end
+
+.is-hidden {
+	display: none !important;
+}
+
+@include mobile {
+	.is-hidden-mobile {
+		display: none !important;
+	}
+
+	@include orientation-portrait {
+		.is-hidden-portrait {
+			display: none !important;
+		}
+	}
+
+	@include orientation-landscape {
+		.is-hidden-landscape {
+			display: none !important;
+		}
+	}
+
+	@include orientation-square {
+		.is-hidden-landscape {
+			display: inherit !important;
+		}
+	}
+}
+
+@include tablet {
+	.is-hidden-tablet {
+		display: none !important;
+	}
+}
+
+@include tablet-only {
+	.is-hidden-tablet-only {
+		display: none !important;
+	}
+}
+
+@include touch {
+	.is-hidden-touch {
+		display: none !important;
+	}
+}
+
+@include desktop {
+	.is-hidden-desktop {
+		display: none !important;
+	}
+}
+
+@include desktop-only {
+	.is-hidden-desktop-only {
+		display: none !important;
+	}
+}
+
+@include widescreen {
+	.is-hidden-widescreen {
+		display: none !important;
+	}
+}
+
+.is-hidden-forced-colors {
+	@media (forced-colors: active) {
+		display: none !important;
+	}
+}
+
+.is-invisible {
+	visibility: hidden !important;
+}
+
+@include mobile {
+	.is-invisible-mobile {
+		visibility: hidden !important;
+	}
+}
+
+@include tablet {
+	.is-invisible-tablet {
+		visibility: hidden !important;
+	}
+}
+
+@include tablet-only {
+	.is-invisible-tablet-only {
+		visibility: hidden !important;
+	}
+}
+
+@include touch {
+	.is-invisible-touch {
+		visibility: hidden !important;
+	}
+}
+
+@include desktop {
+	.is-invisible-desktop {
+		visibility: hidden !important;
+	}
+}
+
+@include desktop-only {
+	.is-invisible-desktop-only {
+		visibility: hidden !important;
+	}
+}
+
+@include widescreen {
+	.is-invisible-widescreen {
+		visibility: hidden !important;
+	}
+}
+
+// Visually hidden
+
+.visually-hidden,
+.is-visually-hidden {
+	@include visually-hidden();
+}
+
+.visually-hidden-until-focused:not(:focus),
+.is-visually-hidden-until-focused:not(:focus) {
+	@include visually-hidden();
+}
+
+@include mobile {
+	.is-visually-hidden-mobile {
+		@include visually-hidden;
+	}
+}
+
+@include touch {
+	.is-visually-hidden-touch {
+		@include visually-hidden;
+	}
+}
+
+@include tablet {
+	.is-visually-hidden-tablet {
+		@include visually-hidden;
+	}
+}
+
+@include tablet-only {
+	.is-visually-hidden-tablet-only {
+		@include visually-hidden;
+	}
+}
+
+@include desktop {
+	.is-visually-hidden-desktop {
+		@include visually-hidden;
+	}
+}
+
+// hide elements in certain themes.
+// .theme-display.is-dark <- will hide element in light and high-contrast themes
+%hidden {
+	display: none;
+	background-image: none;
+}
+
+@each $key, $val in $theme {
+	html.theme-#{$key} {
+		.theme-display:not(.is-#{$key}) {
+			@extend %hidden;
+		}
+	}
+}
+
+// DONT USE : hide outside of en-us
+.is-hidden-non-en-us {
+	display: none;
+
+	html[lang='en-us'] & {
+		display: block;
+	}
+}
+
+// remove after template rebuild 1/31/2022
+.is-flex-mobile,
+.is-block-mobile,
+.is-inline-mobile,
+.is-inline-block-mobile,
+.is-inline-flex-mobile {
+	@include deprecate();
+}
+// end

@@ -1,0 +1,224 @@
+$pagination-color: $text !default;
+$pagination-border-color: $border !default;
+$pagination-margin: 0.25rem !default;
+
+$pagination-hover-color: $primary-hover !default;
+$pagination-hover-border-color: $primary-hover !default;
+
+$pagination-focus-color: $primary-active !default;
+$pagination-focus-border-color: $primary-active !default;
+
+$pagination-active-color: $primary-active !default;
+$pagination-active-border-color: $primary-active !default;
+
+$pagination-disabled-color: $secondary !default;
+$pagination-disabled-background-color: $secondary-background !default;
+$pagination-disabled-border-color: $secondary-background !default;
+
+$pagination-current-color: $primary-invert !default;
+$pagination-current-background-color: $primary !default;
+$pagination-current-background-color-hover: $primary-hover !default;
+$pagination-current-border-color: $primary !default;
+
+$pagination-ellipsis-color: $secondary-background !default;
+
+$pagination-shadow-inset: inset 0 1px 2px $box-shadow-color-light;
+
+.pagination {
+	font-size: $font-size-body;
+	margin: -$pagination-margin;
+
+	// Sizes
+
+	&.is-small {
+		font-size: $font-size-small;
+	}
+
+	&.is-medium {
+		font-size: $font-size-body;
+	}
+
+	&.is-large {
+		font-size: $font-size-large;
+	}
+
+	&.is-rounded {
+		.pagination-previous,
+		.pagination-next {
+			padding-left: 1em;
+			padding-right: 1em;
+			border-radius: $border-radius-rounded;
+		}
+
+		.pagination-link {
+			border-radius: $border-radius-rounded;
+		}
+	}
+
+	&.is-wide {
+		justify-content: space-between;
+	}
+}
+
+.pagination,
+ul.pagination-list {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin: 0;
+
+	> li {
+		list-style: none !important; //specificity battle
+		margin: $pagination-margin;
+	}
+}
+
+.pagination-previous,
+.pagination-next,
+.pagination-link,
+.pagination-ellipsis {
+	@include control;
+	@include unselectable;
+	@include transparent-effects;
+
+	font-size: 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	justify-content: center;
+	text-align: center;
+}
+
+.pagination-previous,
+.pagination-next,
+.pagination-link {
+	border-color: $pagination-border-color;
+	color: $pagination-color;
+	text-decoration: none;
+	min-width: 2.25em;
+
+	&:hover {
+		border-color: $pagination-hover-border-color;
+		color: $pagination-hover-color;
+		text-decoration: none;
+	}
+
+	&[disabled] {
+		background-color: $pagination-disabled-background-color;
+		border-color: $pagination-disabled-border-color;
+		color: $pagination-disabled-color;
+		opacity: 0.5;
+	}
+}
+
+.pagination-previous,
+.pagination-next {
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	white-space: nowrap;
+}
+
+.pagination-link {
+	&.is-current {
+		background-color: $pagination-current-background-color;
+		border-color: $pagination-current-border-color;
+		color: $pagination-current-color;
+
+		&:hover {
+			background-color: $pagination-current-background-color-hover;
+		}
+	}
+}
+
+.pagination-ellipsis {
+	color: $pagination-ellipsis-color;
+	pointer-events: none;
+}
+
+.pagination-list {
+	flex-wrap: wrap;
+}
+
+@include mobile {
+	.pagination {
+		flex-wrap: wrap;
+	}
+
+	.pagination-list {
+		flex-grow: 1;
+	}
+
+	.pagination-previous,
+	.pagination-next {
+		flex-grow: 0;
+		flex-shrink: 1;
+	}
+
+	.pagination.is-centered {
+		@include orientation-landscape {
+			.pagination-previous {
+				order: 1;
+			}
+
+			.pagination-list {
+				justify-content: center;
+				order: 2;
+			}
+
+			.pagination-next {
+				order: 3;
+			}
+		}
+	}
+}
+
+@include tablet {
+	.pagination-list {
+		flex-grow: 0;
+		flex-shrink: 1;
+		justify-content: flex-start;
+		order: 1;
+	}
+
+	.pagination-previous {
+		order: 2;
+	}
+
+	.pagination-next {
+		order: 3;
+	}
+
+	.pagination {
+		justify-content: center;
+
+		&.is-centered {
+			.pagination-previous {
+				order: 1;
+			}
+
+			.pagination-list {
+				justify-content: center;
+				order: 2;
+			}
+
+			.pagination-next {
+				order: 3;
+			}
+		}
+
+		&.is-right {
+			.pagination-previous {
+				order: 1;
+			}
+
+			.pagination-next {
+				order: 2;
+			}
+
+			.pagination-list {
+				justify-content: flex-end;
+				order: 3;
+			}
+		}
+	}
+}

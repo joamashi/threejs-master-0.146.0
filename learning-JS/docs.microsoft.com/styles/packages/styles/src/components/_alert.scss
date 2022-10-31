@@ -1,0 +1,141 @@
+$alert-background: $body-background-medium !default;
+$alert-color: $text !default;
+$alert-border-radius: $border-radius-lg !default;
+$disclaimer-item-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
+$alert-padding: 1rem;
+$alert-margin-top: 1rem;
+
+.alert {
+	display: block;
+	position: relative;
+	border-radius: $alert-border-radius;
+	font-size: 1rem;
+	padding: $alert-padding;
+	margin-top: $alert-margin-top;
+	background-color: $alert-background;
+	outline-color: $text;
+	color: $alert-color;
+	transition: height 0.5s ease-in, opacity 0.5s ease-in;
+	word-wrap: break-word;
+	word-break: break-word;
+	border: 1px solid $border-white-high-contrast;
+
+	& > :first-child {
+		margin-top: 0;
+	}
+
+	& > * {
+		max-width: 100%;
+	}
+
+	@each $name, $color-set in $colors {
+		$background: nth($color-set, $effect-index-background);
+		$dark: nth($color-set, $effect-index-dark);
+		$background-glow-high-contrast: nth($color-set, $effect-index-background-glow-high-contrast);
+
+		&.is-#{$name} {
+			background-color: $background;
+			border: 1px solid $background-glow-high-contrast;
+
+			.alert-title,
+			a:not(.button) {
+				color: $dark;
+			}
+
+			&.is-loading:after {
+				border-top-color: $dark;
+				border-bottom-color: $dark;
+				border-right-color: $dark;
+				border-left-color: $background;
+			}
+		}
+	}
+
+	.alert-title,
+	a:not(.button) {
+		font-weight: $weight-semibold;
+		color: currentColor;
+	}
+
+	.codeHeader {
+		line-height: 24px;
+	}
+
+	ul.default,
+	ol.default,
+	ul,
+	ol {
+		line-height: 1.8;
+		margin-bottom: 0;
+	}
+
+	// banner is used to transform alerts into full width banners, particularly into .disclaimer-holder
+
+	&.is-banner {
+		padding-top: $spacing-2;
+		padding-bottom: $spacing-2;
+		margin: 0;
+		border-radius: 0;
+
+		// place single line <p> tags at a height approximate to button
+
+		p {
+			margin-top: $disclaimer-item-padding-vertical;
+			margin-bottom: $disclaimer-item-padding-vertical;
+			padding-top: $disclaimer-item-padding-vertical;
+			padding-bottom: $disclaimer-item-padding-vertical;
+		}
+	}
+
+	&.is-header {
+		border-radius: 0;
+
+		& + .alert {
+			margin-top: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	}
+
+	// for dismissing alerts
+
+	&.disappearing {
+		animation: slideUpOutFadeOut 0.4s ease-in forwards;
+
+		&.is-inline-alert {
+			animation: fadeOut 1s ease-in forwards;
+		}
+	}
+
+	&.is-loading {
+		& > :first-child {
+			margin-left: 1.8em;
+			margin-bottom: 0;
+		}
+
+		&:after {
+			@include loader;
+			border-top-color: $alert-color;
+			border-bottom-color: $alert-color;
+			border-right-color: $alert-color;
+			border-left-color: transparent;
+			margin-top: 0.25em;
+			position: absolute;
+			#{$content-left}: 1em;
+			top: 1em;
+			transform: none;
+		}
+
+		&.is-small:after {
+			font-size: $font-size-small;
+		}
+
+		&.is-medium:after {
+			font-size: $font-size-body;
+		}
+
+		&.is-large:after {
+			font-size: $font-size-large;
+		}
+	}
+}

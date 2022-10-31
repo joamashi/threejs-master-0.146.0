@@ -1,0 +1,279 @@
+$radio-dot-size: 1.25rem !default;
+$radio-dot-checked-color: $primary !default;
+$radio-dot-color: $text-subtle !default;
+$radio-timing-function: $input-timing-function !default;
+$radio-duration: $input-transition-duration !default;
+$radio-animation: boop !default;
+
+$radio-background-color: $body-background !default;
+
+$radios-spacing: 0.5rem;
+$radios-large-size: 1.5rem;
+$radios-large-spacing: 1rem;
+$radio-image-padding-mobile: $radios-spacing * 2;
+$radio-image-padding: $radios-spacing * 2 + $radio-dot-size !default;
+
+.radio {
+	cursor: pointer;
+	align-items: flex-start;
+	line-height: 1.25;
+	position: relative;
+	&.is-image {
+		position: relative;
+		width: 100%;
+		margin-bottom: $radios-spacing * 2;
+		margin-right: $radios-spacing * 2;
+
+		@include tablet {
+			flex: 0 0 46%;
+		}
+		@include desktop {
+			flex: 0 0 30%;
+		}
+		@include widescreen {
+			flex: 0 0 22%;
+		}
+
+		.radio-background {
+			z-index: 0;
+			background-color: $body-background-medium;
+			border: 1px solid $border-white-high-contrast;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+		}
+
+		&:hover:not([disabled]),
+		&.is-hovered {
+			.radio-dot:not(:checked):before {
+				content: get-icon-code('location');
+			}
+		}
+
+		input.is-checked ~ .radio-dot,
+		input:checked ~ .radio-dot,
+		.radio-dot.is-checked {
+			&:before {
+				color: $radio-dot-checked-color;
+				content: get-icon-code('location');
+				animation: $radio-animation $radio-duration $radio-timing-function 1;
+			}
+		}
+
+		input.is-checked ~ .radio-background,
+		input:checked ~ .radio-background {
+			border: 1px solid $primary;
+		}
+
+		input.focus-visible ~ .radio-background {
+			@extend %focus;
+		}
+
+		.radio-dot {
+			position: absolute;
+			z-index: 1;
+			top: $radios-spacing;
+			right: $radios-spacing;
+
+			@include tablet {
+				top: $radios-spacing * 1.5;
+				right: $radios-spacing * 1.5;
+			}
+		}
+
+		.radio-image {
+			pointer-events: none;
+			position: relative;
+			display: block;
+			z-index: 1;
+			padding: $radio-image-padding-mobile;
+			width: 40%;
+			@include tablet {
+				width: 100%;
+				padding-bottom: 0;
+				padding-left: $radio-image-padding;
+				padding-right: $radio-image-padding;
+				padding-top: $radio-image-padding;
+
+				&.icon {
+					padding-bottom: 1.5rem;
+				}
+			}
+
+			.radio-image-icon {
+				font-size: 30px;
+				display: block;
+			}
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.radio-label-text {
+			display: block;
+			position: relative;
+			margin-top: $radios-spacing;
+			margin-#{$user-left}: $radios-spacing * 2;
+			@include tablet {
+				margin-#{$user-left}: 0;
+			}
+			width: 50%;
+			padding: $radio-image-padding-mobile;
+			text-align: center;
+
+			@include tablet {
+				padding-top: 0;
+				padding-bottom: $radio-image-padding;
+				padding-left: $radio-image-padding;
+				padding-right: $radio-image-padding;
+				width: 100%;
+			}
+		}
+	}
+
+	input {
+		@include visually-hidden();
+		top: 100%; // For the positioning of form validation
+		left: $radios-spacing * 1.5;
+
+		&.focus-visible + .radio-dot,
+		&.is-focused + .radio-dot {
+			@extend %focus;
+		}
+	}
+
+	&:hover:not([disabled]),
+	&.is-hovered {
+		.radio-dot:not(:checked):before {
+			content: get-icon-code('location');
+		}
+	}
+
+	.radio-dot {
+		display: inline-flex;
+		flex-shrink: 0;
+		align-items: center;
+		font-size: $radio-dot-size;
+		height: $radio-dot-size - 0.125rem; // please forgive me
+		width: $radio-dot-size - 0.125rem;
+		overflow: hidden;
+		border-radius: $border-radius-rounded;
+		line-height: $radio-dot-size;
+		color: $radio-dot-color;
+		transform-origin: center;
+		transition-property: color, transition;
+		transition-duration: $radio-duration;
+		transition-timing-function: $radio-timing-function;
+
+		&:before {
+			margin-left: -1px; // please forgive me
+			height: $radio-dot-size;
+			width: $radio-dot-size;
+			background-color: $radio-background-color;
+			display: inline-block;
+			font-family: 'docons';
+			content: get-icon-code('location-circle');
+		}
+	}
+
+	.radio-label-text {
+		margin: 0 $radios-spacing;
+	}
+
+	input.is-checked ~ .radio-dot,
+	input:checked ~ .radio-dot,
+	.radio-dot.is-checked {
+		&:before {
+			color: $radio-dot-checked-color;
+			content: get-icon-code('location');
+			animation: $radio-animation $radio-duration $radio-timing-function 1;
+		}
+	}
+
+	input[disabled] ~ .radio-dot,
+	input[disabled] ~ .radio-label-text {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.radios {
+	@include mobile {
+		.radio {
+			display: flex;
+		}
+
+		.radio + .radio {
+			margin-top: $radios-spacing;
+			margin-left: 0;
+		}
+
+		&.is-large {
+			.radio + .radio {
+				margin-top: $radios-large-spacing;
+			}
+		}
+	}
+
+	&.has-images {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+
+	legend + .control > & {
+		margin-top: $radios-spacing;
+
+		&.is-large {
+			margin-top: $radios-large-spacing;
+		}
+	}
+
+	&.is-large {
+		.radio {
+			.radio-dot {
+				font-size: $radios-large-size;
+				height: calc(#{$radios-large-size} - 0.1875rem);
+				width: calc(#{$radios-large-size} - 0.1875rem);
+				line-height: $radios-large-size;
+
+				&:before {
+					margin-left: -1.5px;
+					height: $radios-large-size;
+					width: $radios-large-size;
+				}
+			}
+
+			.radio-label-text {
+				font-size: $radios-large-size;
+				margin: 0 $radios-large-spacing;
+			}
+
+			& + .radio {
+				@include tablet {
+					margin-left: $radios-large-spacing;
+				}
+			}
+		}
+	}
+
+	&.is-vertical {
+		.radio {
+			display: flex;
+		}
+
+		.radio + .radio {
+			margin-top: $radios-spacing;
+			margin-left: 0;
+		}
+
+		&.is-large {
+			.radio + .radio {
+				margin-top: $radios-large-spacing;
+			}
+		}
+	}
+}

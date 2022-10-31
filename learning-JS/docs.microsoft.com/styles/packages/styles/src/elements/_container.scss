@@ -1,0 +1,43 @@
+$half-width-spacing: 1.5rem;
+
+.container {
+	margin: 0 auto;
+	position: relative;
+	width: auto;
+
+	&.is-fluid {
+		margin-left: $gap;
+		margin-right: $gap;
+		max-width: none;
+	}
+
+	&.is-max-mobile {
+		max-width: $mobile-lg;
+	}
+
+	&.is-max-tablet {
+		@include tablet {
+			max-width: $tablet;
+		}
+	}
+
+	&.is-max-desktop {
+		@include desktop {
+			max-width: $desktop - 2 * $gap;
+		}
+	}
+
+	@include desktop {
+		max-width: $desktop - 2 * $gap;
+	}
+
+	@include until-widescreen {
+		&.is-widescreen {
+			max-width: $widescreen - 2 * $gap;
+		}
+	}
+
+	@include widescreen {
+		max-width: $widescreen - 2 * $gap;
+	}
+}

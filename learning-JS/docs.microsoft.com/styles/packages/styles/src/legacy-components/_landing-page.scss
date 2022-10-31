@@ -1,0 +1,335 @@
+html.landingpage {
+	.columnHolder {
+		display: flex;
+		flex: 1 1 auto;
+		flex-wrap: column wrap;
+	}
+
+	.abstractHolder {
+		display: flex;
+		flex-direction: column;
+		margin-top: 18px;
+		justify-content: space-between;
+	}
+
+	.abstract {
+		width: 100%;
+		font-size: 1.125rem;
+		line-height: 1.7;
+
+		p:first-child {
+			margin-top: 0;
+		}
+	}
+
+	.abstractHolder {
+		.menu {
+			margin-top: 24px;
+
+			ul {
+				margin-left: 0;
+				margin-top: 0;
+			}
+
+			li {
+				line-height: 1.3;
+				list-style-type: none;
+				margin-top: 12px;
+
+				&:first-child {
+					margin-top: 2px;
+				}
+			}
+
+			.abstract-title {
+				color: $warning-dark;
+				font-weight: $weight-semibold;
+				padding-bottom: 10px;
+			}
+		}
+
+		.aside {
+			margin-top: 24px;
+			display: flex;
+			flex-direction: column;
+			max-width: 250px;
+
+			a {
+				display: inline-block;
+				margin-right: 18px;
+			}
+
+			@media (min-width: 450px) {
+				flex-direction: row;
+			}
+		}
+	}
+
+	@media (max-width: 1023px) {
+		.columnHolder .panelContent {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		.columnHolder .column50:first-child .panelContent {
+			margin-top: 24px;
+			margin-bottom: 0;
+		}
+
+		.abstractHolder {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.abstractHolder .abstract {
+			order: 1;
+		}
+
+		.abstractHolder .aside,
+		.abstractHolder .menu {
+			order: 2;
+			max-width: unset !important;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.abstractHolder {
+			flex-direction: row;
+			position: relative;
+		}
+
+		.abstract {
+			max-width: calc(100% - 315px);
+		}
+
+		.columnHolder {
+			flex-direction: row;
+		}
+
+		.column50 {
+			flex: 1 1 50%;
+			max-width: 50%;
+		}
+
+		.abstractHolder .menu {
+			margin-top: 0;
+			max-width: 225px;
+			margin-left: 48px;
+			padding-left: 17px;
+			position: absolute;
+			top: 0;
+			#{$content-right}: 0;
+			border-#{$content-left}: 1px solid $border;
+		}
+
+		.abstractHolder .aside {
+			order: 2;
+			flex-direction: column;
+			margin-top: 0;
+			margin-left: 24px;
+		}
+
+		.abstractHolder .aside a {
+			margin-right: 0;
+		}
+	}
+
+	.content ul.panelContent {
+		display: flex;
+		flex-wrap: wrap;
+		list-style-type: none;
+		margin-top: 24px;
+		margin-left: -12px;
+	}
+
+	ul.panelContent > li {
+		list-style-type: none;
+		flex: 0 1 100%;
+
+		a.focus-visible .card {
+			@include focus();
+		}
+
+		@media only screen and (min-width: $tablet-old) {
+			flex: 0 1 50%;
+		}
+
+		@media only screen and (min-width: $desktop-old) {
+			flex: 0 1 33%;
+		}
+	}
+
+	.cardsW + h2 {
+		margin-top: 14px;
+	}
+
+	.cardsW a:hover {
+		text-decoration: underline;
+	}
+
+	ul.spaced > li {
+		margin-bottom: 8px;
+	}
+
+	ul.spaced + h2 {
+		margin-top: 34px;
+	}
+
+	ul.noBullet {
+		margin-left: 0;
+	}
+
+	ul.noBullet > li {
+		list-style-type: none;
+	}
+
+	table.dataMatrix {
+		th,
+		td {
+			text-align: center;
+		}
+
+		th {
+			span {
+				font-size: $font-size-extra-small;
+				display: block;
+			}
+		}
+
+		td {
+			&:first-child {
+				font-weight: $weight-semibold;
+				font-size: $font-size-body;
+				text-align: left;
+			}
+
+			span.docon-external-link {
+				font-size: $font-size-2;
+
+				&:after {
+					font-family: 'docons';
+					content: get-icon-code('navigate-external');
+				}
+			}
+
+			a {
+				color: $text;
+			}
+
+			a:hover {
+				color: $primary;
+				text-decoration: none;
+			}
+		}
+
+		svg {
+			height: 24px;
+			width: 24px;
+			fill: currentColor;
+		}
+	}
+
+	/* BEGIN markdown based landing pages */
+
+	.introHolder {
+		display: flex;
+		flex-direction: column;
+		margin-top: 18px;
+	}
+
+	.introHolder + h2 {
+		margin-top: 0;
+	}
+
+	.content > p:first-child,
+	.intro {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		padding-bottom: 36px;
+	}
+
+	.intro {
+		margin-top: 18px;
+	}
+
+	.introHolder .intro {
+		margin-top: 0;
+	}
+
+	.calloutHolder .callout a {
+		color: $text;
+	}
+
+	.calloutHolder .callout a:hover {
+		color: $primary;
+	}
+
+	.calloutHolder .callout img {
+		float: left;
+		height: 50px;
+		margin-right: 12px;
+		margin-top: 6px;
+		width: 50px;
+	}
+
+	@media (min-width: 768px) {
+		.introHolder {
+			flex-direction: row;
+		}
+
+		.introHolder .intro {
+			max-width: calc(100% - 370px);
+			flex-basis: calc(100% - 370px);
+		}
+
+		.introHolder .calloutHolder {
+			flex: 0 0 358px;
+			max-width: 358px;
+			margin-left: 12px;
+		}
+
+		.calloutHolder .callout {
+			border-left: solid 1px $border;
+			padding-left: 12px;
+		}
+	}
+
+	.downloadHolder {
+		border-top: 1px solid $border;
+		margin-top: 48px;
+		padding-top: 36px;
+		display: none;
+
+		.img {
+			width: 50px;
+			height: 50px;
+			background-image: url(../images/download_hover.svg);
+			background-size: cover;
+			float: left;
+		}
+
+		&:hover .img {
+			background-position: -50px 0;
+		}
+
+		.text {
+			padding-left: 60px;
+			padding-top: 8px;
+		}
+	}
+
+	&[lang='en-us'] .downloadHolder {
+		display: block;
+	}
+
+	&.os-high-contrast-enabled .downloadHolder {
+		.img {
+			display: none;
+		}
+
+		.text {
+			padding-left: 0;
+		}
+	}
+	/* END markdown based landing pages */
+}

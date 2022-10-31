@@ -1,0 +1,9 @@
+.loader {
+	display: inline-block;
+
+	&:after {
+		border-left-color: currentColor !important;
+		border-bottom-color: currentColor !important;
+		@include loader;
+	}
+}

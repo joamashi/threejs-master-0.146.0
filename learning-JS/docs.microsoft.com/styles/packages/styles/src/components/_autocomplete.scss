@@ -1,0 +1,57 @@
+$autocomplete-suggestions-background: $body-background !default;
+$autocomplete-suggestions-box-shadow: $box-shadow-light !default;
+$autocomplete-suggestions-max-height: 18rem !default;
+$autocomplete-suggestions-z-index: $zindex-dropdown !default;
+$autocomplete-active-descendant-background: $body-background-medium !default;
+$autocomplete-active-descendent-border: 1px solid $border-yellow-high-contrast !default;
+
+.autocomplete {
+	display: inline-block;
+	position: relative;
+}
+
+.autocomplete-input {
+	padding-inline-end: 26px;
+}
+
+.autocomplete-loader {
+	position: absolute;
+	inset-inline-end: 10px;
+	inset-block-start: 8px;
+
+	&.input-lg {
+		top: 10px;
+		font-size: 1.25rem;
+	}
+}
+
+.autocomplete-suggestions {
+	position: absolute;
+	z-index: $autocomplete-suggestions-z-index;
+	max-height: $autocomplete-suggestions-max-height;
+	min-width: 100%;
+	max-width: 100%;
+	padding: 0;
+	margin: 2px 0 0 !important; // override content styles
+	list-style-type: none;
+	cursor: default;
+	border: 1px solid $border;
+	background-color: $autocomplete-suggestions-background;
+	box-shadow: $autocomplete-suggestions-box-shadow;
+
+	@include tablet {
+		max-width: 500px;
+	}
+}
+
+.autocomplete-suggestion {
+	display: block;
+
+	&:hover,
+	&.is-active-descendant {
+		background-color: $autocomplete-active-descendant-background;
+		@extend %focus;
+		outline-color: currentColor !important;
+		outline-offset: -$focus-width;
+	}
+}

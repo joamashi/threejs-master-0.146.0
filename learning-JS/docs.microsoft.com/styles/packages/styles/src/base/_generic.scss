@@ -1,0 +1,206 @@
+/* HTML Tags */
+
+a {
+	color: $hyperlink;
+	cursor: pointer;
+	text-decoration: none;
+	word-wrap: break-word;
+
+	&:hover {
+		color: $primary-hover;
+		text-decoration: underline;
+	}
+
+	&:visited {
+		color: $visited;
+	}
+}
+
+a,
+li {
+	outline: 0; // set outline to 0, this fixes a bug where default outline is overwriting our focus styles in Edge/IE. We can only do this because we have specific focus styles set!
+}
+
+button {
+	color: $text;
+	background-color: $body-background;
+	cursor: pointer;
+}
+
+// Inline code
+:not(a):not(pre) > code {
+	padding: 0.1em 0.2em;
+	background-color: $inline-code;
+	border-radius: 3px;
+	font-size: 85%;
+	font-smooth: auto;
+	word-wrap: break-word;
+}
+
+// Code "blocks"
+pre {
+	font-size: $code-block-size;
+	line-height: 1.3571;
+	overflow: auto;
+	border: 1px solid $border;
+	background-color: $code-block;
+	font-smooth: auto;
+	padding: $spacing-3;
+	margin: $spacing-3 0 0;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	tab-size: 4;
+	hyphens: none;
+	-webkit-overflow-scrolling: touch;
+
+	> code {
+		position: relative;
+		border: 0;
+		padding: 0;
+		display: block;
+		line-height: 1.3571;
+
+		mark {
+			display: inline-block;
+			min-width: calc(100% + #{$spacing-3} + #{$spacing-3});
+			min-height: 18.9px; // Allow for highlighting of blank lines.
+			color: $text;
+			padding: 0 $spacing-3;
+			margin: 0 $spacing-3 * -1;
+		}
+	}
+}
+
+kbd {
+	display: inline-block;
+	padding: $spacing-1;
+	font-size: $font-size-extra-small;
+	line-height: 10px;
+	color: $text;
+	vertical-align: middle;
+	background-color: $body-background;
+	border: solid 1px $secondary;
+	border-bottom-color: $secondary;
+	border-radius: $border-radius;
+	box-shadow: inset 0 -1px 0 $secondary-box-shadow;
+}
+
+fieldset {
+	border: none;
+	min-width: 0; // as a replaced element tis is required to enable it to work in responsive layouts
+}
+
+ul.default,
+ol.default {
+	margin: 16px 0;
+	margin-#{$content-left}: 38px;
+}
+
+// problem for tutorial
+
+ul.default > li,
+ol.default > li {
+	list-style: disc outside none;
+}
+
+ol.default > li {
+	list-style-type: decimal;
+}
+
+ul.default > li > ul.default > li {
+	list-style-type: circle;
+}
+
+// azureselector
+
+.op_single_selector,
+.op_multi_selector {
+	display: none;
+}
+
+/*
+Removes the dotted focus ring on selects in firefox that appears when __tabbing__ onto a select element.
+At the time this was written, the selector needed an ancestor  to work properly.
+"select:-moz-focusring" on it's own doesn't work for some reason.
+*/
+
+body select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 $box-shadow-color-heavy;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+html.os-high-contrast-enabled select {
+	appearance: menulist;
+	background-image: none;
+	padding-right: 0;
+}
+
+html.os-high-contrast-enabled select::-ms-expand {
+	display: block;
+}
+
+input[type='search'] {
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+option {
+	padding: 0;
+	margin: 0;
+}
+
+hr {
+	height: 0;
+	border-width: 1px 0 0;
+	border-style: solid;
+	border-color: $border;
+}
+
+.clearFix:after {
+	content: '.';
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+iframe {
+	width: 100%;
+}
+
+html[data-target='docs'] [data-zone]:not([data-zone='docs']), // remove when content rebuilds
+html[data-target='chromeless'] [data-zone]:not([data-zone='chromeless']), // remove when content rebuilds
+html[data-target='docs'] [data-target]:not([data-target='docs']),
+html[data-target='chromeless'] [data-target]:not([data-target='chromeless']) {
+	display: none;
+}
+
+html:not(.os-high-contrast-enabled) .high-contrast-only {
+	display: none !important;
+}
+
+strong,
+b {
+	font-weight: $weight-semibold;
+}
+
+abbr[title] {
+	border-bottom: 2px dotted;
+	text-decoration: none;
+}
+
+summary {
+	cursor: pointer;
+}

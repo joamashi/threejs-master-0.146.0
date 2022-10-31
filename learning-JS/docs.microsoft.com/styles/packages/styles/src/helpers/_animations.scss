@@ -1,0 +1,11 @@
+.is-disappearing {
+	animation: slideUpOutFadeOut $input-transition-duration $input-timing-function forwards;
+}
+
+.is-sliding-up {
+	animation: slideUp $input-transition-duration $input-timing-function forwards;
+}
+
+.has-animation-none {
+	animation: none;
+}

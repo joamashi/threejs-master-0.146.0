@@ -1,0 +1,131 @@
+@mixin fs ($fontSize, $lineHeight: $fontSize) {
+  font-size: $fontSize + px;
+  line-height: $lineHeight + px;
+}
+
+
+// 인자로 받은line 만큼 말줄임 해주는 mixin 인자를 넘기지 않으면 1줄 말줄임
+@mixin ellipsis($line: 1) {
+  @if ($line == 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+// 스프라이트 이미지 처리를 위한 mixin
+@mixin background($url, $x, $y, $width, $height) {
+  background-image: url($url);
+  background-position: ($x) ($y);
+  background-size: $width $height;
+}
+
+
+// map구조인 devices변수를 순회하여 인자로 받은 device에 맞는 값으로 media-query문을 작성해주는 mixin
+$devices: (
+  mobile: 320px, 
+  tablet: 768px, 
+  desktop: 1280px
+);
+
+@mixin mq($device) {
+  @if map-has-key($devices, $device) {
+    $device-width: map-get($devices, $device);
+    @media screen and (min-width: #{$device-width}) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$device}.';
+  }
+}
+
+// inline-block 에 vertical-align : top을 일일히 붙히지 않아도 되는 mixin
+@mixin inline-block-box($vertical-align: top) {
+  display: inline-block;
+  vertical-align: $vertical-align;
+}
+
+// 네스팅 (nesting)
+.entry-content { // 속성 네스팅
+  p {
+    font: { /* font  옆에 : 이 온다는 걸 놓치지 말자 */
+      family: "Noto Serif CJK KR", serif;
+      size: 9.814rem;
+      weight: 400;
+    }
+  }
+}
+
+
+// scrollbar
+@mixin scrollbar-default {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 20px
+  }
+  ::-webkit-scrollbar-track {
+    background-color: darkblue;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: black;
+  }
+}
+
+.scroll-bar {
+  @include scrollbar-default
+}
+
+// if else
+@mixin fontSize($size) {
+  @if $size == 'small' {
+    font-size: 10px;
+  }
+  @else if $size == 'large' {
+    font-size: 14px;
+  }
+  @else {
+    font-size: 12px;
+  }
+}
+.fontSize {
+  @include fontSize('small');
+  // @include fontSize;
+  @include fontSize('large');
+}
+
+
+
+// content
+@mixin box-default {
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  @content;
+}
+.content {
+  @include box-default {
+    padding: 40px 60px;
+  }
+}
+
+
+// arguments
+@mixin box-default($padding, $margin) {
+  padding: $padding;
+  margin-bottom: $margin;
+}
+.arguments {
+  @include box-default(20px, 30px);
+}
+
+// 기본값 선언하여 사용하기
+@mixin box-default ($padding: 10px, $margin: 20px) {
+  padding: $padding;
+  margin-bottom: $margin;
+} 

@@ -1,0 +1,61 @@
+h2,
+h3,
+h4,
+h5,
+h6 {
+	&.heading-anchor {
+		position: relative;
+		line-height: 1.3;
+
+		padding-#{$content-left}: calc(#{$column-gap} * 1.25);
+		margin-#{$content-left}: calc(-#{$column-gap} * 1.25);
+
+		@include tablet {
+			padding-#{$content-left}: calc(#{$large-column-gap} * 1.25);
+			margin-#{$content-left}: calc(-#{$large-column-gap} * 1.25);
+		}
+
+		& .anchor-link {
+			font-size: 1rem;
+
+			width: $column-gap;
+			@include tablet {
+				width: $large-column-gap;
+			}
+
+			position: absolute;
+			left: 0;
+
+			transform: translateY(-50%) scale(0.75);
+			@include tablet {
+				transform: translateY(-50%) scale(1);
+			}
+
+			transition: opacity 0.1s linear;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:not(:hover) .anchor-link:not(.focus-visible) {
+			@include visually-hidden();
+			opacity: 0;
+		}
+	}
+}
+
+@each $heading,
+	$size
+		in (
+			'h2': $font-size-2,
+			'h3': $font-size-3,
+			'h4': $font-size-4,
+			'h5': $font-size-5,
+			'h6': $font-size-6
+		)
+{
+	#{$heading}.heading-anchor .anchor-link {
+		top: calc(#{$size} * 1.3 / 2);
+	}
+}

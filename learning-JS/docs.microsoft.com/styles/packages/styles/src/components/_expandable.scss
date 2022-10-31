@@ -1,0 +1,5 @@
+@media not print {
+	.expandable:not(.is-expanded) {
+		display: none !important;
+	}
+}

@@ -1,0 +1,41 @@
+// Table classes
+.mx-codeBreakAll code {
+	word-break: break-all;
+	white-space: normal;
+}
+
+.mx-tdBreakAll td {
+	word-break: break-all;
+}
+
+.mx-tdCol2BreakAll td:nth-child(2) {
+	word-break: break-all;
+	word-break: break-word;
+}
+
+.content .mx-namespace thead {
+	display: none;
+}
+
+.mx-tableNormal table {
+	width: inherit !important;
+}
+
+.mx-tableFixed table {
+	table-layout: fixed;
+
+	code {
+		word-break: break-all;
+		margin-top: 8px;
+	}
+}
+
+.mx-responsive-img table img {
+	width: 100%;
+	height: auto;
+}
+
+// Img class
+.content .mx-imgBorder img {
+	border: solid 1px $border;
+}

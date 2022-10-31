@@ -1,0 +1,107 @@
+// Remove after templates rebuild
+.has-border {
+	border: $border-width solid $border !important;
+	@include deprecate();
+}
+
+.has-border-mobile {
+	@include mobile {
+		border: $border-width solid $border !important;
+	}
+	@include deprecate();
+}
+
+.has-border-none {
+	border: none !important;
+	@include deprecate();
+}
+
+.has-border-top {
+	border-top: $border-width solid $border !important;
+	@include deprecate();
+}
+
+.has-border-bottom {
+	border-bottom: $border-width solid $border !important;
+	@include deprecate();
+}
+
+.has-border-bottom-none {
+	border-bottom: 0 !important;
+	@include deprecate();
+}
+
+.has-border-left {
+	border-#{$user-left}: $border-width solid $border !important;
+	@include deprecate();
+}
+
+.has-border-right {
+	border-#{$user-right}: $border-width solid $border !important;
+	@include deprecate();
+}
+
+.has-border-top-mobile {
+	@include mobile {
+		border-top: $border-width solid $border !important;
+	}
+	@include deprecate();
+}
+
+.has-border-right-tablet {
+	@include tablet {
+		border-#{$user-right}: $border-width solid $border !important;
+	}
+	@include deprecate();
+}
+
+.has-border-radius {
+	border-radius: $border-radius !important;
+	@include deprecate();
+}
+
+.has-border-radius-large {
+	border-radius: $border-width-lg !important;
+	@include deprecate();
+}
+
+.has-border-high-contrast {
+	border: $border-width solid $border-white-high-contrast;
+	@include deprecate();
+}
+
+.has-border-high-contrast-hover:hover {
+	border: $border-width solid $border-yellow-high-contrast;
+	@include deprecate();
+}
+// Remove END
+
+@each $name, $color-set in $colors {
+	$base: nth($color-set, $effect-index-base);
+
+	// Remove .has-border-left-large-#{$name} after templates rebuild
+	// used for colored border on assessment scoring boxes
+	.has-border-left-large-#{$name} {
+		border-#{$user-left}: $border-width-lg solid $base !important;
+		@include deprecate();
+	}
+
+	.border-left-l-#{$name} {
+		border-#{$user-left}: $border-width-lg solid $base !important;
+	}
+
+	// Remove .has-border-#{$name} after templates rebuild
+	// used for assessment summary boxes
+	.has-border-#{$name} {
+		border: $border-width solid $base !important;
+		@include deprecate();
+	}
+
+	.border-#{$name} {
+		border: $border-width solid $base !important;
+	}
+}
+
+.compensate-border-width {
+	margin: $border-width !important;
+}

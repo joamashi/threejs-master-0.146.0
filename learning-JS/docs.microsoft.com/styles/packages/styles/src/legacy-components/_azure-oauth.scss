@@ -1,0 +1,63 @@
+.azure-auth {
+	height: 100%;
+	color: $text;
+	background-color: $secondary-background;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 16px;
+}
+
+.azure-auth-step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	> * {
+		margin: 0 0 16px;
+	}
+
+	.c-progress {
+		margin-top: 16px;
+	}
+	@include mobile {
+		align-self: flex-start;
+	}
+}
+
+.azure-auth-tokens {
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	list-style-type: none;
+	overflow-y: auto;
+	width: 100%;
+}
+
+.azure-auth-token {
+	display: block;
+	width: 100%;
+	padding: 10px 15px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	background-color: transparent;
+	border: none;
+
+	> span {
+		display: block;
+
+		&:last-child {
+			font-size: 80%;
+		}
+	}
+
+	&:hover,
+	&.focus-visible {
+		color: $azure-invert;
+		background-color: $azure-static;
+	}
+}

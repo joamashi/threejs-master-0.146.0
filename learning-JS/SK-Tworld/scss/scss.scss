@@ -1,0 +1,510 @@
+@mixin for-size ($size) {
+  font-size: ($size / 16px) * 1rem;
+}
+
+// --------------------------------------------------------------------
+
+$x: 1;
+@while $x < 6 {
+  .text-#{$x} { 
+    font-size: $x * 10px;
+  }
+  $x: $x + 1;
+}
+
+$count: 0;
+@while $count < 5 {
+  .length-#{$count} {
+    width: (10 * $count) + px;
+  }
+  $count: $count + 1;
+}
+
+$i: 1;
+$gutter: 20px;
+
+@while $i <= 12 {
+  .grid-#{$i} {
+    width: (60px * $i) + $gutter * ($i - 1);
+  }
+  $i: $i + 1;
+}
+
+// --------------------------------------------------------------------
+
+$colors: (color1: blue, color2: red, color3: green);
+@each $key, $color in $colors {
+  .#{$key}-text {color: $color;}
+}
+
+$themeColours: (
+  "pink": #DC51AC,
+  "red": #D64651,
+  "orange": #E55937,
+);
+
+@each $themeColour, $i in $themeColours {
+  body {
+    &.#{$themeColour} {
+      background-color: $i;
+    }	
+  }
+}
+
+
+@each $obj in phone, tablet, cup, mouse {
+  .item-#{$obj} {
+    background-image: url("img/#{$obj}.jpg");
+  }
+}
+
+@each $item in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+  #{nth($item, 1)} {
+    font-size: nth($item, 2);
+  }
+}
+
+// --------------------------------------------------------------------
+
+@for $i from 1 through 5 {
+  .text-#{$i} { font-size : $i * 10px; }
+}
+
+@for $i from 1 through 8 {
+  $width: percentage(1 / $i);
+
+  .col-#{$i} {
+    width: $width;
+  }
+}
+
+$total: 12;
+@for $i from 1 to $total {
+  .grid-#{$i} {
+    width: 70px * $i;
+  }
+}
+
+$total: 12;
+@for $i from 1 through $total {
+  .grid-#{$i} {
+    width: 70px * $i;
+  }
+}
+
+// --------------------------------------------------------------------
+
+@mixin text-effect ($val) {
+  @if $val == danger {
+    color: red;
+  }
+  @else if $val == alert {
+    color: yellow;
+  }
+  @else if $val == success {
+    color: green;
+  }
+  @else {
+    color: black;
+  }
+}
+@include text-effect(alert);
+
+
+$value: null;
+#condition {
+  @if $value == false {
+    color: #eee;
+  }
+}
+#demo {
+  @if $value == false {
+    color: #434343;
+  } @else {
+    color: #8c8d8a;
+  }
+}
+
+// 텍스트, 배경 색상 대조를 조정해주는 사용자 정의 함수
+@function text-contrast($bgcolor, $val: 70%) {
+  $value: null;
+
+  // 전달인자 유효성 검사
+  @if type-of($bgcolor) != color {
+    @warn "전달받은 $bgcolor 인자 값이 올바르지 않습니다.";
+    @debug "$bgcolor의 값이 #{$bgcolor} 입니다.";
+  };
+
+  // 전달받은 배경색 인자의 명도 값이 50%보다 클 경우
+  @if lightness($bgcolor) > 50% {
+    $value: darken($bgcolor, $val); 
+  }
+
+    // 전달받은 배경색 인자의 명도 값이 50%보다 작을 경우,
+  @else {
+    $value: lighten($bgcolor, $val); 
+  }
+
+  // 결과 값 반환
+  @return $value;
+}
+
+#demo {
+  color: text-contrast(#1f1f1f);
+}
+
+// Sass 삼항 연산자
+$main-bg: #000;
+.main {
+  // $main-bg 값이 black과 같다면,
+  // #fff로 설정
+  // 거짓이라면,
+  // #000으로 설정
+  color: if($main-bg == black, #fff, #000);
+}
+
+// --------------------------------------------------------------------
+
+$list: arnold sylvester dolf jean chuck;
+@mixin author-imgs {
+  @each $manly-man in $list;
+  .photo-#{$manly-man} {
+    background: image-url("avatars/#{$manly-man}.png") no-repeat;
+  }
+}
+.author-bio {
+  @include author-imgs();
+}
+
+// ... 표현은 리스트나, 맵을 개별 인자들로 분해해서 함수나 믹스인에 전달할 때 사용
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+}
+.shadows { 
+  @include box-shadows(0px 4px 5px #666, 2px 6px 10px #999); 
+}
+
+// --------------------------------------------------------------------
+
+$grid-width: 40px; 
+$gutter-width: 10px; 
+@function grid-width ($n) {
+  @return $n * $grid-width + ($n -1 ) * $gutter-width; 
+} 
+#sidebar { width: grid-width(5); } 
+// 믹스인과 달리 @include를 쓰지 않는다.
+
+// https://soooprmx.com/scsssass-%eb%ac%b8%eb%b2%95-%ec%a0%95%eb%a6%ac/
+
+
+// --------------------------------------------------------------------
+// 자주 사용하는 @mixin 
+// --------------------------------------------------------------------
+
+// 가로 가운데 정렬
+@mixin posX {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 세로 중앙 정렬
+@mixin posY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 가로 세로 가운데로
+@mixin posXY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 애니메이션 시작
+@mixin ani-s {
+  transform: translateY(60px);
+  opacity: 0;
+  transition: all .5s;
+}
+
+// 애니메이션 끝
+@mixin ani-e {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+// 말줄임
+@mixin ell {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+// 공통이미지 작업(가상클래스)
+@mixin img-g {
+  display: inline-block;
+  overflow: hidden;
+  background:url(img-comm.png) no-repeat;
+  vertical-align: top;
+  text-indent: -9999px;
+  font-size: 0; 
+  line-height: 0;
+}
+
+// 공통 박스 작업 (라인색이 모두 같아야한다)
+@mixin box-line {
+  border: 1px solid $border-color;  
+  //border-color변수를 만들어 저장해주세요!
+  border-top: 1px solid #19a0cf;
+}
+
+// 글 앞머리에 네모기호 붙이기
+@mixin ico_square {
+  position: relative;
+  padding-left: 12px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;left: 0;
+    width: 3px;
+    height: 3px;
+    background: #555;
+  }
+}
+
+// 포인트 글꼴 넣기
+@mixin ff-g {
+  font-family: 'mGothic'; 
+}
+
+// --------------------------------------------------------------------
+
+$color1: #465266;
+$color2: #83AFFF;
+
+@mixin animation ($delay, $duration, $name) {
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $name;
+  animation-iteration-count: infinite;
+}
+
+@mixin keyframe ($animation_name)  {
+  @keyframes #{$animation_name} {
+    @content;
+  }
+}
+@include keyframe (MOVE) {
+  0%, 100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 300px;
+  }
+}
+
+body { margin: 100px auto; text-align: center; }
+.box1 { 
+  position: absolute; 
+  left: 10%; 
+  padding: 100px; 
+  background: $color1; 
+  @include animation(0s, 3s, MOVE); 
+}
+.box2 { 
+  position: absolute; 
+  left: 30%; 
+  padding: 100px; 
+  background: $color2;
+  @include animation(2s, 4s, MOVE);
+}
+
+@-webkit-keyframes MOVE {
+  0%, 
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 300px;
+  }
+}
+
+@keyframes MOVE {
+  0%, 
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 300px;
+  }
+}
+
+body {
+  margin: 100px auto;
+  text-align: center;
+}
+
+.box1 {
+  position: absolute;
+  left: 10%;
+  padding: 100px;
+  background: #465266;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-name: MOVE;
+          animation-name: MOVE;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.box2 {
+  position: absolute;
+  left: 30%;
+  padding: 100px;
+  background: #83AFFF;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-name: MOVE;
+          animation-name: MOVE;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+// --------------------------------------------------------------------
+
+// 말줄임
+@mixin Nellipsis ($lines: null) { // null
+
+	@if ($lines == null) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+  @else {
+		display: block;
+		display: -webkit-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: $lines;
+		-webkit-box-orient: vertical;
+	}
+}
+
+// --------------------------------------------------------------------
+
+// 줄바꿈 속성
+@mixin wordWrap {
+	word-break:break-word;
+	word-wrap:break-word;
+}
+
+// --------------------------------------------------------------------
+
+// css를 이용해 화살표 그리기(4방향)
+$sqrt_2: 1.41421356237;
+
+@mixin iconBullet ($direction, $width, $height, $thick, $color, $display, $position) {
+	display: $display;
+	overflow: hidden;
+	position: $position;
+	width: $width;
+	height: $height;
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		content: '';
+	}
+
+	@if ($direction == 'up' or $direction == 'down') {
+		$size: floor($width/$sqrt_2 - 2*$thick);
+		$rate: 2*$height/$width;
+		$margin-top : round($rate*$size/(2*$sqrt_2));
+
+		&:before {
+			width: $size;
+			height: $size;
+
+			@if ($rate == 1) {
+				-webkit-transform: translate(-50%, -50%) rotate(45deg);
+				transform: translate(-50%, -50%) rotate(45deg);
+			} 
+      @else {
+				-webkit-transform: translate(-50%, -50%) scale(1, $rate) rotate(45deg);
+				transform: translate(-50%, -50%) scale(1, $rate) rotate(45deg);
+			}
+
+			@if ($direction == 'up') {
+				margin-top: $margin-top;
+				border: $thick solid $color;
+				border-width: $thick 0 0 $thick;
+			} 
+      @else if ($direction == 'down') {
+				margin-top: - $margin-top;
+				border: $thick solid $color;
+				border-width: 0 $thick $thick 0;
+			}
+		}
+	} @else if ($direction == 'left' or $direction == 'right') {
+		$size: floor($height/$sqrt_2 - 2*$thick);
+		$rate: 2*$width/$height;
+		$margin-left : round($rate*$size/(2*$sqrt_2));
+
+		&:before {
+			width: $size;
+			height: $size;
+			-webkit-transform: translate(-50%, -50%) scale($rate, 1) rotate(45deg);
+			transform: translate(-50%, -50%) scale($rate, 1) rotate(45deg);
+
+			@if ($direction == 'left') {
+				margin-left: $margin-left;
+				border: $thick solid $color;
+				border-width: 0 0 $thick $thick;
+			}  
+      @else if ($direction == 'right') {
+				margin-left: - $margin-left;
+				border: $thick solid $color;
+				border-width: $thick $thick 0 0;
+			}
+		}
+	}
+}
+
+// --------------------------------------------------------------------
+
+@mixin pc {
+  @media screen and (min-width: 769px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+// --------------------------------------------------------------------
+
+@mixin break-point ($point) {
+  @if $point == desktop {
+    @media only screen and (max-width: 50em) {
+      @content;
+    }
+  }
+  @else if $point == mobile {
+    @media only screen and (max-with: 20em) {
+      @content;
+    }
+  }
+}
+@include break-point(mobile);

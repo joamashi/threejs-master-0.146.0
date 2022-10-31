@@ -1,0 +1,67 @@
+/* CSS web fonts, font-family, font-style, font-weight, etc. */
+
+// migration note: all non-variables should soon go into a generic-ish file in base
+// migration note: all variables should move to derived or initial variables
+
+h1,
+h2.likeAnH1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: $weight-semibold;
+}
+
+.docon {
+	font-family: 'docons';
+	font-size: inherit;
+	speak: none;
+	display: inline-block;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-align: center;
+	direction: ltr; // fixes RTL issue where icons are swapped
+	line-height: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+	font-family: 'docons';
+	src: url('../fonts/docons.eot');
+	src: url('../fonts/docons.eot') format('embedded-opentype'),
+		url('../fonts/docons.woff2') format('woff2'), url('../fonts/docons.woff') format('woff'),
+		url('../fonts/docons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('/static/third-party/SegoeUIWeb/1.01.206/SegoeUI-Roman-VF_web.woff2') format('woff2'),
+		url('/static/third-party/SegoeUIWeb/1.01.206/SegoeUI-Roman-VF_web.woff') format('woff'),
+		url('/static/third-party/SegoeUIWeb/1.01.206/SegoeUI-Roman-VF_web.ttf') format('ttf');
+	font-weight: $weight-light $weight-bold; // lower and upper bound of font weights
+}
+
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('/static/third-party/SegoeUI/5.32/west-european/italic/latest.eot');
+	src: url('/static/third-party/SegoeUI/5.32/west-european/italic/latest.woff2') format('woff2'),
+		url('/static/third-party/SegoeUI/5.32/west-european/italic/latest.woff') format('woff'),
+		url('/static/third-party/SegoeUI/5.32/west-european/italic/latest.ttf') format('ttf');
+	font-style: italic;
+	font-weight: $weight-normal;
+}
+
+@font-face {
+	font-family: 'SegoeUI';
+	src: local('Apple Color Emoji'), local('Android Emoji'), local('Segoe UI Emoji'),
+		local(EmojiSymbols), local(Symbola);
+
+	/* Emoji unicode blocks */
+	unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+02600-026FF;
+}

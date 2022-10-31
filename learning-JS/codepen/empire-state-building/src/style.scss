@@ -1,0 +1,495 @@
+$sqSize: 7px;
+$contW: 100%;
+$contH: 100%;
+$xSpaces: 27;
+$ySpaces: 15;
+$topColor: #fbffdb;
+$FBColor: desaturate(darken($topColor,26.7%),40%);
+$LRColor: desaturate(darken($FBColor,13.3%),40%);
+$FBwindowColor: #336;
+$LRwindowColor: darken($FBwindowColor,13.3%);
+$gridColor: #444;
+$bgColor: #fc4;
+$wht: #fff;
+$gry: #999;
+$t: transparent;
+$xPos: 0;
+$yPos: $sqSize*24;
+$xAngle: 45deg;
+$zAngle: -45deg;
+
+// range slider
+$handleS: 44px;
+  
+@mixin placeBlock($x, $y, $z, $w, $d, $h) {
+  display: inherit;
+  transform: translate3d(
+    $sqSize*($x - 1),
+    $sqSize*(-$y - ($d - 1)),
+    ($sqSize*$z) + ($sqSize*($h - 1))
+  );
+  .block-inner div {
+    &.top {
+      width: $sqSize * $w;
+      height: $sqSize * $d;
+      transform: rotateX(-90deg) translateY(-$sqSize*($d - 1));
+    }
+    &.front, &.back {
+      width: $sqSize * $w;
+      height: $sqSize * $h;
+    }
+    &.front {
+      transform: translateZ($sqSize * ($d - 1));
+    }
+    &.left, &.right {
+      width: $sqSize * $d;
+      height: $sqSize * $h;
+    }
+    &.right {
+      transform: rotateY(-270deg) translate3d($sqSize, 0, $sqSize*($w - $d));
+    }
+  }
+}
+
+@mixin blockGrid($c, $s) {
+  background-image:
+    repeating-linear-gradient(
+      transparent, transparent $s - 1,
+      $c $s - 1, $c $s
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent $s - 1,
+      $c $s - 1,
+      $c $s
+    );
+}
+
+@mixin windows($c1, $c2, $s) {
+  background: {
+    image:
+      linear-gradient(
+        90deg,
+        $c2,
+        $c2 $s*0.25,
+        $c1 $s*0.25,
+        $c1 $s*0.75,
+        $c2 $s*0.75,
+        $c2
+      )
+      ;
+    size: $s $s;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: $bgColor;
+  font: 16px Helvetica;
+  height: 100vh;
+}
+form {
+  position: absolute;
+  bottom: 2em;
+  text-align: center;
+  width: 100%;
+}
+label {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  height: $handleS;
+  width: 303px;
+  background: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 0;
+  height: $handleS;
+  width: $handleS;
+  border-radius: 50%;
+  background: $wht;
+  margin-top: -16px;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  background: darken($wht,10%);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  background: $gry;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: lighten($gry,10%);
+}
+input[type=range]::-moz-range-thumb {
+  border: 0;
+  height: $handleS;
+  width: $handleS;
+  border-radius: 50%;
+  background: $wht;
+}
+input[type=range]::-moz-range-thumb:hover {
+  background: darken($wht,10%);
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  background: $gry;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: none;
+  border: 0;
+  height: $handleS;
+  width: $handleS;
+  border-radius: 50%;
+  background: $wht;
+}
+input[type=range]::-ms-thumb:hover {
+  background: darken($wht,10%);
+}
+input[type=range]::-ms-track {
+  height: 12px;
+  width: 100%;
+  background: $t; 
+  border-color: $t;
+  border-width: 16px 0;
+  color: $t;
+}
+input[type=range]::-ms-fill-lower {
+  background: $gry;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: $gry;
+}
+input[type=range]::-ms-fill-upper {
+  background: $gry;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: lighten($gry,10%);
+}
+.container {
+  display: flex;
+  margin: auto;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: $contW;
+  height: $contH;
+  transform-style: preserve-3d;
+}
+.surface {
+  //@include blockGrid($gridColor, $sqSize);
+  display: block;
+  width: $sqSize * $xSpaces;
+  height: $sqSize * $ySpaces;
+  margin: auto;
+  transform-style: preserve-3d;
+  transform: translate($xPos,$yPos) rotateX($xAngle) rotateZ($zAngle);
+  will-change: transform;
+}
+.block {
+  display: none;
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 0;
+}
+.block-inner > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  position: absolute;
+  width: $sqSize;
+  height: $sqSize;
+}
+.block-inner {
+  position: relative;
+  width: $sqSize;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg) translateZ($sqSize);
+}
+.front, .back {
+  background-color: $FBColor;
+  @include windows($FBwindowColor, $FBColor, $sqSize);
+}
+.back {
+  transform: translateZ(-$sqSize) rotateY(180deg);
+}
+.left, .right {
+  background-color: $LRColor;
+  @include windows($LRwindowColor, $LRColor, $sqSize);
+}
+.left {
+  transform-origin: center left;
+  transform: rotateY(270deg) translateX(-$sqSize);
+}
+.right {
+  transform-origin: top right;
+}
+.top {
+  background: $topColor;
+  transform-origin: top center;
+}
+
+/* Make window count on each block side more accurate */
+.b1 .front,
+.b1 .back {
+  box-shadow:
+    0 $sqSize*0.75 0 $sqSize*0.25 $FBColor inset,
+    $sqSize*0.75 0 0 $sqSize*0.25 $FBColor inset,
+    $sqSize*-0.75 0 0 $sqSize*0.25 $FBColor inset;
+}
+.b1 .left,
+.b1 .right {
+  box-shadow:
+    0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset,
+    $sqSize*0.75 0 0 $sqSize*0.25 $LRColor inset,
+    $sqSize*-0.75 0 0 $sqSize*0.25 $LRColor inset;
+}
+@for $i from 2 through 8 {
+  .b#{$i} .front,
+  .b#{$i} .back {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $FBColor inset;
+  }
+  .b#{$i} .left,
+  .b#{$i} .right {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+    @if $i == 2 or $i == 3 {
+      background: {
+        position: $sqSize/2 0;
+        size: $sqSize*1.5 $sqSize;
+      }
+      box-shadow:
+        0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset,
+        $sqSize*0.5 0 0 $sqSize*0.25 $LRColor inset,
+        $sqSize*-0.5 0 0 $sqSize*0.25 $LRColor inset;
+    }
+  }
+}
+@for $i from 9 through 13 {
+  .b#{$i} .front,
+  .b#{$i} .back {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $FBColor inset;
+  }
+  .b#{$i} .left,
+  .b#{$i} .right {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+    @if $i == 10 or $i == 12 {
+      background: {
+        position: $sqSize*0.5 0;
+        size: $sqSize*1.75 $sqSize;
+      }
+    }
+    @if $i == 11 or $i == 13 {
+      background: {
+        position: $sqSize*0.25 0;
+        size: $sqSize*1.63 $sqSize;
+      }
+      box-shadow:
+        0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+  	}
+  }
+}
+@for $i from 16 through 21 {
+  .b#{$i} .front,
+  .b#{$i} .back {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $FBColor inset;
+  }
+  .b#{$i} .left,
+  .b#{$i} .right {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+  }
+}
+.b16 .left,
+.b17 .right {
+  background: {
+    position: $sqSize*0.25 0;
+    size: $sqSize*1.25 $sqSize;
+  }
+}
+.b22 .front,
+.b22 .back {
+  &::before {
+    background-color: $FBColor;
+  	box-shadow: $sqSize*4 0 0 $FBColor;
+    content: "";
+    display: block;
+    position: absolute;
+    width: $sqSize;
+    height: $sqSize*9;
+  }
+}
+.b23 .front,
+.b23 .back {
+  &::before {
+    background-color: $FBColor;
+  	box-shadow:
+    	$sqSize*2 0 0 $FBColor,
+    	$sqSize*6 0 0 $FBColor,
+    	$sqSize*8 0 0 $FBColor;
+    content: "";
+    display: block;
+    position: absolute;
+    width: $sqSize;
+    height: $sqSize*3;
+  }
+}
+.b23 .left,
+.b23 .right {
+  &::before {
+    background-color: $LRColor;
+  	box-shadow:
+    	$sqSize*6 0 0 $LRColor;
+    content: "";
+    display: block;
+    position: absolute;
+    width: $sqSize;
+    height: $sqSize*3;
+  }
+}
+@for $i from 23 through 24 {
+  .b#{$i} .front,
+  .b#{$i} .back {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $FBColor inset;
+  }
+  .b#{$i} .left,
+  .b#{$i} .right {
+    box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+  }
+  @if $i == 24 {
+    .b#{$i} > div > div {
+      background-position: $sqSize/2 0;
+    }
+  }
+}
+@for $i from 25 through 31 {
+  .b#{$i} .front,
+  .b#{$i} .back,
+  .b#{$i} .left,
+  .b#{$i} .right {
+    background-image: none;
+  }
+  @if $i == 29 {
+    .b#{$i} .front,
+    .b#{$i} .back {
+      background-image: linear-gradient(
+        90deg,
+      transparent,
+      transparent 33%,
+        $FBwindowColor 33%,
+        $FBwindowColor 88%,
+        transparent 88%,
+        transparent
+        )
+      ;
+      box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.13 $FBColor inset;
+    }
+    .b#{$i} .left,
+    .b#{$i} .right {
+      background-image: linear-gradient(
+        90deg,
+      transparent,
+      transparent 33%,
+        $LRwindowColor 33%,
+        $LRwindowColor 88%,
+        transparent 88%,
+        transparent
+        )
+      ;
+      box-shadow:
+      0 $sqSize*0.75 0 $sqSize*0.25 $LRColor inset;
+    }
+  }
+}
+/* Antenna top */
+.b32 .front,
+.b32 .back,
+.b32 .left,
+.b32 .right {
+  background-image: none;
+}
+.b32 .top {
+  background: #888;
+}
+.b32 .front,
+.b32 .back {
+  background: #666;
+}
+.b32 .left,
+.b32 .right {
+  background: #444;
+}
+    
+/* Block placement */
+// parameters: x-pos, y-pos, z-pos, width, depth, height
+$blockList:
+  (1,1,1,27,15,6)
+  (5,3,7,2,11,15)
+  (22,3,7,2,11,15)
+  (7,2,7,5,2,19)
+  (13,3,7,3,2,23)
+  (17,2,7,5,2,19)
+  (7,13,7,5,2,19)
+  (13,12,7,3,2,23)
+  (17,13,7,5,2,19)
+  (7,4,22,1,9,8)
+  (8,3,26,4,11,31)
+  (21,4,22,1,9,8)
+  (17,3,26,4,11,31)
+  (13,5,7,3,1,50)
+  (13,11,7,3,1,50)
+  (9,4,57,3,9,9)
+  (17,4,57,3,9,9)
+  (12,3,7,1,2,50)
+  (16,3,7,1,2,50)
+  (12,12,7,1,2,50)
+  (16,12,7,1,2,50)
+  (12,5,57,5,7,9)
+  (10,5,66,9,7,3)
+  (11,6,69,7,5,2)
+  (12,6.75,71,5,3.5,0.4)
+  (12.25,7,71.4,4.5,3,0.2)
+  (12.5,7.25,71.6,4,2.5,0.2)
+  (12.75,7.5,71.8,3.5,2,0.2)
+  (13.88,7.88,72,1.16,1.16,11.6)
+  (14.16,8.16,83.6,0.66,0.66,0.66)
+  (14.16,8.16,84.24,0.66,0.66,7.57)
+  (14.24,8.24,91.74,0.5,0.5,7.5)
+  ;
+
+// render blocks
+@for $b from 1 through length($blockList) {
+  .b#{$b} {
+    @include placeBlock(
+      nth(nth($blockList, $b), 1),
+      nth(nth($blockList, $b), 2),
+      nth(nth($blockList, $b), 3),
+      nth(nth($blockList, $b), 4),
+      nth(nth($blockList, $b), 5),
+      nth(nth($blockList, $b), 6)
+    );
+  }
+}

@@ -1,0 +1,65 @@
+$bracket-border: 2px solid $secondary;
+$bracket-top-margin: 10px;
+$bracket-side-margin: 5px;
+$bracket-height-mobile: 15px;
+
+.bracket {
+	overflow-x: hidden;
+
+	.bracket-line,
+	.bracket-group-line {
+		border-bottom: $bracket-border;
+
+		@include mobile {
+			border-bottom: 0;
+			border-#{$user-left}: $bracket-border;
+			height: $bracket-height-mobile;
+			transform: translate(percentage(0.5 * $user-translate-x-direction));
+		}
+	}
+
+	.bracket-line {
+		@include mobile {
+			margin-top: $bracket-top-margin;
+		}
+	}
+
+	.bracket-group-line {
+		body[dir='ltr'] & {
+			margin-#{$user-right}: $bracket-side-margin;
+		}
+		body[dir='rtl'] & {
+			margin-#{$user-left}: $bracket-side-margin;
+		}
+	}
+
+	.bracket-group-right {
+		position: relative;
+		top: 65px;
+		height: calc(100% - 100px);
+		border-top: $bracket-border;
+		border-bottom: $bracket-border;
+
+		body[dir='ltr'] & {
+			border-#{$user-right}: $bracket-border;
+			margin-#{$user-left}: $bracket-side-margin;
+		}
+
+		body[dir='rtl'] & {
+			border-#{$user-left}: $bracket-border;
+			margin-#{$user-right}: $bracket-side-margin;
+		}
+
+		@include mobile {
+			top: 0;
+			border-top: 0;
+			border-#{$user-left}: $bracket-border;
+			border-bottom: $bracket-border;
+			border-#{$user-right}: $bracket-border;
+			height: $bracket-height-mobile;
+			margin-top: $bracket-top-margin;
+			margin-#{$user-left}: 0 !important;
+			margin-#{$user-right}: 0 !important;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+.is-shadowless {
+	box-shadow: none !important;
+}
+
+.is-shadowless-mobile {
+	@include mobile {
+		box-shadow: none !important;
+	}
+}

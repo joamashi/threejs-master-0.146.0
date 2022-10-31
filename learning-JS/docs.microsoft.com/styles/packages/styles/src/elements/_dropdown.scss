@@ -1,0 +1,138 @@
+@use 'sass:math';
+
+$dropdown-z: $zindex-dropdown;
+$dropdown-caret-position: top;
+$dropdown-caret-up-position: bottom;
+$dropdown-background: $body-background;
+
+$dropdown-chevron-font-size: $font-size-extra-small !default;
+$dropdown-chevron-color: $text-subtle !default;
+
+$dropdown-horizontal-spacing: $spacing-2 !default;
+
+.dropdown {
+	position: relative;
+}
+
+.dropdown-menu {
+	position: absolute;
+	width: auto;
+	top: 100%;
+	white-space: nowrap;
+	z-index: $dropdown-z;
+	background-color: $dropdown-background;
+	border: 1px solid $border;
+	box-shadow: $box-shadow-heavy;
+
+	.has-centered-menu & {
+		max-width: 90vw;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: normal;
+	}
+
+	&.has-overflow-auto {
+		max-height: 14rem;
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+.dropdown-trigger:not([aria-expanded='true']) + .dropdown-menu {
+	display: none;
+}
+
+.dropdown.has-caret {
+	.dropdown-trigger[aria-expanded='true'] {
+		z-index: $dropdown-z + 1 !important; // above the menu - !important because .button.has-addons will cause override this causing caret issue
+
+		// position the caret beneath the dropdown trigger, centered horizontally.
+		@include double-caret($dropdown-background, $border, $dropdown-caret-position, calc(50% - 8px));
+
+		// override double-caret "top"... position the caret beneath the dropdown trigger.
+
+		&:before,
+		&:after {
+			top: inherit;
+			bottom: -14px;
+			z-index: $dropdown-z + 1; // above the menu.
+		}
+	}
+
+	.dropdown-menu {
+		margin-top: 12px;
+
+		.buttons & {
+			margin-top: 5px;
+		}
+	}
+
+	&.has-snug-menu {
+		.dropdown-trigger[aria-expanded='true'] {
+			&:before,
+			&:after {
+				#{$dropdown-caret-position}: 21px;
+			}
+		}
+
+		.dropdown-menu {
+			margin-top: 5px;
+		}
+	}
+}
+
+.dropdown.has-caret-up {
+	.dropdown-trigger[aria-expanded='true'] {
+		z-index: $dropdown-z + 1 !important; // above the menu - !important because .button.has-addons will cause override this causing caret issue
+
+		// position the caret above the dropdown trigger, centered horizontally.
+		@include double-caret(
+			$dropdown-background,
+			$border,
+			$dropdown-caret-up-position,
+			calc(50% - 8px)
+		);
+
+		// override double-caret "bottom"... position the caret beneath the dropdown trigger.
+
+		&:before,
+		&:after {
+			top: inherit;
+			bottom: 22px;
+		}
+	}
+
+	.dropdown-menu {
+		top: inherit;
+		bottom: 30px;
+
+		margin-bottom: 8px;
+	}
+}
+
+.dropdown-button-chevron {
+	margin-#{$user-left}: auto;
+	padding-#{$user-left}: math.div($dropdown-horizontal-spacing, 2);
+	font-size: $dropdown-chevron-font-size;
+	color: $dropdown-chevron-color;
+
+	.dropdown-menu & {
+		padding-#{$user-left}: $dropdown-horizontal-spacing * 2;
+	}
+
+	.docon {
+		vertical-align: sub;
+	}
+}
+
+/*
+USAGE:
+
+<div class="dropdown">  <-- OPTIONAL add "has-caret" class if you want the triangle
+	<button class="dropdown-trigger" aria-label="TODO TODO" aria-controls="ax-0" aria-expanded="false">
+	</button>
+	<div class="dropdown-menu" id="ax-0">
+	</div>
+</div>
+*/

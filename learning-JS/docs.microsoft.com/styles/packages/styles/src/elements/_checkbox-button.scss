@@ -1,0 +1,121 @@
+$checkbox-button-font-size-small: 0.8rem !default;
+$checkbox-button-check-border-radius: $border-radius-rounded !default;
+$checkbox-button-font-weight: $weight-semibold !default;
+
+$checkbox-button-color: $text !default;
+$checkbox-button-background-color: $body-background !default;
+
+$checkbox-button-border-color: $text-subtle !default;
+$checkbox-button-border-width: $control-border-width !default;
+$checkbox-border-radius: $border-radius-sm !default;
+
+$checkbox-button-hover-color: $text !default;
+$checkbox-button-hover-border-color: $default-hover !default;
+$checkbox-button-hover-background-color: $default-hover-invert !default;
+
+$checkbox-button-check-font-size: 0.875rem !default;
+$checkbox-button-check-hover-color: $secondary !default;
+$checkbox-button-check-size: 1.25rem !default;
+$checkbox-button-check-spacer: 0.5rem !default;
+
+$checkbox-transition-duration: 10ms !default;
+
+.checkbox-button {
+	@include control;
+	@include control-lg;
+	position: relative;
+	border: $checkbox-button-border-width solid $secondary;
+	border-radius: $checkbox-border-radius;
+	color: $checkbox-button-color;
+	background-color: $checkbox-button-background-color;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 50px;
+
+	&:hover {
+		color: $checkbox-button-hover-color;
+		background-color: $checkbox-button-hover-background-color;
+
+		.checkbox-button-label-check {
+			border-width: $checkbox-button-border-width;
+			border-style: solid;
+			border-color: $checkbox-button-check-hover-color;
+		}
+	}
+
+	input[type='checkbox'] {
+		@include visually-hidden;
+
+		&.focus-visible ~ .checkbox-button-label {
+			@extend %focus;
+		}
+
+		&:checked ~ .checkbox-button-label-check {
+			background-color: $primary;
+
+			&:before {
+				content: get-icon-code('check-mark') !important;
+				color: $primary-invert;
+			}
+		}
+	}
+
+	.checkbox-button-label-inner-text {
+		@include visually-hidden;
+	}
+
+	.checkbox-button-label {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		cursor: pointer;
+		background-color: transparent;
+	}
+
+	.checkbox-button-label-check {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		border-radius: $checkbox-button-check-border-radius;
+		transition-property: background, border, border-color;
+		transition-duration: $checkbox-transition-duration;
+		transition-timing-function: $checkbox-timing-function;
+		width: $checkbox-button-check-size;
+		height: $checkbox-button-check-size;
+
+		&:before {
+			border-color: $primary;
+			width: $checkbox-button-check-size;
+			height: $checkbox-button-check-size;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: 'docons';
+			font-size: $checkbox-button-check-font-size;
+			color: $checkbox-check-hover-color;
+		}
+	}
+
+	.checkbox-button-label-text,
+	.checkbox-button-label-check {
+		align-self: center;
+		text-align: start;
+
+		@include desktop {
+			text-align: center;
+		}
+	}
+
+	.checkbox-button-label-text {
+		flex-grow: 1;
+		padding: $checkbox-button-check-spacer
+			($checkbox-button-check-size + $checkbox-button-check-spacer) $checkbox-button-check-spacer
+			$checkbox-button-check-spacer;
+		font-size: $checkbox-button-font-size-small;
+		font-weight: $checkbox-button-font-weight;
+	}
+}

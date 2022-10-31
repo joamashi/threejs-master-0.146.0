@@ -1,0 +1,904 @@
+$card-padding: 12px;
+
+.hubpage,
+.landingpage {
+	.card {
+		display: block;
+		width: inherit;
+		flex-direction: row;
+		overflow: hidden;
+		position: relative;
+		border: 1px solid $border;
+		padding: 6px $card-padding 6px $card-padding;
+		box-shadow: 0 2px 5px $border;
+		color: $text;
+
+		&:hover,
+		&:active {
+			border: 1px solid $primary;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		h3,
+		.likeAnH3 {
+			font-size: 1rem;
+			margin: 0;
+			line-height: 1.125;
+		}
+
+		.likeAnH3 {
+			display: block;
+		}
+
+		p {
+			font-size: 0.9375rem;
+			line-height: 1.33;
+			margin: 6px 0 0;
+			padding: 0;
+		}
+	}
+
+	a .card:hover h3,
+	a .card:active h3,
+	a .card:hover .likeAnH3,
+	a .card:active .likeAnH3 {
+		color: $primary;
+	}
+
+	a .card:hover h3:hover,
+	a .card:active h3:active,
+	.card h3 a:hover,
+	.card h3 a:active,
+	a .card:hover .likeAnH3:hover,
+	a .card:active .likeAnH3:active,
+	.card .likeAnH3 a:hover,
+	.card .likeAnH3 a:active {
+		text-decoration: underline;
+	}
+
+	.cardPadding {
+		padding: 4px $card-padding 22px $card-padding;
+	}
+
+	.cardSize {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.cardScaleImage {
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		height: 100%;
+		width: 100%;
+	}
+
+	.cardText {
+		a,
+		a:visited {
+			color: $text;
+			text-decoration: none;
+		}
+	}
+
+	a .card:hover .cardText,
+	a .card:active .cardText,
+	.cardText a:hover,
+	.cardText a:active {
+		color: $primary;
+	}
+
+	.cardText h3 a:hover,
+	.cardText h3 a:active,
+	.cardText .likeAnH3 a:hover,
+	.cardText .likeAnH3 a:active {
+		color: $primary;
+		text-decoration: underline;
+	}
+
+	.cardText .cols > * {
+		margin: 0;
+	}
+
+	/* styleA */
+
+	.cardsA {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			min-height: 176px;
+		}
+
+		.cardImageOuter {
+			width: 100%;
+		}
+
+		.cardImage {
+			width: 64px;
+			height: 64px;
+			margin: 0 auto 8px;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+	}
+
+	/* styleB */
+
+	ul.panelContent.cardsB > li {
+		flex: 0 1 100%;
+	}
+
+	.cardsB {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.cardPadding {
+			padding: 0 18px 22px $card-padding;
+		}
+
+		.card {
+			padding: 0 0 6px;
+			box-shadow: none;
+			border: 0;
+
+			.theme-dark & {
+				box-shadow: none;
+				border: 0;
+			}
+		}
+
+		.card h3 a {
+			color: $primary;
+		}
+
+		.cardImageOuter {
+			float: left;
+		}
+
+		.cardImage {
+			width: 48px;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+
+		.cardText {
+			padding-left: 60px;
+			font-size: 14px;
+			line-height: 23px;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	/* styleC */
+
+	.cardsC {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			padding: 0 0 6px;
+			min-height: 250px;
+		}
+
+		.cardImageOuter {
+			width: 100%;
+			height: 140px;
+			overflow: hidden;
+		}
+
+		.cardImage img {
+			padding: 0;
+			width: 100%;
+			max-width: 400px;
+			margin: auto;
+			display: block;
+		}
+
+		.cardText {
+			padding: 6px $card-padding 0 $card-padding;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+	}
+
+	/* styleD */
+
+	ul.panelContent.cardsD > li {
+		flex: 0 1 25%;
+	}
+
+	.cardsD {
+		.cardText a,
+		.cardText a:visited {
+			color: $primary;
+		}
+
+		.cardText a:hover {
+			text-decoration: underline;
+		}
+
+		.card {
+			box-shadow: none;
+			border: 0;
+			padding: 0;
+
+			.theme-dark & {
+				box-shadow: none;
+				border: 0;
+			}
+		}
+
+		.card h3 {
+			font-size: 1.188rem;
+		}
+
+		.card p {
+			font-size: 1rem;
+			margin: 10px 0 0;
+		}
+	}
+
+	/* styleE */
+
+	.cardsE {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			height: 180px;
+			padding: 0;
+			padding-#{$content-left}: $card-padding;
+			box-shadow: none;
+			border: 0;
+			border-#{$content-left}: 2px solid $border;
+		}
+
+		.card:hover a {
+			color: $primary;
+		}
+
+		.cardImageOuter {
+			width: 100%;
+		}
+
+		.cardImage {
+			width: 68px;
+			height: 68px;
+			margin: 0 0 8px;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	/* styleF */
+
+	.cardsF {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			padding: 0 0 6px;
+			box-shadow: none;
+			border: 0;
+			display: flex;
+			overflow: visible;
+
+			html.theme-dark & {
+				box-shadow: none;
+				border: 0;
+			}
+		}
+
+		.cardImageOuter {
+			flex-grow: 0;
+			flex-shrink: 0;
+			margin-#{$content-right}: $card-padding;
+		}
+
+		.cardImage {
+			width: 64px;
+			overflow: hidden;
+		}
+
+		.cardText {
+			flex-grow: 1;
+			flex-shrink: 1;
+
+			a {
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: underline;
+					color: $primary;
+				}
+			}
+		}
+	}
+
+	/* styleF Title */
+
+	.cardsFTitle {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			padding-right: 6px;
+			padding-left: 6px;
+			box-shadow: none;
+			border: 0;
+		}
+
+		.cardImageOuter {
+			float: left;
+		}
+
+		.cardImage {
+			width: 50px;
+			height: 50px;
+			margin: 0 auto;
+			padding: 2px;
+		}
+
+		.cardText {
+			padding-left: 62px;
+
+			h3,
+			.likeAnH3 {
+				font-weight: $weight-normal;
+				font-size: 1rem;
+				line-height: 1.25;
+			}
+
+			a {
+				color: $primary;
+			}
+
+			p {
+				display: none;
+			}
+		}
+	}
+
+	/* styleG */
+
+	.cardsG {
+		.cardSize {
+			min-width: 260px;
+		}
+
+		.card {
+			padding: 0 0 6px;
+			box-shadow: none;
+			border: 0;
+
+			html.theme-dark & {
+				box-shadow: none;
+				border: 0;
+			}
+		}
+
+		.card:hover a {
+			color: $primary;
+		}
+
+		.cardImageOuter {
+			float: left;
+		}
+
+		.cardImage {
+			width: 150px;
+			height: 105px;
+			overflow: hidden;
+			margin: 0 auto 8px;
+		}
+
+		.cardImage img {
+			width: 100%;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		.cardText {
+			padding-left: 162px;
+		}
+	}
+
+	@media only screen and (min-width: $desktop-old) {
+		ul.panelContent.cardsG > li {
+			flex: 0 1 50%;
+		}
+	}
+
+	/* styleH */
+
+	ul.panelContent.cardsH > li {
+		flex: 0 1 50%;
+	}
+
+	.cardsH {
+		.cardPadding {
+			padding: 0 24px 24px 0;
+		}
+
+		.card {
+			border: 0;
+			box-shadow: unset;
+		}
+
+		.cardImageOuter {
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.cardImage img {
+			height: 220px;
+			width: 100%;
+			max-width: 500px;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.cardText {
+			margin-top: 18px;
+		}
+
+		.cardText p {
+			line-height: 1.6;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+	}
+
+	/* styleI */
+
+	ul.panelContent.cardsI > li {
+		flex: 0 1 50%;
+	}
+
+	.cardsI {
+		.cardPadding {
+			padding: 0 24px 64px 0;
+		}
+
+		.card {
+			border: 0;
+			box-shadow: unset;
+		}
+
+		.cardImageOuter {
+			float: left;
+		}
+
+		.cardImage {
+			width: 80px;
+			height: 80px;
+			margin: 0 auto 8px;
+		}
+
+		.cardText {
+			padding-left: 98px;
+		}
+
+		.cardText p {
+			line-height: 1.6;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		& + hr {
+			margin-top: 0;
+		}
+	}
+
+	/* StyleJ */
+
+	ul.panelContent.cardsJ > li {
+		flex: 0 1 100%;
+	}
+
+	.cardsJ {
+		.cardPadding {
+			padding: 0 24px 46px 0;
+		}
+
+		.card {
+			border: 0;
+			box-shadow: unset;
+		}
+
+		.cardImageOuter {
+			float: left;
+		}
+
+		.cardImage {
+			width: 80px;
+			height: 80px;
+			margin: 0 auto 8px;
+		}
+
+		.cardText {
+			padding-left: 98px;
+		}
+
+		.cardText p {
+			line-height: 1.6;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		& + hr {
+			margin-top: 0;
+		}
+	}
+
+	/* StyleK */
+
+	.cardsK {
+		.cardPadding {
+			padding: 0 24px 24px 0;
+		}
+
+		.card {
+			border: 0;
+			box-shadow: unset;
+		}
+
+		.cardImageOuter {
+			height: 140px;
+			overflow: hidden;
+		}
+
+		.cardImage img {
+			height: 140px;
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.cardText {
+			margin-top: 18px;
+		}
+
+		.cardText p {
+			line-height: 1.6;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+	}
+
+	/* styleL */
+
+	.cardsL {
+		.cardPadding {
+			padding: 0;
+		}
+
+		.card {
+			border: 0;
+			box-shadow: unset;
+			padding-bottom: 54px;
+		}
+
+		.cardText {
+			display: flex;
+			flex: 1 1 auto;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		h3 {
+			border-bottom: solid 1px $border;
+			font-size: 1.75rem;
+			margin-bottom: 8px;
+			padding-bottom: 8px;
+
+			flex: 1 1 100%;
+			overflow: hidden;
+		}
+
+		h4 {
+			flex: 1 1 100%;
+			margin-bottom: 0;
+			margin-top: 8px;
+			overflow: hidden;
+		}
+
+		.ico48Link {
+			flex: 1 1 33%;
+			max-width: 33%;
+		}
+	}
+
+	/* styleM */
+
+	.cardsM {
+		margin: 0 !important;
+
+		.card {
+			display: flex;
+			align-items: center;
+			box-sizing: border-box;
+			height: 100%;
+			padding: $card-padding;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		.cardImage {
+			flex-grow: 0;
+			flex-shrink: 0;
+			width: 36px !important;
+			height: 36px !important;
+			margin-#{$content-right}: $card-padding;
+		}
+
+		.cardText {
+			flex-grow: 1;
+			color: $text;
+
+			> :first-child {
+				margin-top: 0;
+				color: $text;
+			}
+
+			> :only-child {
+				font-weight: $weight-normal;
+			}
+		}
+	}
+
+	/* landing pages - StyleW */
+
+	.cardsW {
+		.card {
+			box-shadow: none;
+			border: 0;
+			padding: 0;
+
+			.theme-dark & {
+				box-shadow: none;
+				border: 0;
+			}
+		}
+
+		.cardImage {
+			display: block;
+			width: 100%;
+		}
+
+		.card h3,
+		.card .likeAnH3 {
+			font-size: 1.188rem;
+		}
+
+		.card p {
+			font-size: 1rem;
+			margin: 10px 0 0;
+		}
+	}
+
+	/* site home - StyleX*/
+
+	.noTouch .cardsX .card:hover,
+	.noTouch .cardsX .card:active {
+		border-color: transparent;
+	}
+
+	.cardsX {
+		.cardSize {
+			position: relative;
+		}
+
+		.card {
+			min-height: 92px;
+			padding: 0;
+		}
+
+		.cardImageOuter {
+			margin: 0;
+		}
+
+		.cardImage {
+			width: 300px;
+			height: 92px;
+			margin: auto;
+		}
+
+		.cardText {
+			display: none;
+		}
+
+		.card h3,
+		.card .likeAnH3 {
+			display: none;
+		}
+
+		@media only screen and (min-width: $tablet-old) {
+			> li {
+				margin-bottom: 32px;
+			}
+		}
+	}
+
+	/* featured - StyleY*/
+
+	.cardsY {
+		.card {
+			padding: 6px;
+		}
+
+		.cardImageOuter {
+			float: left;
+			margin: 6px 0 6px 4px;
+		}
+
+		.cardImage {
+			width: 50px;
+			height: 50px;
+		}
+
+		.cardImage img {
+			max-width: 50px;
+			max-height: 50px;
+		}
+
+		.cardText {
+			padding-left: 64px;
+			margin-top: $card-padding;
+		}
+
+		.card p {
+			font-size: 0.875rem;
+			margin: 0;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+	}
+
+	/* no image */
+
+	.cardsZ {
+		.cardImageOuter {
+			display: none;
+		}
+
+		.card {
+			min-height: 116px;
+			padding-top: 24px;
+		}
+	}
+
+	ul.panelContent.directory > li {
+		float: left;
+		width: 50%;
+	}
+
+	ul.panelContent.directory > li > .group {
+		float: left;
+		min-width: 240px;
+		width: 50%;
+	}
+
+	.directory h3,
+	.directory .likeAnH3 {
+		margin-top: 4px;
+	}
+
+	.directory > main li ul {
+		list-style-type: none;
+		margin-bottom: 32px;
+	}
+
+	ul.panelContent.directory > li ul img {
+		float: left;
+		height: 24px;
+		width: 24px;
+	}
+
+	@media only screen and (min-width: $desktop-old) {
+		.panelItem > ul.panelContent.directory > li {
+			flex: 0 1 50%;
+		}
+	}
+
+	ul.panelContent.directory > li ul a {
+		color: $text-subtle;
+	}
+
+	.group li p {
+		margin-left: 36px;
+		color: $text-subtle;
+	}
+
+	.group li:hover p,
+	.group li:active p {
+		color: $primary;
+		text-decoration: underline;
+	}
+
+	.ico48Link,
+	.ico64Link {
+		display: inline-block;
+		font-size: 0.9375rem;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		text-align: center;
+	}
+
+	.ico48Link h3,
+	.ico64Link h3 {
+		margin-bottom: $card-padding;
+		margin-top: 0;
+	}
+
+	.ico48Link img {
+		height: 48px;
+		width: 48px;
+	}
+
+	.ico64Link img {
+		height: 64px;
+		width: 64px;
+	}
+
+	.ico48Link span,
+	.ico64Link span {
+		display: block;
+	}
+
+	.ico48Case .ico48Link,
+	.ico64Case .ico64Link {
+		margin-right: 48px;
+	}
+
+	li.bottomRightItem {
+		position: relative;
+		min-height: 100px;
+	}
+
+	li.bottomRightItem a {
+		display: block;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+// avoid unwanted use of external indicators
+.panelContent a:not([class]):after,
+.dataMatrix a:not([class]):after {
+	display: none !important;
+}

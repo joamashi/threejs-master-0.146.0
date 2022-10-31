@@ -1,0 +1,52 @@
+// Protocol Bit tables are locked in compliant styles, regardless of them or aesthetics, see /test/docs/conceptual/protocol-rendering
+// For usage and examples search 'protocol_rendering' in content and .ts
+
+$protocol-table-headers-static: #ededed;
+$protocol-table-font-color-static: #2a2a2a;
+$protocol-table-background-static: $white-static;
+$protocol-table-border-static: #bbbbbb;
+$protocol-table-primary-static: $primary-static;
+$protocol-table-primary-active-static: $primary-active-static;
+$protocol-table-primary-hover-static: $primary-hover-static;
+
+.protocol-table {
+	background-color: $protocol-table-background-static;
+	color: $protocol-table-font-color-static;
+
+	&,
+	tbody,
+	td,
+	th {
+		border: 1px solid $protocol-table-border-static;
+	}
+
+	td,
+	th {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-right: 8px;
+		padding-left: 8px;
+	}
+
+	th {
+		background-color: $protocol-table-headers-static;
+		color: $protocol-table-font-color-static;
+		font-weight: $weight-semibold;
+	}
+
+	td {
+		color: $protocol-table-font-color-static;
+	}
+
+	a {
+		color: $protocol-table-primary-static;
+
+		&:hover {
+			color: $protocol-table-primary-hover-static;
+		}
+
+		&:active {
+			color: $protocol-table-primary-active-static;
+		}
+	}
+}

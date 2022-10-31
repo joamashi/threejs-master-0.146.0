@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Noto Sans KR';
+}
+
+html,
+body {
+  font-weight: 400; /* 100 300 400 500 700 900 */
+  font-size: 14px;
+  line-height: 14px;
+  word-break: break-all;
+  -webkit-text-size-adjust: none;
+}
+
+*, 
+:after, 
+:before {
+  box-sizing: border-box;
+}
+
+nav, ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, 
+blockquote:after,
+q:before, 
+q:after {
+  content: '';
+  content: none;
+}
+
+/**
+* 최신 브라우저가 컨트롤없이 '오디오'를 표시하지 못하도록합니다.
+*  iOS 5 기기에서 초과 높이를 제거하십시오.
+*/
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+* Address 스타일은 IE 7/8/9, Firefox 3 및 Safari 4에는 없습니다.
+*/
+[hidden] {
+  display: none;
+}
+
+/**
+* 초점을 맞출 때 가독성을 높이고 모든 브라우저에서 마우스를 마우스로 가리 켰습니다.
+*/
+a {
+  text-decoration: none;
+}
+
+g,
+a,
+input,
+label,
+div,
+button {
+  // -webkit-tap-highlight-color: rgba(0, 0, 0, .1);
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+input:focus ~ label,
+:focus-visible {
+  // outline: -webkit-focus-ring-color auto 2px;
+  outline: 0;
+}
+
+/**
+* 표 셀 사이의 간격을 대부분 제거
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+address,
+em {
+  font-style: normal;
+}
+
+/**
+* 텍스트 미 노출
+*/
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px; 
+  overflow: hidden;
+  color: transparent;
+}

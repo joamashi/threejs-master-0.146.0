@@ -1,0 +1,134 @@
+$question-background-mobile: $body-background-medium;
+
+$selected-background: $primary-background;
+$correct-background: $success-background;
+$incorrect-background: $danger-background;
+
+$custom-radio-size: 12px;
+
+.quiz-question-title p {
+	display: inline;
+}
+
+.quiz-choice {
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	background-color: $question-background-mobile;
+	cursor: pointer;
+
+	@include tablet {
+		border-radius: 1rem;
+		background-color: transparent;
+	}
+
+	&:hover {
+		border-color: transparent;
+		background-color: transparent;
+		box-shadow: 0 0 5px 0 $box-shadow-color-light;
+	}
+
+	&.is-focused,
+	&.is-focused:hover {
+		outline: none !important;
+		border-color: transparent;
+		background-color: transparent;
+		box-shadow: 0 0 5px 0 $primary;
+	}
+
+	&.is-selected,
+	&.is-selected:hover {
+		background-color: $selected-background;
+		border-color: $primary;
+	}
+
+	&.is-incorrect,
+	&.is-incorrect:hover {
+		background-color: $incorrect-background;
+		border-color: $danger;
+		margin-bottom: 0 !important; //overwrite has-margin class
+
+		+ .quiz-choice-explanation {
+			padding-left: 0 !important;
+			color: $danger;
+			display: flex;
+			> p {
+				margin-top: 0 !important;
+			}
+			&:before {
+				font-family: 'docons';
+				content: get-icon-code('math-multiply');
+				color: $danger;
+				margin-right: 0.5rem;
+			}
+		}
+	}
+
+	&.is-correct,
+	&.is-correct:hover {
+		background-color: $correct-background;
+		border-color: $success;
+		margin-bottom: 0 !important; //overwrite has-margin class
+		+ .quiz-choice-explanation {
+			padding-left: 0 !important;
+			color: $success;
+			display: flex;
+			> p {
+				margin-top: 0 !important;
+			}
+			&:before {
+				font-family: 'docons';
+				content: get-icon-code('check');
+				color: $success;
+				margin-right: 0.5rem;
+			}
+		}
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.choice-input {
+		@include visually-hidden();
+		position: absolute;
+		top: 100%;
+		#{$content-left}: 10px;
+	}
+
+	.custom-radio {
+		background-color: transparent;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 1.5rem; // IE, flex alignment requires a min height
+		margin-#{$content-right}: 0.5rem; // alignment close to align-items: center, which is causing weird border in os high contrast in Edge
+
+		&:before {
+			position: absolute;
+			font-family: 'docons';
+			content: get-icon-code('location-circle');
+			user-select: none;
+		}
+	}
+
+	input:checked + & .custom-radio:before {
+		content: get-icon-code('location');
+		color: $primary;
+	}
+}
+
+.quiz-choice-explanation {
+	display: none;
+
+	p {
+		margin: 0;
+	}
+}
+
+.quiz-modal-image {
+	background-image: url('../images/quiz-complete.svg');
+	background-repeat: no-repeat;
+	background-position: calc(50% - 24px);
+}

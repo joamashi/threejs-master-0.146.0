@@ -1,0 +1,351 @@
+@use 'sass:math';
+
+$badge-background-color: $border !default;
+$badge-text-color: $text !default;
+$badge-text-color-high-contrast: $text-invert !default;
+$badge-text-size: 12px; // size-7
+$badge-complete-background-color: $success;
+$badge-complete-background-text-color: $success-invert;
+$badge-complete-dark-background-color: $success-hover;
+
+// animation
+$badge-animation-duration: 0.8s ease;
+$badge-animation-delay: 0.4s;
+
+// default
+$badge-hexagon-size-unit: 18px;
+$badge-hexagon-height: $badge-hexagon-size-unit;
+$badge-hexagon-width: $badge-hexagon-size-unit * 4;
+$badge-icon-size: math.div($badge-hexagon-size-unit, 2);
+
+// .is-large
+// going to need new font-size
+$badge-large-text-size: 18px; // size-7
+$badge-large-hexagon-height: 36px;
+$badge-large-hexagon-size-unit: 48px;
+$badge-large-hexagon-width: $badge-large-hexagon-size-unit * 2.5;
+$badge-large-icon-size: $badge-large-text-size;
+
+// xp-tag sizes (small/medium/extra-large)
+$badge-small-text-size: 8px;
+$badge-small-hexagon-height: 12px;
+$badge-small-hexagon-size-unit: 20px;
+$badge-small-hexagon-width: $badge-small-hexagon-size-unit * 2;
+$badge-small-icon-size: $badge-small-text-size * 0.5;
+
+$badge-medium-text-size: 10px;
+$badge-medium-hexagon-height: 14px;
+$badge-medium-hexagon-size-unit: 24px;
+$badge-medium-hexagon-width: $badge-medium-hexagon-size-unit * 2;
+$badge-medium-icon-size: $badge-medium-text-size * 0.75;
+
+$badge-extra-large-text-size: 14px;
+$badge-extra-large-hexagon-height: 18px;
+$badge-extra-large-hexagon-size-unit: 48px;
+$badge-extra-large-hexagon-width: $badge-extra-large-hexagon-size-unit * 1.75;
+$badge-extra-large-icon-size: $badge-extra-large-text-size;
+
+.xp-tag {
+	@extend %completable;
+}
+
+.xp-tag-hexagon {
+	position: relative;
+	top: 0;
+	min-width: calc(100% + 1.5em);
+	height: $badge-hexagon-height;
+	background-color: $badge-background-color;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color $badge-animation-duration;
+	transition-delay: $badge-animation-delay;
+	left: -1.5em;
+
+	&:before {
+		content: '';
+		position: absolute;
+		#{$content-left}: -$badge-hexagon-height;
+		#{$content-left}: math.div(-$badge-hexagon-size-unit, 3);
+		top: math.div($badge-hexagon-size-unit, 6);
+		transform: rotateZ(45deg);
+		height: math.div($badge-hexagon-size-unit, 3) * 2;
+		width: math.div($badge-hexagon-size-unit, 3) * 2;
+		background-color: $badge-background-color;
+		z-index: 1;
+		border: none !important;
+		transition: background-color $badge-animation-duration;
+		transition-delay: $badge-animation-delay;
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		#{$content-right}: -$badge-hexagon-height;
+		width: 0;
+		height: 0;
+		background-color: transparent;
+		border-#{$content-left}: math.div($badge-hexagon-height, 2) solid $badge-background-color;
+		border-#{$content-right}: math.div($badge-hexagon-height, 2) solid transparent;
+		border-bottom: math.div($badge-hexagon-height, 2) solid transparent;
+		border-top: math.div($badge-hexagon-height, 2) solid transparent;
+		transition: border-color $badge-animation-duration;
+		transition-delay: $badge-animation-delay;
+	}
+
+	.is-complete & {
+		background-color: $badge-complete-background-color;
+		transition: background-color $badge-animation-duration;
+		transition-delay: $badge-animation-delay;
+
+		.xp-tag-xp {
+			color: $badge-complete-background-text-color;
+		}
+
+		&:before {
+			background-color: $badge-complete-dark-background-color;
+			transition: background-color $badge-animation-duration;
+			transition-delay: $badge-animation-delay;
+		}
+
+		&:after {
+			border-#{$content-left}: math.div($badge-hexagon-height, 2) solid
+				$badge-complete-background-color;
+			transition: border-color $badge-animation-duration;
+			transition-delay: $badge-animation-delay;
+		}
+	}
+
+	.is-large & {
+		display: flex;
+		position: relative;
+		min-width: $badge-large-hexagon-width !important;
+		height: $badge-large-hexagon-height !important;
+		left: auto;
+		padding-left: math.div($badge-large-hexagon-width, 4);
+		padding-right: math.div($badge-large-hexagon-width, 4);
+
+		&:not(.is-centered) {
+			margin-#{$content-left}: $badge-large-hexagon-size-unit;
+		}
+
+		&:before {
+			#{$content-left}: -13px !important;
+			top: 5px !important;
+			height: math.div($badge-large-hexagon-height, sqrt(2)) !important;
+			width: math.div($badge-large-hexagon-height, sqrt(2)) !important;
+		}
+
+		&:after {
+			#{$content-right}: -$badge-large-hexagon-height;
+			border-#{$content-left}: math.div($badge-large-hexagon-height, 2) solid
+				$badge-background-color;
+			border-#{$content-right}: math.div($badge-large-hexagon-height, 2) solid transparent;
+			border-bottom: math.div($badge-large-hexagon-height, 2) solid transparent;
+			border-top: math.div($badge-large-hexagon-height, 2) solid transparent;
+		}
+	}
+
+	.xp-tag-extra-large & {
+		display: flex;
+		position: relative;
+		height: $badge-extra-large-hexagon-height !important;
+
+		&:not(.is-centered) {
+			margin-#{$content-left}: $badge-extra-large-hexagon-size-unit;
+		}
+
+		&:before {
+			#{$content-left}: -6px !important;
+			top: 3px !important;
+			height: math.div($badge-extra-large-hexagon-height, sqrt(2)) !important;
+			width: math.div($badge-extra-large-hexagon-height, sqrt(2)) !important;
+		}
+
+		&:after {
+			#{$content-right}: -$badge-extra-large-hexagon-height;
+			border-#{$content-left}: math.div($badge-extra-large-hexagon-height, 2) solid
+				$badge-background-color;
+			border-#{$content-right}: math.div($badge-extra-large-hexagon-height, 2) solid transparent;
+			border-bottom: math.div($badge-extra-large-hexagon-height, 2) solid transparent;
+			border-top: math.div($badge-extra-large-hexagon-height, 2) solid transparent;
+		}
+	}
+
+	.xp-tag-large & {
+		display: flex;
+		position: relative;
+		left: auto;
+	}
+
+	.xp-tag-medium & {
+		display: flex;
+		position: relative;
+		min-width: $badge-medium-hexagon-width;
+		height: $badge-medium-hexagon-height;
+		left: auto;
+
+		&:before {
+			#{$content-left}: -5px;
+			top: 2px;
+			height: math.div($badge-medium-hexagon-height, sqrt(2));
+			width: math.div($badge-medium-hexagon-height, sqrt(2));
+		}
+
+		&:after {
+			#{$content-right}: -$badge-medium-hexagon-height;
+			border-#{$content-left}: math.div($badge-medium-hexagon-height, 2) solid
+				$badge-background-color;
+			border-#{$content-right}: math.div($badge-medium-hexagon-height, 2) solid transparent;
+			border-bottom: math.div($badge-medium-hexagon-height, 2) solid transparent;
+			border-top: math.div($badge-medium-hexagon-height, 2) solid transparent;
+		}
+	}
+
+	.xp-tag-small & {
+		display: flex;
+		position: relative;
+		min-width: $badge-small-hexagon-width;
+		width: $badge-small-hexagon-width;
+		height: $badge-small-hexagon-height;
+		left: auto;
+
+		&:before {
+			#{$content-left}: -5px;
+			top: 2px;
+			height: math.div($badge-small-hexagon-height, sqrt(2));
+			width: math.div($badge-small-hexagon-height, sqrt(2));
+		}
+
+		&:after {
+			#{$content-right}: -$badge-small-hexagon-height;
+			border-#{$content-left}: math.div($badge-small-hexagon-height, 2) solid
+				$badge-background-color;
+			border-#{$content-right}: math.div($badge-small-hexagon-height, 2) solid transparent;
+			border-bottom: math.div($badge-small-hexagon-height, 2) solid transparent;
+			border-top: math.div($badge-small-hexagon-height, 2) solid transparent;
+		}
+	}
+
+	.is-large.is-complete & {
+		&:before {
+			background-color: $badge-complete-dark-background-color !important;
+		}
+
+		&:after {
+			border-#{$content-left}: math.div($badge-large-hexagon-height, 2) solid
+				$badge-complete-background-color !important;
+		}
+	}
+
+	.xp-tag-extra-large.is-complete & {
+		padding-#{$content-left}: math.div($badge-extra-large-hexagon-height, 2) !important;
+
+		&:before {
+			background-color: $badge-complete-dark-background-color !important;
+		}
+
+		&:after {
+			border-#{$content-left}: math.div($badge-extra-large-hexagon-height, 2) solid
+				$badge-complete-background-color !important;
+		}
+	}
+
+	.xp-tag-medium.is-complete & {
+		padding-#{$content-left}: math.div($badge-medium-hexagon-height, 2) !important;
+
+		&:before {
+			background-color: $badge-complete-dark-background-color !important;
+		}
+
+		&:after {
+			border-#{$content-left}: math.div($badge-medium-hexagon-height, 2) solid
+				$badge-complete-background-color !important;
+		}
+	}
+
+	.xp-tag-small.is-complete & {
+		padding-#{$content-left}: math.div($badge-small-hexagon-height, 2) !important;
+
+		&:before {
+			background-color: $badge-complete-dark-background-color !important;
+		}
+
+		&:after {
+			border-#{$content-left}: math.div($badge-small-hexagon-height, 2) solid
+				$badge-complete-background-color !important;
+		}
+	}
+}
+
+.xp-tag-xp {
+	color: $badge-text-color;
+	.theme-high-contrast & {
+		color: $badge-text-color-high-contrast;
+	}
+	font-size: $badge-text-size;
+	margin-bottom: 1px; // this nonsense is because our fonts are spaced oddly
+
+	.is-large & {
+		font-size: $badge-large-text-size;
+	}
+
+	.xp-tag-extra-large & {
+		font-size: $badge-extra-large-text-size;
+	}
+
+	.xp-tag-large & {
+		font-size: $badge-text-size;
+	}
+
+	.xp-tag-medium & {
+		font-size: $badge-medium-text-size;
+	}
+
+	.xp-tag-small & {
+		font-size: $badge-small-text-size;
+		margin-bottom: 0 !important;
+	}
+}
+
+.xp-tag-icon {
+	.is-complete & {
+		position: absolute;
+		#{$content-left}: -5px;
+		top: 1px;
+		z-index: 3;
+		font-size: $badge-icon-size;
+		color: $success-invert;
+		animation-delay: $badge-animation-delay;
+		animation: scaleIn $badge-animation-duration;
+	}
+
+	.is-large & {
+		top: 10px !important;
+		#{$content-left}: -10px !important;
+		font-size: $badge-large-icon-size !important;
+	}
+
+	.xp-tag-extra-large & {
+		top: 3px !important;
+		#{$content-left}: -3px !important;
+	}
+
+	.xp-tag-large & {
+		top: 2px !important;
+		#{$content-left}: -3px !important;
+	}
+
+	.xp-tag-medium & {
+		top: 0px !important;
+		#{$content-left}: -3px !important;
+		font-size: $badge-medium-icon-size !important;
+	}
+
+	.xp-tag-small & {
+		top: -2px !important;
+		#{$content-left}: -3px !important;
+		font-size: $badge-small-icon-size !important;
+	}
+}

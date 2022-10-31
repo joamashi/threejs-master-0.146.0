@@ -1,0 +1,123 @@
+$tree-font-size: $font-size-small;
+$tree-indent: $spacing-3;
+$tree-item-vertical-padding: 2px;
+$tree-easing: ease-in-out;
+$tree-transition-duration: 0.15s;
+$tree-collapsed-rotation: if($user-text-direction == 'ltr', 0deg, 180deg);
+$tree-expanded-rotation: 90deg;
+
+.tree {
+	position: relative; // ensure the .tree is the "offsetParent" of its nodes // https://developer.mozilla.org/en-US/docs/Web/API/HTMLelement/offsetParent
+	font-size: $tree-font-size;
+}
+
+// list reset
+ul.tree,
+.tree ul {
+	list-style-type: none;
+	margin-bottom: 0;
+}
+
+// force links to be text color
+.tree-item.is-leaf {
+	color: $text !important;
+}
+
+// expand/collapse
+.tree-item {
+	& > .tree-group {
+		display: none;
+	}
+
+	&.is-expanded > .tree-group {
+		display: block;
+	}
+}
+
+// indentation
+.tree-group {
+	margin-#{$user-left}: $tree-indent;
+}
+
+.tree-item.is-leaf,
+.tree-expander {
+	display: block;
+	padding-#{$user-left}: $tree-indent;
+	padding-top: $tree-item-vertical-padding;
+	padding-bottom: $tree-item-vertical-padding;
+}
+
+// focus
+.tree-item:not(.is-leaf) {
+	outline: none !important;
+
+	&.focus-visible > .tree-expander {
+		@extend %focus;
+	}
+}
+
+.tree-expander,
+.tree-item.is-leaf {
+	outline-offset: -$focus-width !important;
+}
+
+// expand/collapse "button"
+.tree-expander {
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+
+// expanded indicator chevron
+.tree-expander-indicator {
+	display: inline-block;
+	position: absolute;
+	top: 7px;
+	#{$user-left}: 3px;
+	color: $text-subtle;
+	font-size: 0.55rem;
+	font-weight: $weight-semibold;
+	transition: transform $tree-transition-duration $tree-easing;
+	transform: rotate($tree-collapsed-rotation);
+
+	.tree-item.is-expanded > .tree-expander > & {
+		transform: rotate($tree-expanded-rotation);
+	}
+}
+
+// selected
+.tree-item.is-selected {
+	color: $text-glow-high-contrast !important;
+	font-weight: $weight-semibold;
+	background-color: $body-background-medium;
+}
+
+// rendering consideration when leaf has an icon
+.tree-item.is-leaf.has-icon {
+	display: flex;
+	&:hover {
+		text-decoration: none;
+	}
+
+	span.icon {
+		line-height: 2;
+		align-items: baseline;
+		flex-shrink: 0;
+		width: 1rem;
+		font-size: $font-size-extra-small;
+	}
+
+	span:not(.icon) {
+		padding-left: $spacing-2;
+		&:hover {
+			text-decoration: underline !important;
+		}
+	}
+}
+
+// static tree style
+.tree[data-is-collapsible='false'] {
+	.tree-item.is-leaf {
+		padding-#{$user-left}: 0 !important;
+	}
+}

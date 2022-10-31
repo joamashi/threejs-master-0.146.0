@@ -1,0 +1,124 @@
+$skeleton-timing: 3s;
+
+%loading-skeleton {
+	color: transparent !important;
+	animation: pulse $skeleton-timing infinite ease-in-out;
+}
+
+@mixin skeleton-variable-widths {
+	$widths: (90%, 58%, 72%, 42%, 80%);
+	@each $i in $widths {
+		&:nth-child(#{index($widths, $i)}) {
+			width: $i;
+		}
+	}
+}
+
+.skeleton {
+	@extend %loading-skeleton;
+}
+
+.has-loading-skeleton {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		height: $body-size;
+		margin-top: $spacing-1;
+
+		@extend %loading-skeleton;
+		@include skeleton-variable-widths;
+	}
+
+	.card-content,
+	.media-card-content {
+		> * {
+			&:first-child {
+				margin-top: 0;
+			}
+
+			height: $body-size;
+			padding: 0;
+
+			@extend %loading-skeleton;
+			@include skeleton-variable-widths;
+		}
+
+		.tags {
+			animation: none;
+			flex-flow: row nowrap;
+			width: 100%;
+		}
+
+		.tag {
+			height: $body-size;
+		}
+	}
+
+	.card-content-metadata,
+	.card-tag,
+	.tags,
+	.start-rating-display,
+	pre {
+		overflow: hidden;
+	}
+
+	.card-header-image,
+	.media-card-image,
+	.media-card-content-link,
+	.progress-label,
+	.explanation-text,
+	.docon:before,
+	.card-tag,
+	img,
+	figure.image,
+	li {
+		@extend %loading-skeleton;
+	}
+
+	.tag,
+	img,
+	pre,
+	figure.image {
+		border: none !important;
+	}
+
+	&.card.is-branded .card-content .card-content-title {
+		margin-bottom: 0;
+	}
+
+	button {
+		height: $body-size;
+		margin-top: $spacing-1;
+
+		@extend %loading-skeleton;
+	}
+
+	a,
+	.button {
+		pointer-events: none;
+	}
+
+	.tag {
+		width: 60px;
+	}
+
+	.card-content-metadata *,
+	.card-content-title *,
+	.media-card-content-titles *,
+	.media-card-image *,
+	.star-rating-display *,
+	.card-tag > * *,
+	.card-footer-item > * *,
+	img {
+		opacity: 0;
+	}
+
+	// Some elements just don't really work well
+	.progress {
+		display: none;
+	}
+}

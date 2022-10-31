@@ -1,0 +1,217 @@
+@keyframes spinAround {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+@keyframes dots {
+	0%,
+	20% {
+		left: 0;
+		animation-timing-function: ease-out;
+		opacity: 0;
+	}
+
+	25%,
+	75% {
+		opacity: 1;
+	}
+
+	35% {
+		left: 45%;
+		animation-timing-function: linear;
+	}
+
+	65% {
+		left: 55%;
+		animation-timing-function: ease-in;
+	}
+
+	100%,
+	80% {
+		left: 100%;
+		opacity: 0;
+	}
+}
+
+@keyframes orbit {
+	0% {
+		transform: rotate(225deg);
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+
+	7% {
+		transform: rotate(345deg);
+		animation-timing-function: linear;
+	}
+
+	30% {
+		transform: rotate(455deg);
+		animation-timing-function: ease-in-out;
+	}
+
+	39% {
+		transform: rotate(690deg);
+		animation-timing-function: linear;
+	}
+
+	70% {
+		transform: rotate(815deg);
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+
+	75% {
+		transform: rotate(945deg);
+		animation-timing-function: ease-out;
+	}
+
+	100%,
+	76% {
+		transform: rotate(945deg);
+		opacity: 0;
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		transform: translateY(100%);
+	}
+
+	70% {
+		transform: translateY(-10%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideUpOutFadeOut {
+	100% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOut {
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes slideLeft {
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes slideRight {
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes scaleIn {
+	0% {
+		transform: scale(0);
+	}
+
+	30% {
+		transform: scale(0);
+	}
+
+	75% {
+		transform: scale(1.2);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes fadeInSpin {
+	0%,
+	50% {
+		opacity: 0;
+		#{$content-right}: 0;
+		transform: rotate(180deg);
+	}
+
+	100% {
+		opacity: 1;
+		#{$content-right}: 105%;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes shake {
+	0% {
+		transform: translateX(-10px);
+	}
+
+	20% {
+		transform: translateX(10px);
+	}
+
+	50% {
+		transform: translateX(-10px);
+	}
+
+	70% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes pulse {
+	0% {
+		background-color: rgba(165, 165, 165, 0.1);
+	}
+
+	50% {
+		background-color: rgba(165, 165, 165, 0.3);
+	}
+
+	100% {
+		background-color: rgba(165, 165, 165, 0.1);
+	}
+}
+
+%shake-in {
+	animation-delay: 1s;
+	animation: shake 0.5s ease-out;
+}
+
+.shake-in {
+	@extend %shake-in;
+}
+
+@keyframes boop {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}

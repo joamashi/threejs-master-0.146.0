@@ -1,0 +1,357 @@
+// https://bulma.io/documentation/components/modal/
+
+$modal-z: $zindex-modal !default;
+
+$modal-background-background-color: $overlay-static !default;
+$modal-box-shadow: $box-shadow-light !default;
+
+$modal-content-width: 600px !default;
+$modal-content-margin-mobile: 20px !default;
+$modal-content-spacing-mobile: 160px !default;
+$modal-content-spacing-tablet: 40px !default;
+
+$modal-close-dimensions: 40px !default;
+$modal-close-right: 20px !default;
+$modal-close-top: 20px !default;
+
+$modal-sidebar-width: 320px !default;
+
+$modal-card-spacing: 40px !default;
+
+$modal-card-head-background-color: $body-background !default;
+$modal-card-head-padding: 20px !default;
+
+$modal-card-title-color: $text !default;
+$modal-card-title-line-height: 1 !default;
+$modal-card-title-size: $font-size-6 !default;
+
+$modal-card-body-background-color: $body-background !default;
+$modal-card-body-padding: 20px !default;
+
+.modal {
+	@include overlay;
+
+	align-items: center;
+	display: none;
+	justify-content: flex-start;
+	overflow: hidden;
+	position: fixed;
+	z-index: $modal-z;
+
+	// Modifiers
+
+	&.is-active {
+		display: flex;
+	}
+
+	// overwrite content styles
+
+	p {
+		margin: 0;
+	}
+
+	.buttons:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.modal-background {
+	@include overlay;
+
+	background-color: $modal-background-background-color;
+	outline-color: $text;
+	+ div:not(.modal-content) {
+		// ensure anon divs don't restrict width
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.modal-content {
+	overflow-y: auto;
+	@include tablet {
+		max-width: calc(100vw - #{$modal-content-spacing-tablet});
+		width: auto;
+	}
+}
+
+.modal-card {
+	box-shadow: $modal-box-shadow;
+	background-color: $modal-card-body-background-color;
+	outline-color: $text;
+	border: 1px solid $border-white-high-contrast;
+	@include tablet {
+		overflow: hidden;
+		border-radius: $border-radius-lg;
+		width: $modal-content-width;
+	}
+}
+
+.modal-card-full {
+	@include tablet {
+		overflow: auto;
+		position: fixed !important;
+		top: 3%;
+		left: 1%;
+		right: 1%;
+		width: 98%;
+		height: 80%;
+	}
+}
+
+.modal-content,
+.modal-card {
+	margin: 0 $modal-content-margin-mobile;
+	overflow-y: auto;
+	position: relative;
+	max-height: 100%;
+
+	// Responsiveness
+	@include tablet {
+		margin: 0 auto;
+	}
+
+	// fill mobile
+	@include mobile {
+		&.fill-mobile {
+			// add to modal-content and modal-card to take up full screen on mobile
+			@include overflow-touch;
+			border-radius: 0;
+			height: 100vh;
+			max-height: 100%;
+			width: 100%;
+			max-width: 100vw;
+			margin: 0;
+		}
+
+		&.restrict-height {
+			max-height: 82vh;
+		}
+	}
+}
+
+.modal-content {
+	&.is-docked-left,
+	&.is-docked-right {
+		position: fixed;
+		max-width: 100% !important;
+		max-height: 100vh !important;
+		width: $modal-sidebar-width !important;
+		top: 0 !important;
+		bottom: 0 !important;
+		margin: 0 !important;
+		background-color: $modal-card-body-background-color;
+		outline-color: $text;
+	}
+
+	&.is-docked-left {
+		#{$content-left}: 0 !important;
+	}
+
+	&.is-docked-right {
+		#{$content-right}: 0 !important;
+	}
+}
+
+.modal-close-button {
+	@include delete;
+
+	height: $modal-close-dimensions;
+	position: fixed;
+	#{$user-right}: $modal-close-right;
+	top: $modal-close-top;
+	width: $modal-close-dimensions;
+}
+
+.modal-card {
+	display: flex;
+	flex-direction: column;
+	max-height: calc(100vh - #{$modal-card-spacing});
+}
+
+.modal-card-close-button {
+	@include delete;
+
+	margin-#{$user-left}: auto;
+
+	&.is-sticky {
+		position: absolute;
+		z-index: $modal-z;
+		#{$user-right}: $spacing-2;
+		top: $spacing-3;
+	}
+
+	&.has-color-transition {
+		transition: color 0.25s;
+	}
+}
+
+.modal-card-head,
+.modal-card-foot {
+	align-items: center;
+	background-color: $modal-card-head-background-color;
+	outline-color: $text;
+	display: flex;
+	flex-shrink: 0;
+	justify-content: flex-start;
+	padding: $modal-card-head-padding;
+	position: relative;
+}
+
+.modal-card-title {
+	color: $modal-card-title-color;
+	flex-grow: 1;
+	flex-shrink: 0;
+	font-size: $modal-card-title-size;
+	line-height: $modal-card-title-line-height;
+}
+
+.modal-card-foot {
+	.button {
+		&:not(:last-child) {
+			margin-#{$content-right}: 10px;
+		}
+	}
+
+	&.is-sticky {
+		@include transparent-effects;
+
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		#{$content-right}: 0;
+		width: 100%;
+		@include mobile {
+			position: relative;
+		}
+	}
+}
+
+.modal-card-body {
+	@include overflow-touch;
+
+	background-color: $modal-card-body-background-color;
+	outline-color: $text;
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding: $modal-card-body-padding;
+}
+
+.modal-tab-sentinel {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+// Completeion Modal Styles // TODO: Where should these styles live
+
+.module-completed-hero {
+	.animation-holder {
+		animation: slideUp 0.5s ease;
+
+		img.achievement-image {
+			width: 112px;
+		}
+	}
+
+	.module-badge {
+		position: absolute;
+		opacity: 0;
+		bottom: 10px;
+		height: 50px;
+		animation: fadeInSpin 1.5s ease forwards;
+	}
+
+	.xp-tag {
+		bottom: 0 !important;
+		#{$content-right}: 20px;
+	}
+
+	.xp-tag-small {
+		bottom: -4px !important;
+		#{$content-right}: 2px;
+	}
+
+	.xp-tag-medium {
+		bottom: 1px !important;
+		#{$content-right}: 8px;
+	}
+
+	.xp-tag-large {
+		bottom: -1px !important;
+		#{$content-right}: 10px;
+	}
+
+	.xp-tag-extra-large {
+		bottom: 3px !important;
+		#{$content-right}: 12px;
+	}
+
+	.xp-tag,
+	.xp-tag-small,
+	.xp-tag-medium,
+	.xp-tag-large,
+	.xp-tag-extra-large {
+		animation-delay: 0.2s;
+		animation: scaleIn 1s ease;
+		top: auto !important;
+	}
+}
+
+// Task Validation Modal Styles
+
+.task-completed-modal {
+	&.is-incorrect {
+		@extend %shake-in;
+	}
+
+	.task-modal-background-correct {
+		background-image: url('../images/modal-complete-plain.svg');
+		background-size: contain;
+		min-height: 118px;
+	}
+
+	.task-body {
+		p {
+			display: inline;
+		}
+	}
+}
+
+.modal-slide-container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	overflow-x: hidden;
+	@include mobile {
+		min-height: 100%;
+	}
+}
+
+.modal-slide {
+	flex-basis: auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 100%;
+
+	&:first-of-type {
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	&:last-of-type {
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	&.slide-left {
+		animation: slideLeft 0.25s ease forwards; // matches timing in modal.ts
+	}
+
+	&.slide-right {
+		animation: slideRight 0.25s ease backwards; // matches timing in modal.ts
+	}
+}

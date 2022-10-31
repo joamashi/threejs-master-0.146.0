@@ -1,0 +1,64 @@
+$facepile-size: 2rem;
+$facepile-size-small: 1.5rem;
+$facepile-size-large: 2.5rem;
+
+.facepile {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: $facepile-size;
+
+	&.is-small {
+		font-size: $facepile-size-small;
+	}
+
+	&.is-large {
+		font-size: $facepile-size-large;
+	}
+}
+
+.facepile-item {
+	list-style: none !important;
+	padding-#{$user-right}: 0.25rem;
+}
+
+.facepile-item-coin {
+	border-radius: $border-radius-rounded;
+	overflow: hidden;
+	display: flex;
+	width: 1em;
+	height: 1em;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.facepile-item-coin-image {
+	width: 100%;
+	height: 100%;
+}
+
+.facepile-item-coin-text {
+	color: $primary-invert;
+	margin: auto;
+	font-size: 0.5em;
+	line-height: 1;
+	display: inline-flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+}
+
+.facepile-item-red {
+	background-color: $facepile-red;
+}
+
+.facepile-item-teal {
+	background-color: $facepile-teal;
+}
+
+.facepile-item-blue {
+	background-color: $facepile-blue;
+}

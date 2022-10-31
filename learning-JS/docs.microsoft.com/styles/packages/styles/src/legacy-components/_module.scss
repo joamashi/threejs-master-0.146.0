@@ -1,0 +1,16 @@
+html.module {
+	.prerequisites,
+	.abstract {
+		p:first-of-type {
+			margin-top: 0;
+		}
+	}
+
+	.module-unit-list-mobile {
+		@include mobile {
+			overflow: hidden;
+			margin-left: -1.5rem !important;
+			margin-right: -1.5rem !important;
+		}
+	}
+}

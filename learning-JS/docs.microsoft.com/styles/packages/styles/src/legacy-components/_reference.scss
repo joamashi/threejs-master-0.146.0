@@ -1,0 +1,33 @@
+.summaryHolder {
+	display: flex;
+
+	& > img {
+		height: 64px;
+		flex-shrink: 1;
+		flex-basis: max-content;
+		margin-#{$content-right}: 0.5rem;
+	}
+
+	& > .summary {
+		flex: 1;
+	}
+}
+
+.metadata.operation-id {
+	margin-top: -12px;
+}
+
+//REST templates
+
+.example-block {
+	margin-top: 16px;
+
+	h4 {
+		margin: 0;
+		padding: 8px 0 0;
+	}
+
+	.metadata {
+		padding: 0;
+	}
+}

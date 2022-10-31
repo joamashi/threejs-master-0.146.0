@@ -1,0 +1,141 @@
+// rules governing .mainContainer, .primary-holder, .left-container, .right-container, .interactive-container
+
+#affixed-left-container {
+	// ensure menus in the left container sit on top of the main container.
+	z-index: 1;
+}
+
+.header-holder {
+	flex-shrink: 0;
+}
+
+[data-css-variable-support='true'] .not-css-variable-support,
+[data-css-variable-support='false'] .css-variable-support {
+	display: none !important;
+}
+
+html.has-interactive .is-hidden-interactive,
+html:not(.has-interactive) .is-visible-interactive {
+	display: none !important;
+}
+
+html.has-interactive {
+	height: 100%;
+	overflow: hidden !important;
+
+	@include mobile {
+		/* using inherit for IE support */
+		height: inherit;
+		overflow: inherit !important;
+
+		#unit-inner-section {
+			word-break: break-word;
+			hyphens: auto;
+
+			.button {
+				height: auto;
+				white-space: normal;
+			}
+
+			.table {
+				word-break: initial;
+				hyphens: initial;
+				table-layout: initial;
+			}
+
+			.codeHeader {
+				flex-wrap: wrap;
+			}
+		}
+
+		#footer-interactive > div {
+			flex-direction: column;
+
+			& > div {
+				margin: 0 !important;
+			}
+		}
+	}
+
+	body {
+		height: 100%;
+	}
+
+	.mainContainer {
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
+		flex-grow: 1;
+		flex-shrink: 1;
+		min-height: 1px; // IE fix for columns.
+
+		> .columns {
+			width: 100%;
+			align-items: stretch;
+		}
+	}
+
+	.primary-holder {
+		height: 100%;
+		-webkit-overflow-scrolling: touch;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		> .columns,
+		#main-column {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+
+	.footer-layout {
+		// collapse footer when it's inside primary-holder
+		flex-direction: column;
+
+		> :not(:last-child) {
+			margin-bottom: $spacing-3;
+		}
+	}
+
+	#module-menu {
+		@include tablet {
+			max-width: 40vw;
+		}
+	}
+
+	&.has-wide-layout {
+		#module-menu {
+			@include desktop {
+				max-width: 25vw;
+			}
+		}
+	}
+}
+
+.modular-content-container {
+	padding: 0;
+	margin: 0 auto;
+
+	@include desktop {
+		max-width: $desktop - 2 * $gap;
+	}
+}
+
+.mainContainer {
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	.primary-holder,
+	.left-container {
+		padding-top: $universal-top-margin; // should be the only provider of space at the top of the page
+	}
+
+	// profile list has two modes, one works with the normal method, one doesn't
+
+	html.profilelist & {
+		.primary-holder,
+		.left-container {
+			padding-top: 0;
+		}
+	}
+}

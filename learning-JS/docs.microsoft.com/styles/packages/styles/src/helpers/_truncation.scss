@@ -1,0 +1,16 @@
+//remove after template rebuild
+.is-truncated {
+	@include truncated;
+}
+
+.has-one-line {
+	-webkit-line-clamp: 1 !important;
+}
+
+.has-two-lines {
+	-webkit-line-clamp: 2 !important;
+}
+
+.has-three-lines {
+	-webkit-line-clamp: 3 !important;
+}

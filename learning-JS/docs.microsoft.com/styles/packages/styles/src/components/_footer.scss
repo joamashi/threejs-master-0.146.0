@@ -1,0 +1,76 @@
+/* Footer Vars */
+$footer-background: $secondary-background !default;
+$footer-link-color: $text !default;
+$footer-link-active-hover-color: $text-subtle !default;
+$footer-font-size: $font-size-small !default;
+$locale-selector-icon: get-icon-code('world');
+
+.footer-layout {
+	background-color: $footer-background;
+	display: flex;
+	flex-direction: column;
+	padding: $spacing-5 $spacing-3 $spacing-5;
+
+	@include desktop {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.links {
+		display: flex;
+		font-size: $footer-font-size;
+		flex-wrap: wrap;
+		margin-bottom: $spacing-0;
+		margin-top: $spacing-3;
+
+		@include desktop {
+			margin-top: $spacing-0;
+		}
+
+		> li {
+			display: inline-block;
+			margin: $spacing-1 $spacing-4 0 0;
+			&:last-child {
+				margin-right: 0;
+			}
+
+			a {
+				// this anchor rule is here to override normal colors for the footer, delete if possible in the future
+				color: $footer-link-color;
+
+				&:hover,
+				&:active {
+					color: $footer-link-active-hover-color;
+				}
+			}
+
+			button {
+				background-color: transparent;
+				border: none;
+				padding: 0;
+
+				&:hover,
+				&:active {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+.locale-selector-link {
+	color: $footer-link-color;
+	font-size: $footer-font-size;
+	display: flex;
+	align-items: center;
+
+	&:hover {
+		color: $footer-link-active-hover-color;
+		text-decoration: none;
+
+		.local-selector-link-text {
+			text-decoration: underline;
+		}
+	}
+}

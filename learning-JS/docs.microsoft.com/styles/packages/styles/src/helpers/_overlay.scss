@@ -1,0 +1,13 @@
+/*
+* Place class on the first element. Then next element will sit on top of it.
+* If extending, try to keep same naming conventions as the spacing helpers.
+* The value string is 'large' because it is $spacing-6 (6rem) minus $spacing-5 (3rem).
+* The difference (3rem) is equal to the 'large' spacing variable.
+*/
+.is-overlayed-large {
+	padding-bottom: $spacing-6 !important;
+
+	& + * {
+		margin-top: -$spacing-5 !important;
+	}
+}

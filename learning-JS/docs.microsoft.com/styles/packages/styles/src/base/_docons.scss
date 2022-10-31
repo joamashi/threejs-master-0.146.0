@@ -1,0 +1,5 @@
+@each $name, $value in $docon-map {
+	.docon-#{$name}:before {
+		content: get-icon-code($name);
+	}
+}

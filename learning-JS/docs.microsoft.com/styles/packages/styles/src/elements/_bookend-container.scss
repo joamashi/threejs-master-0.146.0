@@ -1,0 +1,16 @@
+.bookend-container {
+	position: relative;
+
+	> .bookend {
+		position: absolute !important;
+		top: 0;
+		bottom: 0;
+		z-index: 0;
+		margin: auto;
+	}
+
+	> :not(.bookend) {
+		position: relative;
+		z-index: 1;
+	}
+}

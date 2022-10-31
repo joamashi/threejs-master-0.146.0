@@ -1,0 +1,4 @@
+.durable-image.has-error,
+.durable-image:not(.has-error) + .durable-image-fallback {
+	display: none !important;
+}

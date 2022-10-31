@@ -1,0 +1,251 @@
+// Brand colors
+
+@each $name, $color-set in $brand-colors {
+	$base: nth($color-set, $brand-index-base);
+	$card: nth($color-set, $brand-index-card);
+	$invert: nth($color-set, $brand-index-invert);
+
+	.has-text-#{$name} {
+		color: $base !important;
+	}
+
+	.has-text-#{$name}-invert {
+		color: $invert !important;
+	}
+
+	.has-background-#{$name} {
+		background-color: $base !important;
+		outline-color: $invert !important;
+	}
+
+	.has-background-#{$name}-invert {
+		background-color: $invert !important;
+		outline-color: $base !important;
+	}
+
+	.has-background-#{$name}-card {
+		background-color: $card !important;
+		outline-color: $invert !important;
+	}
+
+	.has-linear-gradient-background-#{$name} {
+		background-image: linear-gradient(
+			174.2deg,
+			$base 0%,
+			darken($base, 5%) 66.72%,
+			darken($base, 10%)
+		) !important;
+		outline-color: $invert !important;
+	}
+
+	.has-linear-gradient-background-#{$name}-invert {
+		background-image: linear-gradient(
+			174.2deg,
+			$invert 0%,
+			darken($invert, 10%) 66.72%,
+			darken($invert, 20%)
+		) !important;
+		outline-color: $invert !important;
+	}
+}
+
+.has-text-color {
+	color: $text !important;
+}
+
+.has-color-current-color {
+	color: currentColor !important;
+}
+
+// Framework colors
+
+@each $name, $color-set in $colors {
+	$base: nth($color-set, $effect-index-base);
+	$background: nth($color-set, $effect-index-background);
+	$dark: nth($color-set, $effect-index-dark);
+	$hover: nth($color-set, $effect-index-hover);
+	$active: nth($color-set, $effect-index-active);
+	$invert: nth($color-set, $effect-index-invert);
+
+	.has-text-#{$name} {
+		@if $name == 'primary' {
+			color: $hyperlink !important;
+		} @else {
+			color: $base !important;
+		}
+	}
+
+	a.has-text-#{$name} {
+		&:hover,
+		&.focus-visible {
+			color: $hover !important;
+		}
+
+		&:active {
+			color: $active !important;
+		}
+	}
+
+	.has-text-#{$name}-invert {
+		color: $invert !important;
+	}
+
+	.has-background-#{$name} {
+		background-color: $base !important;
+		outline-color: $invert;
+	}
+
+	.has-background-#{$name}-invert {
+		background-color: $invert !important;
+		outline-color: $base;
+	}
+
+	.has-background-#{$name}-light {
+		background-color: $background !important;
+		outline-color: $dark;
+	}
+
+	.has-background-#{$name}-dark {
+		background-color: $dark !important;
+		outline-color: $background;
+	}
+
+	.has-background-#{$name}-mobile {
+		@include mobile {
+			background-color: $base !important;
+			outline-color: $text;
+		}
+	}
+}
+
+.has-body-background {
+	background-color: $body-background !important;
+	outline-color: $text;
+}
+
+.has-body-background-mobile {
+	@include mobile {
+		background-color: $body-background !important;
+		outline-color: $text;
+	}
+}
+
+.has-body-background-dark, // backwards compat
+.has-body-background-medium {
+	background-color: $body-background-medium !important;
+	outline-color: $text;
+}
+
+.has-body-background-dark-tablet, // backwards compat
+.has-body-background-medium-tablet {
+	@include tablet {
+		background-color: $body-background-medium !important;
+		outline-color: $text;
+	}
+}
+
+.has-background-dark-opacity {
+	background-color: $overlay !important;
+	outline-color: $overlay-invert;
+}
+
+.has-background-alternating-grey {
+	border-top: 1px solid $border-white-high-contrast;
+
+	&:nth-of-type(even) {
+		background-color: $body-background;
+		outline-color: $text;
+	}
+
+	&:nth-of-type(odd) {
+		background-color: $body-background-medium;
+		outline-color: $text;
+	}
+}
+
+.has-background-alternating-grey-reversed {
+	border-top: 1px solid $border-white-high-contrast;
+
+	&:nth-of-type(even) {
+		background-color: $body-background-medium;
+		outline-color: $text;
+	}
+
+	&:nth-of-type(odd) {
+		background-color: $body-background;
+		outline-color: $text;
+	}
+}
+
+.has-background-image {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.background-position-right-bottom {
+	background-position: right bottom;
+}
+
+.background-repeat-no-repeat {
+	background-repeat: no-repeat;
+}
+
+.has-background-image-right-bottom {
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.has-background-images-top-left-right-hide-left-mobile {
+	@include mobile {
+		background-position: 0px -9999px, top right !important;
+	}
+}
+
+.has-background-images-top-left-right-hide-right-mobile {
+	@include mobile {
+		background-position: top left, 0px -9999px !important;
+	}
+}
+
+.has-background-images-top-left-right-hide-right-tablet {
+	@include tablet {
+		background-position: top left, 0px -9999px !important;
+	}
+}
+
+.has-background-images-top-left-right-hide-left-tablet {
+	@include tablet {
+		background-position: 0px -9999px, top right !important;
+	}
+}
+
+.has-background-image-none-mobile {
+	@include mobile {
+		background-image: none !important;
+	}
+}
+
+// Background image fallback colors
+
+.has-background-purple-hero {
+	background-color: $purple-hero-background !important;
+	outline-color: $text;
+}
+
+.has-fill-current-color {
+	fill: currentColor !important;
+}
+
+.has-outline-color-text {
+	outline-color: $text !important;
+}
+
+.has-outline-color-current-color {
+	outline-color: currentColor !important;
+}
+
+.has-stroke-current-color {
+	stroke: currentColor !important;
+}

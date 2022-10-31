@@ -1,0 +1,232 @@
+// remove after build probably around 06/04
+
+.is-size-jumbo {
+	font-size: $font-size-jumbo !important;
+	@include deprecate();
+}
+
+.is-size-h2 {
+	font-size: $font-size-2 !important;
+	@include deprecate();
+}
+
+.is-size-h3 {
+	font-size: $font-size-3 !important;
+	@include deprecate();
+}
+
+.is-size-h4 {
+	font-size: $font-size-4 !important;
+	@include deprecate();
+}
+
+.is-size-h5 {
+	font-size: $font-size-5 !important;
+	@include deprecate();
+}
+
+.is-size-h6 {
+	font-size: $font-size-6 !important;
+	@include deprecate();
+}
+
+.has-text-weight-normal {
+	font-weight: $weight-normal !important;
+	@include deprecate();
+}
+
+.has-text-weight-semibold {
+	font-weight: $weight-semibold !important;
+	@include deprecate();
+}
+
+.has-text-weight-bold {
+	font-weight: $weight-bold !important;
+	@include deprecate();
+}
+
+.is-size-large {
+	font-size: $font-size-large !important;
+	@include deprecate();
+}
+
+.is-size-body {
+	font-size: $font-size-body !important;
+	@include deprecate();
+}
+
+.is-size-small {
+	font-size: $font-size-small !important;
+	@include deprecate();
+}
+
+.is-size-extra-small {
+	font-size: $font-size-extra-small !important;
+	@include deprecate();
+}
+
+.is-monospace {
+	font-family: $monospace-font-stack !important;
+	@include deprecate();
+}
+
+.has-letter-spacing-wide {
+	letter-spacing: $letter-spacing-wide;
+	@include deprecate();
+}
+
+.is-italic {
+	font-style: italic !important;
+	@include deprecate();
+}
+.is-underlined {
+	text-decoration: underline;
+	@include deprecate();
+}
+
+.is-undecorated {
+	text-decoration: none;
+	@include deprecate();
+
+	&,
+	&:hover,
+	&.focus-visible,
+	*,
+	*:hover,
+	*.focus-visible {
+		text-decoration: none !important;
+	}
+}
+
+// remove end
+
+.is-size-jumbo-responsive {
+	@include responsive-font-size($font-size-jumbo, true);
+}
+
+// Heading sizes
+
+.is-size-h1-responsive {
+	@include responsive-font-size($font-size-1, true);
+}
+
+.is-size-h2-responsive {
+	@include responsive-font-size($font-size-2, true);
+}
+
+.is-size-h3-responsive {
+	@include responsive-font-size($font-size-3, true);
+}
+
+.is-size-h4-responsive {
+	@include responsive-font-size($font-size-4, true);
+}
+
+.is-size-h6 {
+	font-size: $font-size-6 !important;
+}
+
+// Wrapping
+
+.has-text-wrap {
+	word-wrap: break-word !important;
+	white-space: normal !important;
+	word-break: break-word !important;
+	height: auto !important;
+}
+
+%has-text-wrap {
+	overflow: hidden;
+	word-wrap: break-word;
+	white-space: normal;
+	word-break: break-word;
+}
+
+.has-no-wrap {
+	white-space: nowrap;
+}
+
+.has-text-overflow-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// Case
+
+.is-capitalized {
+	text-transform: capitalize !important;
+}
+
+.is-lowercase {
+	text-transform: lowercase !important;
+}
+
+.is-uppercase {
+	text-transform: uppercase !important;
+}
+
+.is-underlined-dotted {
+	border-bottom: 1px dotted;
+}
+
+.is-normal {
+	font-style: normal;
+}
+
+.has-text-subtle {
+	color: $text-subtle !important;
+}
+
+.has-text-overlay-invert {
+	color: $overlay-invert;
+}
+
+.has-overflow-ellipsis {
+	@include has-overflow-ellipsis;
+}
+
+.has-overflow-ellipsis-tablet {
+	@include tablet {
+		@include has-overflow-ellipsis;
+	}
+}
+
+// Alignment
+
+.has-text-centered {
+	text-align: center !important;
+}
+
+.has-text-centered-mobile {
+	@include mobile {
+		text-align: center !important;
+	}
+}
+
+.has-text-centered-tablet {
+	@include tablet {
+		text-align: center !important;
+	}
+}
+
+.has-text-justified {
+	text-align: justify !important;
+}
+
+.has-text-left {
+	text-align: left !important;
+}
+
+.has-text-right {
+	text-align: right !important;
+}
+
+.text-align-right-desktop {
+	@include desktop {
+		text-align: $user-right !important;
+	}
+}
+
+.has-tabular-nums {
+	font-variant-numeric: tabular-nums;
+}

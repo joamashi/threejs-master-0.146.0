@@ -1,0 +1,54 @@
+$bar-link-padding: 0.75rem !important;
+$bar-link-top-margin: 0.25rem !important;
+$bar-link-small-top-margin: 0.5rem !important;
+$bar-link-border-left: 6px solid $border;
+$bar-link-small-border-left: 3px solid $border;
+
+.barLink,
+.bar-link {
+	align-items: center;
+	border-#{$content-left}: $bar-link-border-left;
+	display: flex;
+	font-size: 1.125rem;
+	line-height: 28px;
+	margin-top: $bar-link-top-margin;
+	min-height: 36px;
+	padding-left: $bar-link-padding;
+	padding-right: $bar-link-padding;
+
+	&.is-small {
+		margin-top: $bar-link-small-top-margin;
+		border-#{$content-left}: $bar-link-small-border-left;
+		font-size: $font-size-small;
+		line-height: $font-size-small * 1.2;
+		min-height: $font-size-small * 1.1;
+	}
+
+	&:hover {
+		border-color: $primary-hover;
+		border-#{$content-left}-color: $primary;
+	}
+
+	&:visited {
+		color: $visited;
+	}
+
+	&.is-unit-list-item {
+		align-items: normal;
+		justify-content: space-between;
+		border-width: 4px;
+		max-height: 100%;
+		line-height: 1;
+	}
+
+	img {
+		width: 36px;
+		height: 36px;
+		margin: 5px 0;
+		margin-#{$content-right}: 10px;
+	}
+}
+
+.cols div:last-child > .barLink {
+	margin-bottom: 16px;
+}

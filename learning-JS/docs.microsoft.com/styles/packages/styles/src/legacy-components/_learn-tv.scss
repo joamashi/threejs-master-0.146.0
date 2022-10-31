@@ -1,0 +1,86 @@
+html.learntv {
+	@include until($tablet) {
+		#video-section {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		#chat-holder {
+			height: 70vh !important;
+		}
+	}
+
+	.no-schedule .schedule-holder {
+		display: none;
+	}
+
+	.schedule-scrollview {
+		max-height: 80vh;
+	}
+
+	.schedule {
+		li.active {
+			border-left: solid 2px $primary;
+		}
+
+		time {
+			display: block;
+		}
+
+		a {
+			display: block;
+		}
+	}
+
+	.studio-player-holder {
+		position: relative;
+
+		&:before {
+			content: '';
+			display: block;
+			height: 0;
+			padding-bottom: 56.25%;
+			width: 100%;
+		}
+
+		&.height-from-message {
+			height: auto;
+		}
+
+		&.height-from-message:before {
+			display: none;
+		}
+
+		.studio-player {
+			background-color: $white-static;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		&.height-from-message .studio-player {
+			position: static;
+		}
+	}
+
+	#video-section.no-chat,
+	#video-section.has-special-wide-player {
+		display: block;
+
+		#chat-holder {
+			display: none;
+		}
+	}
+
+	#video-section.no-chat #tab-qa {
+		display: none;
+	}
+
+	#video-section.has-special-wide-player .studio-player-holder:before {
+		@media screen and (min-width: 1228px) {
+			padding-bottom: 37.5%;
+		}
+	}
+}

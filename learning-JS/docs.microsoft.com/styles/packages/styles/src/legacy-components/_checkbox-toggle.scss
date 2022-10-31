@@ -1,0 +1,85 @@
+.lang-toggle-container {
+	display: none;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 8px;
+	color: $text;
+
+	> label {
+		padding-#{$user-right}: 8px;
+	}
+}
+
+.checkbox-toggle-container {
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 8px;
+	color: $text;
+
+	> label {
+		padding-#{$user-right}: 8px;
+	}
+}
+
+.checkbox-toggle-wrapper {
+	margin: 0 0 0 8px;
+	display: flex;
+
+	label.switch {
+		order: 1;
+		@media screen and (min-width: 1195px) {
+			order: 3;
+		}
+		margin-#{$user-left}: 1px;
+		background-color: $body-background;
+		cursor: pointer;
+		display: block;
+		border: 1px solid $text;
+		border-radius: 12px;
+		width: 44px;
+		height: 16px;
+		transition: 0.2s ease-in;
+
+		&:after {
+			transition: 0.4s cubic-bezier(0.01, 1.23, 0.58, 0.96);
+			border-radius: 50%;
+			transform: translate(3px, 3px);
+			body[dir='rtl'] & {
+				transform: translate(-3px, 3px);
+			}
+			width: 8px;
+			height: 8px;
+			background-color: $text;
+			display: block;
+			content: '';
+		}
+	}
+
+	input[type='checkbox']:checked {
+		& + label.switch {
+			background-color: $primary;
+			border: 1px solid $primary;
+
+			&:after {
+				background-color: $body-background;
+				transform: translate(31px, 3px);
+				body[dir='rtl'] & {
+					transform: translate(-31px, 3px);
+				}
+			}
+		}
+	}
+
+	input[type='checkbox'] {
+		position: absolute;
+		pointer-events: none;
+		opacity: 0;
+		height: 0;
+		width: 0;
+		order: 2;
+
+		&.focus-visible + label.switch {
+			@extend %focus;
+		}
+	}
+}

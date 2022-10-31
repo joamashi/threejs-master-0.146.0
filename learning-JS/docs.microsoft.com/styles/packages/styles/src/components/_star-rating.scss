@@ -1,0 +1,116 @@
+.star-rating-control {
+	label,
+	output {
+		cursor: pointer;
+	}
+
+	label {
+		display: inline-block;
+		padding: 0 $spacing-1;
+	}
+
+	output {
+		display: block;
+		margin-left: $spacing-1;
+	}
+
+	// Star fill rules
+
+	.rating-star:before {
+		font-family: 'docons';
+		content: get-icon-code('star-outline');
+	}
+
+	input.focus-visible + label {
+		@extend %focus;
+	}
+
+	.star-collection {
+		display: flex;
+
+		& > input {
+			&.is-selected ~ label {
+				.rating-star:before {
+					content: get-icon-code('star');
+				}
+			}
+
+			&:not(.is-selected) ~ label,
+			& + label:hover ~ label,
+			& + label.focus-visible ~ label {
+				// any label that is not selected or a nextSibling of a hover/focused label
+
+				.rating-star:before {
+					content: get-icon-code('star-outline');
+				}
+			}
+		}
+
+		&:hover > input + label,
+		&.focus-visible > input + label {
+			// set all other labels to star fill
+
+			.rating-star:before {
+				content: get-icon-code('star');
+			}
+		}
+	}
+
+	// Modifiers
+	.star-layout {
+		display: flex;
+		&.is-centered {
+			flex-direction: column;
+			align-items: center;
+
+			.star-collection {
+				margin: 0 $spacing-2;
+			}
+
+			output {
+				height: 1rem;
+				margin-bottom: 0.5rem;
+				font-weight: $weight-semibold;
+				line-height: 1.125;
+			}
+		}
+
+		&.is-stacked {
+			flex-direction: column;
+
+			output {
+				width: auto;
+			}
+		}
+	}
+}
+
+.star-rating-display {
+	display: flex;
+
+	.star,
+	.before-text {
+		padding-#{$user-right}: $spacing-1;
+	}
+
+	.explanation-text {
+		font-size: $font-size-small;
+		color: $text-subtle;
+		font-weight: normal;
+	}
+
+	&.is-small {
+		.star,
+		.before-text,
+		.explanation-text {
+			font-size: $font-size-small;
+			line-height: $font-size-small;
+		}
+	}
+
+	&.has-subtle-stars {
+		.star {
+			color: $text-subtle;
+		}
+	}
+}

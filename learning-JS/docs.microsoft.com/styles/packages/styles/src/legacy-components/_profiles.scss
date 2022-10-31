@@ -1,0 +1,50 @@
+.profile {
+	img.profile-img {
+		@include tablet {
+			margin-top: 24px;
+		}
+	}
+
+	.connect {
+		display: flex;
+		justify-content: flex-start;
+		list-style-type: none;
+		margin: 0;
+		flex-direction: column;
+
+		li {
+			list-style: none;
+		}
+	}
+
+	@include tablet {
+		.connect {
+			flex-flow: row wrap;
+
+			li {
+				&:not(:first-child) {
+					&:before {
+						content: '|';
+						margin: 0 8px;
+					}
+				}
+
+				// maintains no more than seven connect links can be shown at one time, because styles are hard to control beyond 7.
+				&:nth-child(n + 8) {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.map-mode-container {
+	.map {
+		margin-top: 12px;
+		width: 100%;
+		height: calc(100vh - 66px);
+		@include tablet {
+			height: 70vh;
+		}
+	}
+}

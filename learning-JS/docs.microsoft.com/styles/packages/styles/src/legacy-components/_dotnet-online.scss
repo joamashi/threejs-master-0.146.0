@@ -1,0 +1,58 @@
+.dotnet-online {
+	height: 100%;
+}
+
+.dotnet-online-loader {
+	display: inline-block;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.dotnet-online-editor-section {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.dotnet-online-header {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+	border-bottom: 1px solid $border;
+
+	h3 {
+		flex-grow: 1;
+		margin: 0.25em 1em;
+		padding: 0;
+		font-size: $font-size-body;
+		font-weight: $weight-normal;
+		cursor: default;
+	}
+}
+
+.dotnet-online-editor {
+	flex-grow: 1;
+	flex-shrink: 1;
+	border: none;
+	border-bottom: 1px solid $border;
+}
+
+.dotnet-online-output {
+	height: 25%;
+	margin: 0;
+	padding: 1em;
+	border: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.dotnet-online-service-unavailable {
+	padding: 1em;
+	font-size: $font-size-body;
+}

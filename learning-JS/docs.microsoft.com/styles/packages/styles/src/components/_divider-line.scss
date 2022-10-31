@@ -1,0 +1,28 @@
+$divider-line-border: 1px solid $secondary;
+
+.divider-line {
+	overflow: hidden;
+
+	.divider-line-label {
+		position: relative;
+		padding: 0 10px;
+		margin: 0;
+	}
+
+	.divider-line-label:before,
+	.divider-line-label:after {
+		content: '';
+		width: 1000px;
+		position: absolute;
+		top: 0.65em;
+		border-top: $divider-line-border;
+	}
+
+	.divider-line-label:before {
+		right: 100%;
+	}
+
+	.divider-line-label:after {
+		left: 100%;
+	}
+}

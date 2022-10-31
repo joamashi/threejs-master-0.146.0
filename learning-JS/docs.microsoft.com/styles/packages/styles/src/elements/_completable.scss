@@ -1,0 +1,14 @@
+%completable {
+	&:not(.is-complete) .is-shown-complete,
+	&.is-complete .is-hidden-complete {
+		display: none;
+	}
+}
+
+@mixin completable {
+	@extend %completable;
+}
+
+.completable {
+	@include completable;
+}

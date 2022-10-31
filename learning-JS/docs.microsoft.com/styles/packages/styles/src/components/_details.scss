@@ -1,0 +1,61 @@
+$details-spacing: $spacing-4;
+$details-icon-offset: $spacing-3;
+$details-icon-padding: $details-icon-offset * 3 + $details-spacing;
+$details-border-width: 1px;
+
+$details-border-color: $border;
+$details-summary-background: $body-background;
+$details-content-background: $body-background-medium;
+
+.details {
+	max-width: 100%;
+	@include details-reset;
+
+	&:first-of-type {
+		border-top: $details-border-width solid $details-border-color;
+	}
+}
+
+.details-summary {
+	display: block;
+	position: relative;
+	outline-offset: -$focus-width !important;
+	padding: $details-spacing;
+	padding-#{$user-right}: $details-icon-padding;
+	background-color: $details-summary-background;
+	border-bottom: $details-border-width solid $details-border-color;
+	cursor: pointer;
+	font-weight: $weight-semibold;
+
+	&:hover {
+		color: $primary;
+	}
+
+	&:after {
+		position: absolute;
+		font-family: 'docons' !important;
+		content: get-icon-code('chevron-down-light') !important;
+		#{$user-right}: $details-icon-offset + $details-spacing;
+		top: $details-spacing;
+		transition: transform 0.15s;
+
+		[open] & {
+			transform: rotateX(180deg);
+		}
+	}
+}
+
+.details-content {
+	background-color: $details-content-background;
+	padding: $details-spacing;
+	margin: 0;
+	border-bottom: $details-border-width solid $details-border-color;
+
+	p,
+	ul,
+	li {
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}

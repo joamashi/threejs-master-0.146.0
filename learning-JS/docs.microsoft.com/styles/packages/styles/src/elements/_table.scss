@@ -1,0 +1,72 @@
+$table-cell-narrow-width: 15%;
+
+.table {
+	td,
+	th {
+		p:first-child {
+			margin-top: 0;
+		}
+
+		&.is-narrow {
+			width: $table-cell-narrow-width;
+		}
+	}
+
+	// Modifiers
+	&.has-row-header-background {
+		tbody td,
+		tbody th {
+			&:first-child {
+				background-color: $table-row-header;
+			}
+		}
+	}
+
+	&.table-fixed-layout {
+		@include tablet {
+			table-layout: fixed;
+		}
+	}
+
+	&.table-tabular-responsive {
+		@include mobile {
+			thead {
+				border: none;
+				clip: rect(0 0 0 0);
+				height: 1px;
+				margin: -1px;
+				overflow: hidden;
+				padding: 0;
+				position: absolute;
+				width: 1px;
+			}
+
+			tr {
+				display: block;
+			}
+
+			th {
+				display: block;
+			}
+
+			td {
+				display: block;
+			}
+
+			td::after {
+				/*
+				* aria-label has no advantage, it won't be read inside a table
+				content: attr(aria-label);
+				*/
+				content: attr(data-label);
+			}
+		}
+	}
+}
+
+// Remove after templates rebuild ~ 02.28.2022
+div.table-scroll-wrapper {
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+}

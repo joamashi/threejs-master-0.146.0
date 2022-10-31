@@ -1,0 +1,366 @@
+//Outer styling rules
+html {
+		font-size:62.5%;
+}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	line-height: 1;
+	font-family: Nunito, Helvetica, Arial, sans-serif;
+  background: radial-gradient(ellipse at center, #F0F958 0%,#A0D346 100%); 
+	font-size: 1.4rem;
+	box-sizing: border-box;
+}
+
+// Type 1 - Standard Vertical Display
+main {
+	background: #fff;
+	padding: 5px;
+	width: 260px;
+	height: 570px;
+	overflow: hidden;
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,.3);
+	transition: height 300ms ease-out, width 300ms ease-out;
+	.wrap {
+		display: flex;
+		flex-direction: column;	
+	}
+}
+section {
+	display: flex;
+	flex-direction: column;
+}
+
+//Common List Styling Rules
+dl {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	line-height: 1;
+	margin: 0;
+	> div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		padding: 5px 0px;
+	}
+	dl dt{
+		padding-left: 20px;
+	}
+	dl dl {
+		margin-left: 40px;
+	}
+	dl dl dt {
+		padding-left: 0px;
+	}
+	dd{
+		display: flex;
+		margin: 0;
+	}
+	dd,dt {
+		margin-right: 3px;
+	}
+}
+
+.mast{
+	&__title{
+		font-size: 3.6rem;
+		font-weight: 900;
+		margin: 0;
+		border-bottom: 1px solid;
+	}
+	&__list{
+		font-size: 1.7rem;
+		line-height: 1;
+	}
+}
+
+.serving {
+	padding-bottom: 0px;
+	dt{
+		order: 2;
+	}
+	span{
+		margin-right: 3px;
+	}
+}
+
+.size {
+	border-bottom: 10px solid;
+	font-weight: 900;
+	dt {
+		flex: 1;
+	}
+}
+
+.calories {
+	border-bottom: 5px solid;	
+	font-weight: 900;
+	flex-direction: row;
+	align-items: flex-end;
+	padding: 5px 0px 2px 0px;
+	div {
+		flex: 1;
+	}
+	dt {
+		font-size: 1.1rem;
+		flex: 1 0 100%;
+	}
+	&__label{
+		font-size: 3rem;
+		flex: 1;
+	}
+	&__value{
+		font-size: 3.6rem;
+	}
+}
+
+.values{
+	&__title {
+		display: flex;
+		font-size: 1.1rem;
+		font-weight: 900;
+		padding: 5px 0px;
+		span:first-of-type{
+			flex: 1;
+			visibility: hidden;
+		}
+	}
+	&__list {
+		div {
+			border-top: 1px solid;
+		}
+		dt {
+			font-weight: 900;
+		}
+		dl dt {
+			font-weight: 400;
+		}
+		dt+dd{
+			flex: 1;
+			+ dd{
+				font-weight: 900;
+			}
+		}
+	}
+}
+
+.values--b{
+	.values__title{
+		display: none;
+	}
+	.values__list {
+		border-bottom: 10px solid;
+	}
+}
+.values--c {
+	.values__list {
+		border-bottom: 5px solid;
+		dt, dd {
+			font-weight: 400;
+		}
+	}
+}
+
+.footnote {
+	flex: 1 0;
+	p {
+		font-size: .9rem;
+		margin: 0;
+		padding: 5px 0px;
+	}
+}
+
+
+// Type 2 - Tabular Display for Small to Medium Packages
+main.type--2 {
+	width: 610px;
+	height: 180px;
+	.wrap {
+			display: grid;
+			grid-template-columns: 140px 1fr;
+			grid-column-gap: 10px;
+	}
+	.mast{
+		&__title{
+			font-size: 2.8rem;
+		}
+	}
+	.size {
+		border-bottom: 1px solid;
+	}
+	
+	.calories {
+		border-bottom: 0px;
+		flex-diretion: row;
+		>div {
+			display: flex;
+			flex-direction: column;
+			line-height: .8;
+		}
+		&__label {
+			order: 1;
+			font-size: 2rem;
+		}
+		dt {
+			order: 2;
+			font-size: 1.4rem;
+			span {
+				display: none;
+			}
+		}
+		&__value {
+			order: 3;
+			font-size: 2.8rem;
+			margin-left: 5px;
+		}
+	}
+	.values{
+		display: grid;
+		grid-template-columns: repeat(2,225px);
+		grid-column-gap: 10px;
+		grid-row-gap: 3px;
+		flex-direction:row;
+		flex-wrap: wrap;
+		&--a,
+		&--b {
+			.values__list {
+				border-bottom: 5px solid;	
+			}
+		}
+		&--b {
+			.values__title{
+				display: flex;
+			}
+		}
+		&--c {
+			grid-column-start: 1;
+	    grid-column-end: span 2;
+			.values__list {
+				flex-direction: row;
+				border-bottom: 0px;
+			}
+			div {
+				border-top: 0px;
+				dd:first-of-type{
+					display: none;
+				}
+				&:not(:last-child)::after {
+					content: "•";
+					font-size: .5em;
+					margin-right: 4px;
+				}
+			}
+		}
+	}
+	.values__title {
+		border-bottom: 5px solid;
+		span:first-of-type {
+			visibility: visible;
+		}
+	}
+	.footnote{
+		display: none;
+	}
+}
+
+// Type 2 - Linear Display for Small Packages
+main.type--3 {
+	width: 400px;
+	height: 100px;
+	.wrap{
+		display: block;	
+		font-size: 1.2rem;
+	}
+	section {
+		display: contents;
+	}
+	dl {
+		display: contents;
+		float: left;
+		margin-left: 0;
+		line-height: 1.1;
+		> div {
+			display: contents;
+			float: left;
+			padding: 1px 0px;
+		}
+		dd, dt{
+			display: contents;
+			float: left;
+		}
+		dl dt {
+			padding-left: 2px;
+		}
+	}
+	.mast {
+		&__title{
+			width: auto;
+			font-size: 1.8rem;
+			display: contents;
+			float: left;
+			border-bottom: 0px;
+		}
+		&__list {
+			font-size: 1.4rem;
+		}
+		.serving {
+			margin-left: 140px;
+			dt {
+				display: none;
+			}
+		}
+		.size {
+			border-bottom: 0px
+		}
+		.calories {
+			border-bottom: 0px;
+			div {
+				display: contents;
+				float: left;
+			}
+			dt {
+				font-size: 1.1rem;
+				font-weight: 400;
+			}
+			&__label{
+				font-size: 1.3rem;
+				flex: 1;
+			}
+			&__value{
+				font-size: 1.8rem;
+			}
+		}
+	}
+	.values {
+		&--a,
+		&--b,
+		&--c{
+			display: contents;
+		}
+		&__title {
+			display: none;
+		}
+		&__list {
+			border-bottom: 0px;
+			div {
+				border-top: 0px;
+			}
+			dt + dd + dd {
+				font-weight: 400;
+				&::before {
+					content: "(";
+				}
+				&::after {
+					content: " DV),";
+				}
+			}
+		}
+	}
+	.footnote{
+		display: none;
+	}
+}

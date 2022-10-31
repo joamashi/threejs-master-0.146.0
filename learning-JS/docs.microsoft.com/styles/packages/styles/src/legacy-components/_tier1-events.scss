@@ -1,0 +1,43 @@
+// AnswerHub overrides :)
+.tier1-event-banner {
+	line-height: 1.6;
+	.button:not(.button-filled) {
+		color: $button-color !important;
+	}
+}
+
+/**
+ * Temporary styles for 2021 Ignite #2 (November 2 - 4)
+ * https://ceapex.visualstudio.com/Engineering/_workitems/edit/482807
+ */
+.ignite-banner {
+	color: $white-static;
+	background-color: #0c2aae;
+	outline-color: $white-static;
+	background-repeat: no-repeat;
+	background-image: url('https://docs.microsoft.com/en-us/media/event-banners/ignite-2021-09-optimized.jpg?branch=live');
+	background-size: auto 100%;
+	background-position: min(250px, 50vw) center;
+
+	@include tablet {
+		background-position: right center;
+	}
+}
+
+/**
+ * Temporary styles for 2022 Build banner (May 24 - 26)
+ * https://ceapex.visualstudio.com/Engineering/_workitems/edit/593193
+ */
+.build-banner {
+	color: $black-static;
+	background-color: #e44c89;
+	outline-color: $black-static;
+	background-repeat: no-repeat;
+	background-image: url('https://docs.microsoft.com/en-us/media/event-banners/build-2022-05-optimized.jpg?branch=live');
+	background-size: auto 100%;
+	background-position: min(250px, 50vw) center;
+
+	@include tablet {
+		background-position: right center;
+	}
+}

@@ -1,0 +1,38 @@
+$breadcrumb-background: $body-background-medium !default;
+$breadcrumb-font-size: $font-size-small !default;
+$breadcrumb-padding: 0 1rem !default;
+
+.breadcrumbs-deprecated {
+	width: 100%;
+	background: $breadcrumb-background;
+	font-size: $breadcrumb-font-size;
+	margin-bottom: 0;
+	padding: $breadcrumb-padding;
+	@include mobile {
+		border-bottom: 1px solid $border;
+	}
+
+	> li {
+		display: inline;
+
+		&:not(:last-of-type):after {
+			content: '\00200B/';
+		}
+
+		&:after {
+			display: inline;
+			margin: 0 6px;
+			color: $secondary;
+		}
+	}
+
+	@include tablet {
+		padding: 0;
+		background: none;
+		width: auto;
+
+		> li {
+			display: inline-block;
+		}
+	}
+}

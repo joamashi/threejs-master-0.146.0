@@ -1,0 +1,19 @@
+%thumb-rating-icons {
+	.docon-dislike:before {
+		content: get-icon-code('dislike-solid');
+	}
+	.docon-like:before {
+		content: get-icon-code('like-solid');
+	}
+}
+
+.thumb-rating {
+	.icon {
+		color: $primary;
+	}
+
+	&:hover,
+	&.is-selected {
+		@extend %thumb-rating-icons;
+	}
+}

@@ -1,0 +1,19 @@
+.svg {
+	.has-fill-body-background {
+		fill: $body-background;
+	}
+
+	.has-fill-body-background-medium,
+	.has-fill-body-background-dark {
+		// backwards compatibility ⬆
+		fill: $body-background-medium;
+	}
+
+	.has-fill-primary {
+		fill: $primary;
+	}
+
+	.has-fill-secondary {
+		fill: $secondary;
+	}
+}

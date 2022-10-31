@@ -1,0 +1,29 @@
+// how does it work? https://bulma.io/documentation/elements/box/
+// $box-color var was removed
+
+$box-background-color: $body-background !default;
+$box-box-shadow: $box-shadow-light !default; // We work 7/5
+$box-padding: 1.25rem !default;
+
+$box-link-hover-shadow: 3px 3px 5px 0 $box-shadow-color-light, 0 0 0 1px $primary !default; // We work 7/5
+$box-link-active-shadow: inset 0 1px 2px $box-shadow-color-medium, 0 0 0 1px $primary !default; // We work 7/5
+
+.box {
+	@include block;
+
+	background-color: $box-background-color;
+	box-shadow: $box-box-shadow;
+	display: block;
+	padding: $box-padding;
+	border: 1px solid $border-white-high-contrast;
+}
+
+a.box {
+	&:hover {
+		box-shadow: $box-link-hover-shadow;
+	}
+
+	&:active {
+		box-shadow: $box-link-active-shadow;
+	}
+}

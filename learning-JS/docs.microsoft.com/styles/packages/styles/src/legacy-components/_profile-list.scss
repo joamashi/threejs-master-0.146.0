@@ -1,0 +1,120 @@
+html.profilelist {
+	.columns-reverse {
+		flex-direction: row-reverse;
+	}
+
+	.profile-list {
+		.profiles-container {
+			.profile-component {
+				box-shadow: $box-shadow-light;
+				padding: $spacing-3;
+				align-items: center;
+
+				p,
+				a {
+					color: $text-subtle;
+				}
+			}
+		}
+	}
+
+	.filter-list {
+		box-sizing: border-box;
+		margin-top: 12px;
+		padding: 8px;
+		font-size: 1.2rem;
+		color: $text;
+		width: calc(100% - 16px);
+		@include tablet {
+			max-width: 40%;
+		}
+	}
+
+	.map-mode-container {
+		.map {
+			height: calc(100vh - 66px);
+
+			@include tablet {
+				height: 70vh;
+			}
+		}
+
+		.map-infobox {
+			position: relative;
+			background-color: $body-background;
+			width: 300px;
+			box-sizing: border-box;
+			@include double-caret($body-background, $border);
+
+			&:after,
+			&:before {
+				position: absolute;
+				top: calc(50% - 11px);
+				left: -15px;
+			}
+
+			ul {
+				background-color: $body-background;
+				width: 100%;
+				max-height: 370px;
+				overflow-x: hidden;
+				margin: 0;
+				border: 1px solid $border;
+
+				li {
+					display: flex;
+					flex-direction: row;
+					border-top: 1px solid $border;
+					height: 90px;
+					justify-content: space-between;
+					align-items: center;
+					margin: 0 auto;
+					width: 90%;
+
+					> a {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 33%;
+
+						img {
+							border-radius: 50%;
+							width: 75%;
+							height: 75%;
+						}
+					}
+
+					.profile-text {
+						width: 66%;
+
+						h3,
+						p,
+						a {
+							color: $text;
+							margin: 0;
+						}
+
+						h3 {
+							font-size: 1rem;
+						}
+
+						p {
+							font-size: 0.875rem;
+						}
+
+						.twitter:before {
+							content: '@';
+						}
+
+						.tagline {
+							color: $text-subtle;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+					}
+				}
+			}
+		}
+	}
+}

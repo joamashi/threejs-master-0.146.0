@@ -1,0 +1,79 @@
+$meta-data-text-color: $text-subtle !default;
+$meta-data-font-size: $font-size-small !default;
+
+.metadata {
+	display: block;
+	color: $meta-data-text-color;
+	font-size: $meta-data-font-size;
+}
+
+.metadata.page-metadata {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0 !important;
+	padding: 0.125rem 0 0 0 !important;
+}
+
+.metadata.page-metadata > li {
+	list-style: none;
+	display: flex;
+	flex-basis: auto;
+	align-items: center;
+
+	.docon {
+		font-size: 13px;
+		line-height: inherit;
+		margin-#{$user-right}: 5px;
+		width: 14px;
+	}
+
+	&:not(:last-of-type):not(:only-of-type) {
+		&:after {
+			padding-#{$user-left}: 5px;
+			padding-#{$user-right}: 5px;
+			content: '•';
+		}
+	}
+
+	&:first-of-type,
+	&:only-of-type {
+		margin-#{$user-left}: 0;
+	}
+
+	&:last-of-type {
+		@include mobile {
+			margin-#{$user-left}: 0;
+		}
+	}
+}
+
+.metadata > .displayDate.loading {
+	visibility: hidden;
+}
+
+.metadata.page-metadata .contributors-text {
+	margin-#{$user-right}: 5px;
+}
+
+.metadata.page-metadata .contributors {
+	display: inline-block;
+	list-style: none;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	li {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0;
+		padding: 0;
+
+		img {
+			border-radius: 100%;
+			height: 16px;
+			margin-top: 5px;
+			overflow: hidden;
+			width: 16px;
+		}
+	}
+}

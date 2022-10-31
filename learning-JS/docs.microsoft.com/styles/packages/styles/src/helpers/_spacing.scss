@@ -1,0 +1,575 @@
+// Value use for margin and padding loops
+// remove after content rebuild
+$marginKey: 'margin';
+$paddingKey: 'padding';
+$separator: '-';
+
+$class-positions: (('top', 'right', 'bottom', 'left'));
+
+$content-positions: (('top', $content-right, 'bottom', $content-left));
+
+$user-positions: (('top', $user-right, 'bottom', $user-left));
+
+$spacing-sizes: (
+	('extra-small', $spacing-1),
+	('small', $spacing-2),
+	('medium', $spacing-3),
+	('large', $spacing-4),
+	('extra-large', $spacing-5),
+	('super-large', $spacing-6),
+	('none', $spacing-0)
+);
+
+@function sizeValue($key, $value) {
+	@return if($key == 'none', 0, $value);
+}
+
+@each $size in $spacing-sizes {
+	$sizeKey: nth($size, 1);
+	$sizeValue: nth($size, 2);
+
+	// .has-margin-size
+	.has-#{$marginKey}#{$separator}#{$sizeKey} {
+		margin: sizeValue($sizeKey, $sizeValue) !important;
+	}
+
+	// .has-padding-size
+	.has-#{$paddingKey}#{$separator}#{$sizeKey} {
+		padding: sizeValue($sizeKey, $sizeValue) !important;
+	}
+}
+
+@each $size in $spacing-sizes {
+	$sizeKey: nth($size, 1);
+	$sizeValue: nth($size, 2);
+
+	@for $i from 1 through 4 {
+		$class-position: nth($class-positions, $i);
+		$content-position: nth($content-positions, $i);
+		$user-position: nth($user-positions, $i);
+
+		// .has-margin-side-size
+		.has-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey} {
+			margin-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+		}
+
+		// .has-padding-side-size
+		.has-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey} {
+			padding-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+		}
+
+		// -content- margin and padding should be used in content - for horizontal helpers only
+		@if $i == 2 or $i == 4 {
+			.has-content-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey} {
+				margin-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			.has-content-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey} {
+				padding-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+		}
+	}
+}
+
+@include mobile {
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		.has-#{$marginKey}#{$separator}#{$sizeKey}-mobile {
+			margin: sizeValue($sizeKey, $sizeValue) !important;
+		}
+
+		.has-#{$paddingKey}#{$separator}#{$sizeKey}-mobile {
+			padding: sizeValue($sizeKey, $sizeValue) !important;
+		}
+	}
+
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		@for $i from 1 through 4 {
+			$class-position: nth($class-positions, $i);
+			$content-position: nth($content-positions, $i);
+			$user-position: nth($user-positions, $i);
+
+			.has-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-mobile {
+				margin-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			.has-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-mobile {
+				padding-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			@if $i == 2 or $i == 4 {
+				.has-content-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-mobile {
+					margin-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+
+				.has-content-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-mobile {
+					padding-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+			}
+		}
+	}
+}
+
+@include tablet {
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		.has-#{$marginKey}#{$separator}#{$sizeKey}-tablet {
+			margin: sizeValue($sizeKey, $sizeValue) !important;
+		}
+
+		.has-#{$paddingKey}#{$separator}#{$sizeKey}-tablet {
+			padding: sizeValue($sizeKey, $sizeValue) !important;
+		}
+	}
+
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		@for $i from 1 through 4 {
+			$class-position: nth($class-positions, $i);
+			$content-position: nth($content-positions, $i);
+			$user-position: nth($user-positions, $i);
+
+			.has-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-tablet {
+				margin-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			.has-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-tablet {
+				padding-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			@if $i == 2 or $i == 4 {
+				.has-content-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-tablet {
+					margin-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+
+				.has-content-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-tablet {
+					padding-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+			}
+		}
+	}
+}
+
+// delete after uhf cleanup
+// created to fix the breadcrumbs weird padding between `uhf-tablet` and `desktop` screen sizes
+@include uhf-tablet {
+	@for $i from 1 through 4 {
+		$class-position: nth($class-positions, $i);
+		$user-position: nth($user-positions, $i);
+
+		.has-padding-#{$class-position}-none-uhf-tablet {
+			padding-#{$user-position}: $spacing-0 !important;
+		}
+	}
+}
+
+@include desktop {
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		.has-#{$marginKey}#{$separator}#{$sizeKey}-desktop {
+			margin: sizeValue($sizeKey, $sizeValue) !important;
+		}
+
+		.has-#{$paddingKey}#{$separator}#{$sizeKey}-desktop {
+			padding: sizeValue($sizeKey, $sizeValue) !important;
+		}
+	}
+
+	@each $size in $spacing-sizes {
+		$sizeKey: nth($size, 1);
+		$sizeValue: nth($size, 2);
+
+		@for $i from 1 through 4 {
+			$class-position: nth($class-positions, $i);
+			$content-position: nth($content-positions, $i);
+			$user-position: nth($user-positions, $i);
+
+			.has-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-desktop {
+				margin-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			.has-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-desktop {
+				padding-#{$user-position}: sizeValue($sizeKey, $sizeValue) !important;
+			}
+
+			@if $i == 2 or $i == 4 {
+				.has-content-#{$marginKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-desktop {
+					margin-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+
+				.has-content-#{$paddingKey}#{$separator}#{$class-position}#{$separator}#{$sizeKey}-desktop {
+					padding-#{$content-position}: sizeValue($sizeKey, $sizeValue) !important;
+				}
+			}
+		}
+	}
+}
+
+.has-margin-left-negative-extra-large {
+	left: -$spacing-5 !important;
+}
+
+.has-margin-right-negative-extra-large {
+	right: -$spacing-5;
+}
+// remove end
+
+.margin-left-negative-lg {
+	left: -$layout-5 !important;
+}
+
+.margin-right-negative-lg {
+	right: -$layout-5;
+}
+
+.margin-top-negative-xxs {
+	margin-top: -$layout-1 !important;
+}
+
+.margin-top-negative-sm {
+	margin-top: -$layout-3 !important;
+}
+
+// avoid using if possible, only used in profile achievement certificate
+.padding-top-none-mobile {
+	@include mobile {
+		padding-top: $layout-0 !important;
+	}
+}
+
+// -content- margin and padding should be used in content - for horizontal helpers only
+.has-content-margin-left-none {
+	margin-inline-start: $layout-0 !important;
+}
+
+.has-content-margin-right-none {
+	margin-inline-end: $layout-0 !important;
+}
+
+.has-content-margin-right-xxs {
+	margin-inline-end: $layout-1 !important;
+}
+
+.has-content-margin-right-xs {
+	margin-inline-end: $layout-2 !important;
+}
+
+.has-content-margin-left-sm {
+	margin-inline-start: $layout-3 !important;
+}
+
+@include tablet {
+	.has-content-margin-left-none-tablet {
+		margin-inline-start: $layout-0 !important;
+	}
+
+	.has-content-margin-right-none-tablet {
+		margin-inline-end: $layout-0 !important;
+	}
+
+	.has-content-padding-right-none-tablet {
+		padding-inline-end: $layout-0 !important;
+	}
+
+	.has-content-margin-right-xxl-tablet {
+		margin-inline-end: $layout-7 !important;
+	}
+}
+
+// remove after content rebuild
+.has-margin-auto-top,
+.has-margin-auto-sides,
+.has-margin-none,
+.has-margin-none-mobile,
+.has-margin-none-tablet,
+.has-margin-none-desktop,
+.has-margin-left-none,
+.has-margin-left-none-mobile,
+.has-margin-left-none-tablet,
+.has-margin-left-none-desktop,
+.has-margin-top-none,
+.has-margin-top-none-mobile,
+.has-margin-top-none-tablet,
+.has-margin-top-none-desktop,
+.has-margin-right-none,
+.has-margin-right-none-mobile,
+.has-margin-right-none-tablet,
+.has-margin-right-none-desktop,
+.has-margin-bottom-none,
+.has-margin-bottom-none-mobile,
+.has-margin-bottom-none-tablet,
+.has-margin-bottom-none-desktop,
+.has-margin-extra-small,
+.has-margin-extra-small-mobile,
+.has-margin-extra-small-tablet,
+.has-margin-extra-small-desktop,
+.has-margin-left-extra-small,
+.has-margin-left-extra-small-mobile,
+.has-margin-left-extra-small-tablet,
+.has-margin-left-extra-small-desktop,
+.has-margin-right-extra-small,
+.has-margin-right-extra-small-mobile,
+.has-margin-right-extra-small-tablet,
+.has-margin-right-extra-small-desktop,
+.has-margin-top-extra-small,
+.has-margin-top-extra-small-tablet,
+.has-margin-top-extra-small-mobile,
+.has-margin-top-extra-small-desktop,
+.has-margin-bottom-extra-small,
+.has-margin-bottom-extra-small-mobile,
+.has-margin-bottom-extra-small-tablet,
+.has-margin-bottom-extra-small-desktop,
+.has-margin-small,
+.has-margin-small-mobile,
+.has-margin-small-tablet,
+.has-margin-small-desktop,
+.has-margin-left-small,
+.has-margin-left-small-mobile,
+.has-margin-left-small-tablet,
+.has-margin-left-small-desktop,
+.has-margin-right-small,
+.has-margin-right-small-mobile,
+.has-margin-right-small-tablet,
+.has-margin-right-small-desktop,
+.has-margin-top-small,
+.has-margin-top-small-mobile,
+.has-margin-top-small-tablet,
+.has-margin-top-small-desktop,
+.has-margin-bottom-small,
+.has-margin-bottom-small-mobile,
+.has-margin-bottom-small-tablet,
+.has-margin-bottom-small-desktop,
+.has-margin-left-medium,
+.has-margin-top-medium,
+.has-margin-right-medium,
+.has-margin-bottom-medium,
+.has-margin-left-medium-mobile,
+.has-margin-top-medium-mobile,
+.has-margin-right-medium-mobile,
+.has-margin-bottom-medium-mobile,
+.has-margin-left-medium-tablet,
+.has-margin-top-medium-tablet,
+.has-margin-right-medium-tablet,
+.has-margin-bottom-medium-tablet,
+.has-margin-left-medium-desktop,
+.has-margin-top-medium-desktop,
+.has-margin-right-medium-desktop,
+.has-margin-bottom-medium-desktop,
+.has-margin-medium,
+.has-margin-medium-mobile,
+.has-margin-medium-tablet,
+.has-margin-medium-desktop,
+.has-margin-large,
+.has-margin-large-mobile,
+.has-margin-large-tablet,
+.has-margin-large-desktop,
+.has-margin-left-large-mobile,
+.has-margin-top-large-mobile,
+.has-margin-right-large-mobile,
+.has-margin-bottom-large-mobile,
+.has-margin-left-large-tablet,
+.has-margin-top-large-tablet,
+.has-margin-right-large-tablet,
+.has-margin-bottom-large-tablet,
+.has-margin-left-large-desktop,
+.has-margin-top-large-desktop,
+.has-margin-right-large-desktop,
+.has-margin-bottom-large-desktop,
+.has-margin-extra-large,
+.has-margin-extra-large-mobile,
+.has-margin-extra-large-tablet,
+.has-margin-extra-large-desktop,
+.has-margin-left-extra-large-mobile,
+.has-margin-top-extra-large-mobile,
+.has-margin-right-extra-large-mobile,
+.has-margin-bottom-extra-large-mobile,
+.has-margin-left-extra-large-tablet,
+.has-margin-top-extra-large-tablet,
+.has-margin-right-extra-large-tablet,
+.has-margin-bottom-extra-large-tablet,
+.has-margin-left-extra-large-desktop,
+.has-margin-top-extra-large-desktop,
+.has-margin-right-extra-large-desktop,
+.has-margin-bottom-extra-large-desktop,
+.has-margin-super-large,
+.has-margin-super-large-mobile,
+.has-margin-super-large-tablet,
+.has-margin-super-large-desktop,
+.has-margin-left-super-large-mobile,
+.has-margin-top-super-large-mobile,
+.has-margin-right-super-large-mobile,
+.has-margin-bottom-super-large-mobile,
+.has-margin-left-super-large-tablet,
+.has-margin-top-super-large-tablet,
+.has-margin-right-super-large-tablet,
+.has-margin-bottom-super-large-tablet,
+.has-margin-left-super-large-desktop,
+.has-margin-top-super-large-desktop,
+.has-margin-right-super-large-desktop,
+.has-margin-bottom-super-large-desktop,
+.has-padding-extra-small-mobile,
+.has-padding-extra-small,
+.has-padding-extra-small-tablet,
+.has-padding-extra-small-desktop,
+.has-padding-left-extra-small,
+.has-padding-left-extra-small-mobile,
+.has-padding-left-extra-small-tablet,
+.has-padding-left-extra-small-desktop,
+.has-padding-right-extra-small,
+.has-padding-right-extra-small-mobile,
+.has-padding-right-extra-small-tablet,
+.has-padding-right-extra-small-desktop,
+.has-padding-top-extra-small,
+.has-padding-top-extra-small-tablet,
+.has-padding-top-extra-small-mobile,
+.has-padding-top-extra-small-desktop,
+.has-padding-bottom-extra-small,
+.has-padding-bottom-extra-small-mobile,
+.has-padding-bottom-extra-small-tablet,
+.has-padding-bottom-extra-small-desktop,
+.has-padding-small,
+.has-padding-small-mobile,
+.has-padding-small-tablet,
+.has-padding-small-desktop,
+.has-padding-left-small,
+.has-padding-left-small-mobile,
+.has-padding-left-small-tablet,
+.has-padding-left-small-desktop,
+.has-padding-right-small,
+.has-padding-right-small-mobile,
+.has-padding-right-small-tablet,
+.has-padding-right-small-desktop,
+.has-padding-top-small,
+.has-padding-top-small-mobile,
+.has-padding-top-small-tablet,
+.has-padding-top-small-desktop,
+.has-padding-bottom-small,
+.has-padding-bottom-small-mobile,
+.has-padding-bottom-small-tablet,
+.has-padding-bottom-small-desktop,
+.has-padding-medium,
+.has-padding-medium-mobile,
+.has-padding-medium-tablet,
+.has-padding-medium-desktop,
+.has-padding-left-medium,
+.has-padding-left-medium-mobile,
+.has-padding-left-medium-tablet,
+.has-padding-left-medium-desktop,
+.has-padding-right-medium,
+.has-padding-right-medium-mobile,
+.has-padding-right-medium-tablet,
+.has-padding-right-medium-desktop,
+.has-padding-top-medium,
+.has-padding-top-medium-mobile,
+.has-padding-top-medium-tablet,
+.has-padding-top-medium-desktop,
+.has-padding-bottom-medium,
+.has-padding-bottom-medium-mobile,
+.has-padding-bottom-medium-tablet,
+.has-padding-bottom-medium-desktop,
+.has-padding-large,
+.has-padding-large-mobile,
+.has-padding-large-tablet,
+.has-padding-large-desktop,
+.has-padding-left-large,
+.has-padding-left-large-mobile,
+.has-padding-left-large-tablet,
+.has-padding-left-large-desktop,
+.has-padding-right-large,
+.has-padding-right-large-mobile,
+.has-padding-right-large-tablet,
+.has-padding-right-large-desktop,
+.has-padding-top-large,
+.has-padding-top-large-mobile,
+.has-padding-top-large-tablet,
+.has-padding-top-large-desktop,
+.has-padding-bottom-large,
+.has-padding-bottom-large-mobile,
+.has-padding-bottom-large-tablet,
+.has-padding-bottom-large-desktop,
+.has-padding-extra-large,
+.has-padding-extra-large-mobile,
+.has-padding-extra-large-tablet,
+.has-padding-extra-large-desktop,
+.has-padding-left-extra-large,
+.has-padding-left-extra-large-mobile,
+.has-padding-left-extra-large-tablet,
+.has-padding-left-extra-large-desktop,
+.has-padding-right-extra-large,
+.has-padding-right-extra-large-mobile,
+.has-padding-right-extra-large-tablet,
+.has-padding-right-extra-large-desktop,
+.has-padding-top-extra-large,
+.has-padding-top-extra-large-mobile,
+.has-padding-top-extra-large-tablet,
+.has-padding-top-extra-large-desktop,
+.has-padding-bottom-extra-large,
+.has-padding-bottom-extra-large-mobile,
+.has-padding-bottom-extra-large-tablet,
+.has-padding-bottom-extra-large-desktop,
+.has-padding-super-large,
+.has-padding-super-large-mobile,
+.has-padding-super-large-tablet,
+.has-padding-super-large-desktop,
+.has-padding-left-super-large,
+.has-padding-left-super-large-mobile,
+.has-padding-left-super-large-tablet,
+.has-padding-left-super-large-desktop,
+.has-padding-right-super-large,
+.has-padding-right-super-large-mobile,
+.has-padding-right-super-large-tablet,
+.has-padding-right-super-large-desktop,
+.has-padding-top-super-large,
+.has-padding-top-super-large-mobile,
+.has-padding-top-super-large-tablet,
+.has-padding-top-super-large-desktop,
+.has-padding-bottom-super-large,
+.has-padding-bottom-super-large-mobile,
+.has-padding-bottom-super-large-tablet,
+.has-padding-bottom-super-large-desktop,
+.has-padding-none,
+.has-padding-none-mobile,
+.has-padding-none-tablet,
+.has-padding-none-desktop,
+.has-padding-left-none,
+.has-padding-left-non-mobile,
+.has-padding-left-none-tablet,
+.has-padding-left-none-desktop,
+.has-padding-top-none,
+.has-padding-top-none-tablet,
+.has-padding-top-none-desktop,
+.has-padding-right-none,
+.has-padding-right-none-mobile,
+.has-padding-right-none-tablet,
+.has-padding-right-none-desktop,
+.has-padding-bottom-none,
+.has-padding-bottom-none-mobile,
+.has-padding-bottom-none-tablet,
+.has-padding-bottom-none-desktop,
+.has-padding-top-none-uhf-tablet,
+.has-padding-right-none-uhf-tablet,
+.has-padding-left-none-uhf-tablet,
+.has-padding-bottom-none-uhf-tablet,
+.has-content-margin-right-small,
+.has-content-margin-right-medium,
+.has-content-margin-left-large,
+.has-content-margin-right-super-large-tablet,
+.has-margin-left-negative-extra-large,
+.has-margin-right-negative-extra-large,
+.has-margin-top-negative-small,
+.has-margin-top-negative-large,
+.has-margin-left-negative-small {
+	@include deprecate();
+}
+// remove end

@@ -1,0 +1,40 @@
+
+hr {
+  margin: 30px 0;
+}
+
+// pa-2 v-card v-sheet v-sheet--outlined theme--light rounded-0
+.v-sheet--outlined {
+  border: 1px #000 dotted;
+}
+
+// grey lighten-5 mb-6
+
+/*
+  .pa-4 {
+    padding: 16px !important;
+  }
+
+  .mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .align-center {
+    align-items: center !important;
+  }
+
+  .justify-center {
+    justify-content: center !important;
+  }
+5
+  .d-flex {
+    display: flex !important;
+  }
+
+*/
+
+
+.v-window-item {
+  overflow: hidden;
+}

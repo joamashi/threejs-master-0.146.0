@@ -1,0 +1,10 @@
+// The following classes should be removed, but we'll need solutions / code re-writes before we can.
+
+.button {
+	&.is-fullwidth-mobile {
+		@include mobile {
+			display: flex;
+			width: 100%;
+		}
+	}
+}

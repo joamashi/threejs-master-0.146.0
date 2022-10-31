@@ -1,0 +1,20 @@
+$toast-z: $zindex-popover !default; // more than uhf less than modal
+$toast-animation-speed: 0.4s;
+
+.toast {
+	z-index: $toast-z;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 0; // start height 0 for animation
+	width: 100%;
+	transition: height $toast-animation-speed ease-in, opacity $toast-animation-speed ease-in;
+	&.appearing {
+		height: auto;
+		animation: slideDown $toast-animation-speed ease-in forwards;
+	}
+	&.disappearing {
+		animation: slideUpOutFadeOut $toast-animation-speed ease-in forwards;
+	}
+}

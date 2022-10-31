@@ -1,0 +1,119 @@
+@mixin grid {
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: 1fr 1fr;
+	// I'd change this row minimum to 0 if I had real content
+	grid-auto-rows: minmax(21vh, 1fr);
+	
+	// multi column layout when screen size is wide enough
+	// Media Query mixin: https://codepen.io/stacy/pen/mOrrQg
+	@include bp(small) {
+		grid-template-columns: minmax(3rem, 1fr) minmax(50px, 100px) minmax(50%, 70ch) minmax(50px, 100px) minmax(3rem, 1fr);
+	}
+}
+
+main {
+	@include grid;
+}
+
+$color: hsl(295, 80%, 30%);
+
+main {
+	div {
+		// justify-content: stretch;
+		// align-content: stretch;
+		// align-items: stretch;
+		// justify-items: stretch;
+
+
+		&:nth-of-type(1) {
+			background-color: $color;
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		&:nth-of-type(2) {
+			background-color: adjust-hue($color, -5deg);
+			grid-column: 2;
+
+			@include bp(small) {
+				grid-row: 1 / span 2;
+			}
+		}
+
+		&:nth-of-type(3) {
+			background-color: rgba(adjust-hue($color, -10deg), .6);
+
+			@include bp(small) {
+				grid-column: 3;
+				grid-row: 1 / span 3; 
+			}
+		}
+
+		&:nth-of-type(4) { background-color: adjust-hue($color, -15deg); }
+		&:nth-of-type(5) { background-color: adjust-hue($color, -20deg); }	
+		&:nth-of-type(6) { background-color: adjust-hue($color, -25deg); }
+		&:nth-of-type(7) { background-color: adjust-hue($color, -30deg); }
+		&:nth-of-type(8) { 
+			background-color: rgba(adjust-hue($color, -35deg), .6);
+			@include bp(small) {
+				grid-column: 2 / 5;
+				grid-row: 3 / 4;
+			}
+		}
+		&:nth-of-type(9) { background-color: adjust-hue($color, -40deg); }
+		&:nth-of-type(10) { background-color: adjust-hue($color, -45deg); }
+		&:nth-of-type(11) { background-color: adjust-hue($color, -50deg); }
+		&:nth-of-type(12) { 
+			background-color: adjust-hue($color, -55deg); 
+			@include bp(small) {
+				grid-column: 1 / -1;
+				justify-self: stretch;
+	
+			}
+		}
+	}
+}
+
+// Styles for fun
+// -------------------------------------------------
+
+@import 'https://fonts.googleapis.com/css?family=Nixie+One|Libre+Baskerville:700|Bungee+Shade';
+
+
+body {
+	background-color: #fff;
+	color: hsl(253, 5%, 38%);
+	font-family: 'Nixie One', sans-serif;
+	line-height: 1;
+}
+
+main {
+	margin: 2vw 0;
+
+	div {
+		color: #fff;
+		padding: 1rem;	
+	}
+}
+
+h1, h2 {
+	margin: 0;
+}
+
+h1 {
+	font-family: 'Libre Baskerville';
+	font-size: 4rem;
+	font-weight: 700;
+}
+
+h2 {
+	color: #595B5A;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+header {
+	text-align: center;
+	padding: 2rem 0 0 0;
+}

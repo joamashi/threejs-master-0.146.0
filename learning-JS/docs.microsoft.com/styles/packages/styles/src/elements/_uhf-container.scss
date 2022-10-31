@@ -1,0 +1,93 @@
+%uhf-container-margin {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: calc(100% - #{(2 * $uhf-gap)});
+	width: calc(100% - #{(2 * $uhf-gap)});
+
+	@include uhf-widescreen {
+		margin-right: auto;
+		margin-left: auto;
+		max-width: $uhf-widescreen-width;
+		width: $uhf-widescreen-width;
+	}
+}
+
+%uhf-container {
+	&:not(.has-padding) {
+		@extend %uhf-container-margin;
+		@include desktop {
+			&.is-fluid {
+				margin-left: $uhf-gap;
+				margin-right: $uhf-gap;
+				max-width: none;
+				width: auto;
+			}
+		}
+	}
+
+	&.has-padding,
+	&.is-banner {
+		box-sizing: border-box;
+		width: 100%;
+		margin-right: 0;
+		margin-left: 0;
+
+		@include uhf-mobile {
+			> * {
+				padding-right: $uhf-gap;
+				padding-left: $uhf-gap;
+			}
+		}
+
+		@include uhf-tablet {
+			padding-right: $uhf-gap;
+			padding-left: $uhf-gap;
+		}
+
+		@include uhf-widescreen {
+			padding-left: $uhf-widescreen-gap;
+			padding-right: $uhf-widescreen-gap;
+		}
+	}
+
+	// easily overwrite a uhf container to be full width using this class
+
+	&.is-full {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	&.has-top-padding {
+		padding-top: $spacing-4;
+	}
+}
+
+.uhf-container {
+	@extend %uhf-container;
+}
+
+.has-uhf-padding {
+	padding-left: $uhf-gap;
+	padding-right: $uhf-gap;
+
+	@include uhf-widescreen {
+		padding-left: $uhf-widescreen-gap;
+		padding-right: $uhf-widescreen-gap;
+	}
+}
+
+.has-uhf-padding-desktop {
+	@include uhf-desktop {
+		padding-left: $uhf-gap;
+		padding-right: $uhf-gap;
+	}
+
+	@include uhf-widescreen {
+		padding-left: $uhf-widescreen-gap;
+		padding-right: $uhf-widescreen-gap;
+	}
+}

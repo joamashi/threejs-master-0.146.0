@@ -1,0 +1,114 @@
+@use 'sass:math';
+
+$meter-height: 12px;
+$meter-height-small: $spacing-2;
+$meter-border-radius: 3px;
+
+$sub-sub-optimum-off: $score-low-off;
+$sub-sub-optimum: $score-low;
+$sub-optimum-off: $score-medium-off;
+$sub-optimum: $score-medium;
+$optimum-off: $score-high-off;
+$optimum: $score-high;
+
+$fallback-bg: linear-gradient(
+	90deg,
+	$sub-sub-optimum-off 33%,
+	$sub-optimum-off 33%,
+	$sub-optimum-off 66%,
+	$optimum-off 66%,
+	$optimum-off 100%
+);
+$sub-sub-optimum-bg: linear-gradient(
+	90deg,
+	$sub-sub-optimum 33%,
+	$sub-optimum-off 33%,
+	$sub-optimum-off 66%,
+	$optimum-off 66%,
+	$optimum-off 100%
+);
+$sub-optimum-bg: linear-gradient(
+	90deg,
+	$sub-sub-optimum-off 33%,
+	$sub-optimum 33%,
+	$sub-optimum 66%,
+	$optimum-off 66%,
+	$optimum-off 100%
+);
+$optimum-bg: linear-gradient(
+	90deg,
+	$sub-sub-optimum-off 33%,
+	$sub-optimum-off 33%,
+	$sub-optimum-off 66%,
+	$optimum 66%,
+	$optimum 100%
+);
+
+// We currently only use the <meter> element in this specialized way. Completely overwriting its default appearance / functionality.
+
+.meter {
+	appearance: none;
+	display: block;
+	width: 100%;
+	height: $meter-height;
+	border-radius: $meter-border-radius;
+	background-image: $fallback-bg;
+
+	&::-moz-meter-bar,
+	&::-webkit-meter-bar {
+		background: none !important; // ensures we don't get a system background in certain browsers
+	}
+
+	&.sub-sub-optimum {
+		background-image: $sub-sub-optimum-bg;
+	}
+
+	&.sub-optimum {
+		background-image: $sub-optimum-bg;
+	}
+
+	&.optimum {
+		background-image: $optimum-bg;
+	}
+
+	&.is-small {
+		height: $meter-height-small;
+		.score-meter & {
+			padding: math.div($meter-height-small, 2) 0;
+		}
+	}
+
+	&.is-binary {
+		background-image: none;
+		background-color: var(--theme-secondary-base);
+		position: relative;
+
+		.optimum {
+			top: 0;
+			right: 0;
+			border-top-right-radius: $meter-border-radius;
+			border-bottom-right-radius: $meter-border-radius;
+			background-color: var(--theme-success-base);
+			position: absolute;
+			height: 100%;
+		}
+	}
+}
+
+.score-meter {
+	padding: math.div($meter-height, 2) 0;
+	position: relative;
+
+	.meter-tick {
+		position: absolute;
+		background-color: $text;
+		top: 1px;
+		height: 90%;
+		width: 4px;
+		z-index: 1;
+		.theme-high-contrast & {
+			width: 6px;
+			border: 1px solid $black-static;
+		}
+	}
+}

@@ -1,0 +1,39 @@
+// * Position property
+
+// * Position directions
+
+.has-content-right-zero {
+	#{$content-right}: 0;
+}
+
+.is-vertically-aligned-middle {
+	vertical-align: middle !important;
+}
+
+// Margin spacing for @interactive
+
+.margin-top-xs-interactive {
+	@include interactive {
+		margin-top: $spacing-3 !important;
+	}
+}
+
+.margin-right-sm-interactive {
+	@include interactive {
+		margin-#{$user-right}: $spacing-4 !important;
+	}
+}
+
+// remove after 2/28
+.has-margin-top-medium-interactive {
+	@include interactive {
+		margin-top: $spacing-3 !important;
+	}
+}
+
+.has-margin-right-large-interactive {
+	@include interactive {
+		margin-#{$user-right}: $spacing-4 !important;
+	}
+}
+// remove end
