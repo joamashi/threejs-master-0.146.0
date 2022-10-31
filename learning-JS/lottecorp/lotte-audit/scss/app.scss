@@ -1,0 +1,77 @@
+@import "_fonts";
+@import "_mixins";
+@import "_reset";
+@import "_form";
+@import "_button";
+@import "_wrap";
+@import "_header";
+@import "_footer";
+@import "_fullPage";
+@import "_bootstrap-select";
+@import "_main";
+@import "_content";
+@import "_audit-form-area";
+@import "_modal";
+@import "_modal-gnb";
+@import "_en";
+
+
+
+.loader {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+
+    &.show {
+        visibility: visible;
+        i {
+            display: block;
+        }
+    }
+   
+    i {
+      display: none;
+      width: 60px;
+      height: 60px;
+      border-top-color: #fff;
+      transition: .5s cubic-bezier(.25, .8, .5, 1), z-index .5ms;
+
+      border: 4px #fff solid;
+      border-radius: 50%;
+      border-top-color: #da291c;
+      animation: spin-loading .8s ease-in-out infinite;
+    }
+    
+    @keyframes spin-loading {
+      to { 
+        -webkit-transform: rotate(360deg);
+      }
+    }
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    transition: opacity .15s linear;
+    opacity: 0;
+    
+    &.show {
+        z-index: 1040;
+        opacity: .4;
+    }
+}

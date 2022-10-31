@@ -1,0 +1,723 @@
+// 제보하기 영역
+.audit-form-area {
+    position: relative;
+    margin-bottom: 80px;
+    border-bottom: 1px #ddd solid;
+
+    h4 {
+        font-size: 28px;
+        line-height: 28px;
+        border-bottom: 2px #222 solid;
+        padding-bottom: 14px;
+        margin-bottom: 40px;
+    }
+
+    .type-area-1 {
+        padding-bottom: 40px;
+        li {
+            font-size: 18px;
+            line-height: 26px;
+            letter-spacing: -.45px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            &::before {
+                content: '';
+                width: 4px;
+                height: 4px;
+                background-color: #da291c;
+                border-radius: 100%;
+                margin-right: 8px;
+            }
+
+            &:last-child {
+                margin-top: 16px;
+                color: #555;
+                &::before {
+                    display: none;
+                }
+            }
+
+            img {
+                width: 8px;
+                vertical-align: 0;
+                display: inline-block;
+                margin: 0 4px;
+            }
+
+            .mo {
+                display: none;
+            }
+        }
+    }
+
+    .type-area-2 {
+        padding-bottom: 40px;
+        display: flex;
+        ul {
+            margin-right: auto;
+            li {
+                font-size: 18px;
+                line-height: 26px;
+                letter-spacing: -.45px;
+                display: flex;
+                align-items: center;
+            
+                &:first-child {
+                    margin-bottom: 6px;
+                }
+            }
+        }
+    }
+
+    .required-area {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 16px;
+        line-height: 16px;
+        color: #555;
+        span {
+            color: #da291c;
+            vertical-align: -3px;
+        }
+    }
+
+    @include mobile () {
+        margin-bottom: 40px;
+
+        h4 {
+            font-size: 18px;
+            line-height: 18px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .type-area-1 {
+            padding-bottom: 20px;
+            li {
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: -.45px;
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    content: '';
+                    width: 2px;
+                    height: 2px;
+                    margin-right: 4px;
+                    align-self: flex-start;
+                    margin-top: 10px;
+                }
+
+                &:last-child {
+                    margin-top: 16px;
+                    color: #555;
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                img {
+                    display: none;
+                }
+
+                .mo {
+                    display: block;
+                }
+            }
+        }
+
+        .type-area-2 {
+            flex-direction: column;
+            padding-bottom: 20px;
+            ul {
+                li {
+                    font-size: 14px;
+                    line-height: 21px;
+                
+                    &:first-child {
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+
+        .required-area {
+            font-size: 13px;
+            line-height: 13px;
+        }
+    }
+}
+
+// 제보하기 입력폼
+.fieldset-area {
+    padding-bottom: 30px;
+
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        min-height: 54px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &.space {
+            min-height: inherit;
+            padding-left: 250px;
+        }
+
+        &.tex-area {
+            margin-top: -10px;
+            padding-left: 250px;
+            
+            p {
+                font-size: 15px;
+                color: #da291c;
+                margin-bottom: 5px;
+            }
+        }
+
+        label {
+            display: block;
+            width: 240px;
+            padding-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            .required {
+                color: #da291c;
+                vertical-align: -3px;
+                margin-left: 6px;
+            }
+        }
+
+        .input-box-area {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+            width: calc(100% - 240px);
+
+            .bootstrap-select,
+            .select-area,
+            .text-area {
+                margin: 0 5px;
+            }
+        }
+
+        .select-area {
+            display: block;
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                background-color: transparent;
+                width: 100%;
+                height: 54px;
+                font-size: 16px;
+                padding: 0 20px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+                overflow: hidden;
+                background: url(../images/ic-arrow-3.png) no-repeat left top;
+                background-position: calc(100% - 18px) center;
+                background-size: 16px 16px;
+                option {
+                    color: #000;
+                }
+
+                &::-ms-expand {
+                    display:none
+                }
+                
+            }
+        }
+
+        // https://developer.snapappointments.com/bootstrap-select/examples/
+        .bootstrap-select {
+            .filter-option-inner-inner {
+                height: 54px;
+                font-size: 16px;
+                padding: 0 20px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+                width: 240px;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 18px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: url(../images/ic-arrow-3.png) no-repeat left top;
+                    background-size: 100% 100%;
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            .form-control {
+                font-size: 16px;
+                padding: 10px 20px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+            }
+
+            .dropdown-menu {
+                li {
+                    margin-bottom: 0;
+                    min-height: inherit;
+                    a {
+                        
+                    }
+                }
+            }
+        }
+
+        .text-area {
+            display: block;
+            input {
+                width: 100%;
+                height: 54px;
+                font-size: 16px;
+                padding: 0 20px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+                overflow: hidden;
+            }
+        }
+
+        .textarea-area {
+            display: block;
+            textarea {
+                width: 100%;
+                height: 300px;
+                font-size: 16px;
+                padding: 20px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+                overflow: hidden;
+            }
+        }
+
+        .filebox {
+            .upload-name {
+                padding: 0 20px;
+                width: 240px;
+                height: 54px;
+                border: 1px #ddd solid;
+                border-radius: 6px;
+                overflow: hidden;
+            }
+
+            label {
+                border: 1px #222 solid;
+                border-radius: 5px;
+                overflow: hidden;
+                height: 56px;
+                padding: 0;
+                font-size: 16px;
+                font-weight: 500;
+                margin: 0 5px;
+                width: 120px;
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+
+                &:focus {
+                    border: 2px #000 solid;
+                }
+            }
+
+            input[type="file"] {
+                position: absolute;
+                width: 0;
+                height: 0;
+                padding: 0;
+                overflow: hidden;
+                border: 0;
+            }
+        }
+
+        p.txt {
+            font-size: 16px;
+            color: #999;
+            margin-top: -10px;
+        }
+
+        .dash {
+            font-size: 16px;
+        }
+
+        .w-240 {
+            width: 240px;
+        }
+
+        .w-320 {
+            width: 320px;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+    }
+
+    @include mobile () {
+        padding-bottom: 20px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            min-height: 54px;
+            padding: 0 1px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.space {
+                padding: 0 6px;
+                align-items: flex-start;
+            }
+
+            &.tex-area {
+                margin-top: 0;
+                padding-left: 10px;
+                p {
+                    font-size: 14px;
+                }
+            }
+            
+            &.flex-wrap {
+                .input-box-area {
+                    flex-wrap: wrap;
+                    .select-area {
+                        margin-bottom: 6px;
+                    }
+                    .text-area {
+                        width: calc(50% - 18px) !important;
+                    }
+                }
+            }
+
+            label {
+                display: block;
+                width: 100%;
+                padding-left: 4px;
+                font-size: 14px;
+                margin-bottom: 8px;
+                .required {
+                    margin-left: 3px;
+                }
+            }
+
+            .input-box-area {
+                display: flex;
+                align-items: center;
+                margin: 0;
+                width: 100%;
+                .select-area,
+                .text-area {
+                    margin: 0 5px;
+                }
+            }
+
+            .select-area {
+                display: block;
+                select {
+                    height: 45px;
+                    font-size: 15px;
+                    padding: 0 15px;
+                    border-radius: 3px;
+                    overflow: hidden;
+                    background: url(../images/ic-arrow-3.png) no-repeat left top;
+                    background-position: calc(100% - 10px) center;
+                    background-size: 12px 12px;
+                }
+            }
+
+            .bootstrap-select {
+                &.-tab-2 {
+                    // display: none;
+                }
+                width: 100% !important;
+
+                .filter-option-inner-inner {
+                    height: 45px;
+                    font-size: 15px;
+                    padding: 0 15px;
+                    border: 1px #ddd solid;
+                    border-radius: 6px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: 10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: url(../images/ic-arrow-3.png) no-repeat left top;
+                        background-size: 100% 100%;
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+    
+                .form-control {
+                    font-size: 15px;
+                    padding: 10px;
+                    border: 1px #ddd solid;
+                    border-radius: 6px;
+                }
+    
+                .dropdown-menu {
+                    li {
+                        margin-bottom: 0;
+                        min-height: inherit;
+                        a {
+                            
+                        }
+                    }
+                }
+            }
+
+            .text-area {
+                display: block;
+                input {
+                    height: 45px;
+                    font-size: 15px;
+                    padding: 0 15px;
+                    border-radius: 3px;
+                }
+            }
+
+            .textarea-area {
+                display: block;
+                textarea {
+                    height: 400px;
+                    font-size: 13px;
+                    padding: 15px;
+                    border-radius: 3px;
+                }
+            }
+
+            .filebox {
+                width: 100%;
+                
+                .upload-name {
+                    padding: 0 15px;
+                    width: calc(100% - 128px);
+                    height: 45px;
+                    border-radius: 3px;
+                }
+
+                label {
+                    border: 1px #222 solid;
+                    border-radius: 3px;
+                    height: 45px;
+                    padding: 0;
+                    font-size: 15px;
+                    margin: 0 0 0 4px;
+                    width: 120px;
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: middle;
+                    line-height: 45px;
+                }
+
+                input[type="file"] {
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    border: 0;
+                }
+            }
+
+            p.txt {
+                font-size: 13px;
+                color: #999;
+                margin-top: -10px;
+            }
+
+            .dash {
+                font-size: 16px;
+            }
+
+            .w-240 {
+                width: 100%;
+            }
+
+            .w-320 {
+                width: 100%;
+            }
+
+            .w-full {
+                width: 100%;
+            }
+
+            .mo-hidden {
+                display: none;
+            }
+        }
+    }
+}
+
+// 첨부파일 리스트
+.file-list {
+    display: block !important;
+    padding-left: 250px;
+    margin-bottom: 30px !important;
+    span {
+        display: flex;
+        &:first-child {
+            margin-bottom: 6px;
+        }
+        em {
+            font-size: 16px;
+        }
+        button {
+            background: url(../images/btn-file-delete.png) no-repeat left top;
+            background-size: 100% 100%;
+            width: 24px;
+            height: 24px;
+            margin-left: 12px;
+        }
+    }
+
+    @include mobile () {
+        padding-left: 0;
+        margin-bottom: 15px !important;
+        span {
+            display: flex;
+            &:first-child {
+                margin-bottom: 6px;
+            }
+            em {
+                font-size: 15px;
+            }
+            button {
+                background: url(../images/btn-file-delete.png) no-repeat left top;
+                background-size: 100% 100%;
+                width: 20px;
+                height: 20px;
+                margin-left: 6px;
+            }
+        }
+    }
+}
+
+.delete {
+    background: url(../images/btn-file-delete.png) no-repeat left top;
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+    vertical-align: 6px;
+}
+
+.form-submit-area {
+    margin: 20px 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .btn-area {
+        display: flex;
+    }
+
+    &.mt-2 {
+        margin-top: -20px;
+    }
+
+    p {
+        color: #da291c;
+        margin-bottom: 60px;
+        text-align: center;
+        .mo {
+            display: none;
+        }
+    }
+
+    @include mobile () {
+        margin: 30px 0 60px;
+        padding: 0 13px;
+
+        &.mt-2 {
+            margin-top: 30px;
+        }
+        p {
+            font-size: 14px;
+            margin-bottom: 40px;
+            .mo {
+                display: block;
+            }
+        }
+    }
+}
+
+.fieldset-info-area {
+    margin-top: -40px;
+
+    li {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px #ddd solid;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        em {
+            display: block;
+            width: 240px;
+            padding-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+            width: calc(100% - 240px);
+        }
+    }
+
+    @include mobile () {
+        margin-top: -20px;
+        li {
+            display: block;
+            padding: 15px 9px;
+
+            em {
+                display: block;
+                width: 100%;
+                padding-left: 0;
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+    
+            span {
+                display: block;
+                align-items: center;
+                margin-left: 0;
+                width: 100%;
+                font-size: 15px;
+            }
+        }
+    }
+}

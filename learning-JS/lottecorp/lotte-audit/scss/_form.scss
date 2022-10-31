@@ -1,0 +1,135 @@
+// 폼관련 정의
+[disabled],
+[readonly] {
+    border: 1px #ddd solid !important;
+    background-color: #f8f8f8 !important;
+    color: #999;
+
+    &::before {
+        opacity: 0.5;
+    }
+}
+
+// 라디오/체크박스 초기화
+[type="checkbox"],
+[type="radio"] {
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    margin: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}
+
+// 라디오버튼 영역
+.radio-area {
+    [type="radio"] {
+        &+ label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+
+            &::before {
+                content: '';
+                width: 22px;
+                height: 22px;
+                display: inline-block;
+                border-radius: 22px;
+                margin-right: 8px;
+                background-color: #fff;
+                border: 1px #ddd solid;
+            }
+
+            &::after {
+                content: '';
+                width: 12px;
+                height: 12px;
+                border-radius: 12px;
+                position: absolute;
+                left: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: #fff;
+            }
+        }
+
+        &:checked + label {
+            &::before {
+                border: 1px #da291c solid;
+            }
+            &::after {
+                background-color: #da291c;
+            }
+        }
+
+        @include mobile () {
+            &+ label {
+                font-size: 14px;
+                line-height: 21px;
+            }
+        }
+    }
+}
+
+// 체크박스 영역
+.checkbox-area {
+    [type="checkbox"] {
+        &+ label {
+            position: relative;
+            display: inline-flex;
+            font-size: 20px;
+
+            &::before {
+                content: '';
+                width: 28px;
+                height: 22px;
+                display: inline-block;
+                background-color: #fff;
+                border-radius: 4px;
+                margin-right: 8px;
+                margin-top: 5px;
+                border: 1px #aaa solid;
+            }
+
+            &::after {
+                content: '';
+                border-radius: 10px;
+                position: absolute;
+                left: 5px;
+                top: 11px;
+                background: url(../images/ic-arrow-4.png) no-repeat left top;
+                background-size: 100% 100%;
+                width: 13px;
+                height: 9px;
+            }
+
+            
+        }
+
+        &:checked + label {
+            &::before {
+                background-color: #da291c;
+                border: 1px #da291c solid;
+            }
+        }
+
+        @include mobile () {
+            &+ label {
+                font-size: 14px;
+                line-height: 21px;
+                padding-left: 30px;
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 22px;
+                }
+
+                .mo {
+                    display: none;
+                }
+            }
+        }
+    }
+}

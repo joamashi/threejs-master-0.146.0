@@ -1,0 +1,287 @@
+// 상단 메뉴 정의
+.modal-gnb {
+    // visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 990;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    outline: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: opacity .3s cubic-bezier(.4,.0,.2,1);
+
+    &.active {
+        // visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+
+        [data-modal="dialog"] {
+            transform: translateX(0%);
+            transition: transform .3s cubic-bezier(.4,.0,.2,1);
+        }
+    }
+
+    [data-modal="dialog"] {
+        position: fixed;
+        right: 0;
+        pointer-events: none;
+        display: flex;
+        height: 100%;
+
+        transition: transform .3s cubic-bezier(.4,.0,.2,1);
+        transform: translateX(100%);
+
+        .modal-content {
+            height: 100vh;
+        }
+    }
+
+    .modal-content {
+        position: relative;
+        pointer-events: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #262626;
+        background-clip: padding-box;
+        outline: 0;
+        padding: 60px 40px;
+        width: 640px;
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+
+            &::after {
+                content: '';
+                border-radius: 10px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                background: url(../images/btn-close-white.png) no-repeat left top;
+                background-size: 100% 100%;
+                width: 30px;
+                height: 30px;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .depth-1 {
+            padding: 80px 0 0 40px;
+            
+            > li {
+                margin-bottom: 40px;
+
+                &:hover,
+                &.active {
+                    > a {
+                        opacity: 1;
+                        &::before,
+                        &::after {
+                            background-color: #da291c;
+                        }
+                        &::after {
+                            transform: rotate(90deg);
+                        }
+                    }
+                    ul {
+                        display: block;
+                        li {
+                            a {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                &:last-child {
+                    a {
+                        &::before,
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+
+                > a {
+                    color: #fff;
+                    opacity: .3;
+                    font-size: 48px;
+                    font-weight: 500;
+                    transition: all .3s cubic-bezier(.4,.0,.2,1);
+                    position: relative;
+
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        right: -40px;
+                        top: 50%;
+                        width: 20px;
+                        height: 2px;
+                        background-color: #6d6d6d;
+                        transform: translateY(-50%);
+                    }
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: -40px;
+                        top: 50%;
+                        width: 20px;
+                        height: 2px;
+                        background-color: #6d6d6d;
+                        transform: translateY(-50%);
+                        transform: rotate(0);
+                        transition: all .3s cubic-bezier(.4,.0,.2,1);
+                    }
+                }
+
+                ul {
+                    display: none;
+                    margin: 40px 0 90px;
+                    li {
+                        margin-bottom: 16px;
+                        
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        &.active {
+                            a {
+                                color: #da291c;
+                            }
+                        }
+
+                        a {
+                            color: #fff;
+                            opacity: .3;
+                            font-size: 20px;
+                            transition: all .3s cubic-bezier(.4,.0,.2,1);
+                            display: block;
+
+                            &:hover {
+                                opacity: 1;
+                                color: #da291c;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include mobile () {
+
+        [data-modal="dialog"] {
+            width: 100%;
+        }
+
+        .modal-content {
+            position: relative;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #262626;
+            background-clip: padding-box;
+            outline: 0;
+            padding: 60px 40px;
+            width: 100%;
+    
+            .close-modal {
+                position: absolute;
+                right: 16px;
+                top: 16px;
+                width: 40px;
+                height: 40px;
+    
+                &::after {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+    
+            .depth-1 {
+                padding: 80px 0 0 35px;
+                
+                > li {
+                    margin-bottom: 30px;
+    
+                    &.active {
+                        > a {
+                            opacity: 1;
+                            &::before,
+                            &::after {
+                                background-color: #da291c;
+                            }
+                        }
+                        ul {
+                            display: block;
+                            li {
+                                a {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+    
+                    &:last-child {
+                        a {
+                            &::before,
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+    
+                    > a {
+                        font-size: 24px;
+    
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            right: -35px;
+                            top: 50%;
+                            width: 15px;
+                            height: 2px;
+                            background-color: #6d6d6d;
+                            transform: translateY(-50%);
+                        }
+                        
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            right: -35px;
+                            top: 50%;
+                            width: 15px;
+                            height: 2px;
+                            background-color: #6d6d6d;
+                            transform: translateY(-50%);
+                            transform: rotate(90deg);
+                        }
+                    }
+    
+                    ul {
+                        display: none;
+                        margin: 30px 0 80px;
+                        li {
+                            margin-bottom: 20px;
+    
+                            a {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

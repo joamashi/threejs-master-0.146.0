@@ -1,0 +1,20 @@
+{
+    "editor.fontSize": 18,    
+	"editor.tabSize": 4,
+	"editor.lineHeight": 26,    
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".min.css",
+            "savePath": "~/../css/",
+        },
+    ],
+    "liveSassCompile.settings.autoprefix": [
+        // "last 2 versions",
+        "ie >= 11",
+        "Android >= 5",
+        "ios_saf >= 10"
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "liveServer.settings.port": 5503
+}

@@ -1,0 +1,36 @@
+.wrap {
+    .container {
+        margin-top: 100px;
+    }
+    
+    .content {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 70px 20px 0;
+
+        h3 {
+            padding: 100px 0 50px;
+            font-size: 56px;
+            line-height: 64px;
+            text-align: center;
+        }
+    }
+
+    @include mobile () {
+        .container {
+            margin-top: 50px;
+        }
+
+        .content {
+            max-width: 100%;
+            padding: 0 18px;
+            overflow: hidden;
+            
+            h3 {
+                padding: 50px 0 20px;
+                font-size: 28px;
+                line-height: 28px;
+            }
+        }
+    }
+}

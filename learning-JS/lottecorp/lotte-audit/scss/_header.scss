@@ -1,0 +1,110 @@
+// 상단 공통 정의
+header {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    transition: all .3s ease-out;
+    
+    .header-content {
+        padding: 0 80px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        h1 {
+            margin-right: auto;
+            a {
+                font-size: 28px;
+                font-weight: 500;
+                display: block;
+                transition: all .3s ease-out;
+                img {
+                    width: 48px;
+                    display: inline-block;
+                    margin-right: 30px;
+                }
+            }
+        }
+        .language-area {
+            display: flex;
+            margin-right: 60px;
+            li {
+                margin-left: 30px;
+                a {
+                    font-size: 16px;
+                    color: #999;
+                    transition: all .3s ease-out;
+                    &.active {
+                        color: #000;
+                        border-bottom: 2px #000 solid;
+                        font-weight: 500;
+                        transition: all .3s ease-out;
+                    }
+                }
+            }
+        }
+        .gnb {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &::after {
+                content: '';
+                background: url(../images/btn-all-menu.png) no-repeat left top;
+                background-size: 100% 100%;
+                width: 26px;
+                height: 20px;
+                display: block;
+                transition: all .3s ease-out;
+            }
+        }
+    }
+
+    @include mobile () {
+        .header-content {
+            padding: 0 0 0 18px;
+            height: 50px;
+            h1 {
+                a {
+                    font-size: 16px;
+                    line-height: 16px;
+                    img {
+                        width: 25px;
+                        margin-right: 13px;
+                    }
+                }
+            }
+            .language-area {
+                display: flex;
+                margin-right: 17px;
+                margin-top: -4px;
+                li {
+                    margin-left: 15px;
+                    a {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .gnb {
+                width: 57px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &::after {
+                    content: '';
+                    background: url(../images/btn-all-menu.png) no-repeat left top;
+                    background-size: 100% 100%;
+                    width: 21px;
+                    height: 15px;
+                    display: block;
+                }
+                
+                border-left: 1px #eee solid;
+            }
+        }
+    }
+}

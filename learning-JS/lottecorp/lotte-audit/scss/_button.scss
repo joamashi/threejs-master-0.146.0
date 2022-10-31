@@ -1,0 +1,131 @@
+// 버튼 정의
+
+button {
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    touch-action: manipulation;
+    text-align: center;
+    width: inherit;
+    cursor: pointer;
+    position: relative;
+    text-rendering: auto;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none; 
+    text-decoration: none;
+    padding: 0;
+    -webkit-appearance: none; 
+    appearance: none;
+    color: inherit;
+    font-family: 'Noto Sans KR';
+}
+
+.btn-type-1 {
+    border: 2px #222 solid;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 56px;
+    padding: 0 58px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 20px;
+    &::before {
+        content: '';
+        background: url(../images/ic-arrow-2.png) no-repeat left top;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: -2px;
+    }
+
+    @include mobile () {
+        border: 2px #222 solid;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 45px;
+        padding: 0;
+        font-size: 13px;
+        margin-left: 0;
+        margin-top: 20px;
+        &::before {
+            content: '';
+            background: url(../images/ic-arrow-2.png) no-repeat left top;
+            background-size: 100% 100%;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            vertical-align: -2px;
+        }
+    }
+}
+
+.btn-type-2 {
+    border: 1px #222 solid;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 56px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 5px;
+    width: 120px;
+}
+
+.btn-type-3 {
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 280px;
+    padding: 22px 30px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px #222 solid;
+    margin: 0 5px;
+
+    @include mobile () {
+        min-width: 150px;
+        padding: 15px 10px;
+        font-size: 14px;
+        margin: 0 2px;
+    }
+}
+
+.btn-type-4 {
+    border: 1px #222 solid;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 48px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100px;
+
+    @include mobile () {
+        width: 60px;
+        height: 30px;
+        font-size: 15px;
+    }
+}
+
+.btn-submit {
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 280px;
+    padding: 22px 30px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #222;
+    color: #fff;
+    margin: 0 5px;
+    text-align: center;
+
+    @include mobile () {
+        min-width: 150px;
+        padding: 15px 10px;
+        font-size: 14px;
+        margin: 0 2px;
+    }
+}

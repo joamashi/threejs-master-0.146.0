@@ -1,0 +1,285 @@
+// 영문 스타일 정의
+body.en {
+
+    /*
+        공통
+        -------------------------------------------------------
+    */
+
+    header .header-content h1 a {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    footer .footer-content .area h2 a {
+        margin-top: -4px;
+        white-space: nowrap;
+    }
+
+    .wrap .content h3 {
+        font-size: 53px;
+    }
+
+    @include mobile () {
+        .wrap .content h3 {
+            font-size: 28px;
+            line-height: 38px;
+        }
+    }
+
+    /*
+        메인
+        -------------------------------------------------------
+    */
+
+    .main-visual article a.box {
+        padding: 98px 32px 0 67px;
+    }
+    .main-visual article a.box strong {
+        font-size: 26px;
+        line-height: 39px;
+    }
+
+    .grid-layout .fp-tableCell .main-content article a {
+        padding: 0 20px 23px 50px;
+    }
+    .grid-layout .fp-tableCell .main-content article a div h2 {
+        font-size: 36px;
+        line-height: 43px;
+    }
+    .grid-layout .fp-tableCell .main-content article a div h2::after {
+        vertical-align: -13px;
+    }
+    .grid-layout .fp-tableCell .main-content article a div span {
+        font-size: 19px;
+        line-height: 27px;
+        height: 100px; 
+    }
+
+    @include mobile () {
+        .main-visual article a.box {
+            width: 161px;
+            padding: 28px 20px 0 24px;
+        }
+        .main-visual article a.box strong {
+            font-size: 12px;
+            line-height: 18px;
+            margin-bottom: 3px;
+        }
+
+        .main-visual article div {
+            margin-right: 18px;
+        }
+
+        .grid-layout .fp-tableCell .main-content article a {
+            padding: 0 20px 20px 20px;
+        }
+
+        .grid-layout .fp-tableCell .main-content article a div {
+            width: 100%;
+        }
+
+        .grid-layout .fp-tableCell .main-content article a div h2 {
+            font-size: 20px;
+            line-height: 28px;
+            width: 100%;
+            word-break: break-all;
+        }
+
+        .grid-layout .fp-tableCell .main-content article a div h2::after {
+            vertical-align: -5px;
+        }
+        
+        .grid-layout .fp-tableCell .main-content article a div span {
+            font-size: 22px;
+            line-height: 27px;
+            height: 100px; 
+        }
+    }
+
+    /*
+        이용안내
+        -------------------------------------------------------
+    */
+
+    .bg-full-ground .case-3 li h6 {
+        line-height: 36px;
+    }
+    .bg-full-ground .case-3 li {
+        padding: 40px;
+    }
+
+    .bg-full-ground .case-1 > li ul li {
+        width: 100%;
+    }
+
+    .bg-full-ground .case-2 li span {
+        font-size: 18px;
+        line-height: 26px;
+        width: 200px;
+    }
+
+    .bg-full-ground .case-2 li em {
+        white-space: initial;
+    }
+
+    @include mobile () {
+        .bg-full-ground .case-1 > li ul {
+            flex-direction: column;
+        }
+        .bg-full-ground .case-1 > li ul li {
+            width: 100%;
+            font-size: 16px;
+            // word-break: break-all;
+            word-break: keep-all;
+            display: block;
+        }
+
+        .bg-full-ground .case-2 li span {
+            font-size: 16px;
+            line-height: 24px;
+            width: 188px;
+            white-space: pre-wrap;
+        }
+
+        body.en .bg-full-ground .case-2 li em {
+            white-space: initial;
+            width: 190px;
+        }
+
+        .bg-full-ground .case-2 li:nth-child(2) em {
+            top: -1px;
+            width: 180px;
+        }
+        .bg-full-ground .case-2 li:nth-child(2) em::before {
+            top: 14px;
+        }
+
+        .bg-full-ground .case-2 li:nth-child(4) em {
+            top: -19px;
+            width: 160px;
+        }
+        .bg-full-ground .case-2 li:nth-child(4) em::before {
+            top: 4px;
+        }
+
+        .bg-full-ground .case-5 h5 {
+            margin-top: 20px;
+            line-height: 22px; 
+            margin-bottom: 15px;
+        }
+    }
+
+    /*
+        제보하기
+        -------------------------------------------------------
+    */
+
+    .copy-area {
+        padding: 170px 30px 120px;
+        p {
+            font-size: 20px;
+            line-height: 36px;
+        }
+    }
+
+    .audit-form-area .type-area-2 {
+        flex-direction: column;
+
+        .btn-type-1 {
+            margin-top: 20px;
+            margin-left: 0;
+        }
+    }
+
+    .gary-info-area h4 + ul li {
+        align-items: flex-start;
+    }
+    .gary-info-area h4 + ul li::before {
+        margin-top: 10px;
+    } 
+
+    .audit-form-area .type-area-1 li:last-child {
+        font-size: 16px;
+    }
+
+    .modal .modal-affiliate .modal-content .affiliate-list .area ul li a {
+        font-size: 13px;
+    }
+
+    .modal .modal-terms-of-use .checkbox-area label {
+        padding-left: 36px;
+    }
+    .modal .modal-terms-of-use .checkbox-area label::before {
+        width: 22px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    @include mobile () {
+        .audit-form-area .type-area-2 {
+            .btn-type-1 {
+                margin-top: 20px;
+                margin-left: 0;
+                padding: 10px 0;
+                height: inherit;
+            }
+        }
+
+        .audit-form-area .required-area {
+            font-size: 13px;
+            line-height: 19px;
+            position: relative;
+            margin-bottom: 10px;
+            display: flex;
+        }
+        .audit-form-area .required-area span {
+            margin-right: 4px;
+            margin-top: 2px;
+        }
+    } 
+
+    /*
+        modal
+        -------------------------------------------------------
+    */
+    .modal .modal-content h2 {
+        font-size: 25px;
+        line-height: 36px;
+    }
+    .modal .terms-text p {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    @include mobile () {
+        
+    }
+
+    /*
+        접수완료
+        -------------------------------------------------------
+    */
+    .btn-type-3,
+    .btn-submit {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+
+    @include mobile () {
+
+        .form-submit-area {
+            padding: 0 0;
+        }
+        .form-submit-area .btn-area {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .form-submit-area .btn-area button:first-child {
+            margin-bottom: 10px;
+        }
+    }
+}

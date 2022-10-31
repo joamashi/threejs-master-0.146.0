@@ -1,0 +1,186 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    transition: opacity .15s linear;
+    opacity: 0;
+    
+    &.show {
+        z-index: 1040;
+        opacity: .4;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+    // display: none;
+    visibility: hidden;
+    
+    .modal-dialog {
+        transition: transform .3s ease-out;
+        transform: translate(0, -60px);
+    }
+
+    &.show {
+        visibility: visible;
+        
+        .modal-dialog {
+            transform: none;
+        }
+    }
+}
+
+.modal-dialog {
+    position: relative;
+    pointer-events: none;
+    display: flex; 
+    align-items: center;
+    max-width: 1100px;
+    min-width: 700px;
+    // min-height: calc(100% - 3.5rem); ie11 bug
+    height: 100%;
+    margin: 0 auto;
+    
+
+    &.session-area {
+        max-width: 500px;
+        
+        .session {
+            padding: 40px 0 30px;
+            text-align: center;
+            p {
+                font-size: 16px;
+                line-height: 25px;
+                margin-bottom: 20px;
+            }
+            strong {
+                font-size: 26px;
+                em {
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+
+    .modal-content {
+        position: relative;
+        pointer-events: auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 0.3rem;
+        outline: 0;
+
+        h1 {
+            border-bottom: 1px #ddd solid;
+            padding: 20px;
+            @include fontSize(20);
+            @include Bold;
+        }
+
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 40px;
+            height: 40px;
+
+            &:before, 
+            &:after {
+                content:' ';
+                position: absolute;
+                left: 19px;
+                top: 0;
+                height: 40px;
+                width: 2px;
+                background-color: #000;
+            } 
+            &:before {
+                transform: rotate(45deg);
+            } 
+            &:after {
+                transform: rotate(-45deg);
+            }
+        }
+
+        .content {
+            padding: 20px;
+        }
+    }
+}
+
+
+.loader {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+
+    &.show {
+        visibility: visible;
+        i {
+            display: block;
+        }
+    }
+  
+    i {
+      display: none;
+      width: 60px;
+      height: 60px;
+      border-top-color: #fff;
+      transition: .5s cubic-bezier(.25, .8, .5, 1), z-index .5ms;
+
+      border: 4px #fff solid;
+      border-radius: 50%;
+      border-top-color: #000;
+      animation: spin-loading .8s ease-in-out infinite;
+    }
+    
+    @keyframes spin-loading {
+      to { 
+        -webkit-transform: rotate(360deg);
+      }
+    }
+}
+
+.noti-area {
+    margin-bottom: 20px;
+    li {
+        @include fontSize(15);
+        padding-bottom: 15px;
+        span {
+            display: block;
+            margin: 10px 0 0 15px;
+        }
+
+        &:nth-child(2) {
+            color: red;
+        }
+    }
+}

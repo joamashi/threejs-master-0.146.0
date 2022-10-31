@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>신문고 관리자</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/app.min.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/app.js"></script>
+</head>
+<body>
+	<header>
+		<section>
+			<h1><a href="index.html">롯데지주 신문고 관리 시스템</a></h1>
+			<ul>
+				<li>홍길동 수석님</li>
+				<li>TODO: 신구접수 건 00</li>
+				<li>승인대기 00</li>
+				<li>2022-02-16 18:00 접속</li>
+				<li><button class="type-1">로그아웃</button></li>
+				<li><button class="type-1">정보수정</button></li>
+			</ul>
+		</section>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="menu-1.html">기본정보관리</a>
+					<ul>
+						<li><a href="#">코드관리</a></li>
+						<li><a href="#">계열사 관리</a></li>
+						<li><a href="#">사용자 관리</a></li>
+						<li><a href="#">권한권리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-2.html">제보관리</a>
+					<ul>
+						<li><a href="#">제보관리</a></li>
+						<li><a href="#">제보등록</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-3.html">콘텐츠 관리</a>
+					<ul>
+						<li><a href="#">개인정보 처리방침</a></li>
+						<li><a href="#">문자메시지 설정</a></li>
+						<li><a href="#">이메일 설정</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-4.html">통계</a>
+					<ul>
+						<li><a href="#">접속로그</a></li>
+						<li><a href="#">제보통계</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<script>
+			myFunc.nav(1, 0); // myFunc.nav(1depth, 2depth)
+		</script>
+	</header>
+
+	<div class="wrap">
+
+	</div><!-- / wrap -->
+
+	<div class="modal" id="modal-pop-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<h1>계열사 검색</h1>
+				<button class="close" onclick="myFunc.modal.close('modal-pop-1');"><span class="blind">닫기</span></button>
+				<div class="content">
+					<article class="table-row-area">
+						<table class="table-row">
+							<colgroup>
+								<col width="140">
+								<col width="">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">검색어</th>
+									<td>
+										<div class="from-area">
+											<input type="text" name="" id="" style="width: 400px;">
+											<button class="type-2">검색</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<article class="table-row-area">
+						<table class="table-row">
+							<colgroup>
+								<col width="140">
+								<col width="">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">구분</th>
+									<td>
+										<div class="from-area">
+											<select name="" id="">
+												<option value="">문자 템플릿 명</option>
+											</select>
+											<input type="text" name="" id="" style="width: 300px;">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">등록일자</th>
+									<td>
+										<div class="from-area">
+											<input type="text" class="datepicker" id="datepicker-1">
+											<span class="space">~</span>
+											<input type="text" class="datepicker" id="datepicker-2">
+											<button class="type-4">검색</button>
+											<button class="type-3">초기화</button>				
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<article class="table-row-area">
+						<table class="table-row">
+							<colgroup>
+								<col width="140">
+								<col width="410">
+								<col width="120">
+								<col width="160">
+								<col width="100">
+								<col width="">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">처리기한</th>
+									<td>
+										<div class="from-area">
+											<span class="f-tex">이관일로 부터</span>
+											<select name="" id="" style="min-width: 40px;">
+												<option value="">선택</option>
+											</select>
+											<input type="text" name="" id="" style="width: 50px;">
+											<span class="f-tex">일</span>
+											<input type="text" class="datepicker" id="datepicker-3">
+										</div>
+									</td>
+									<th scope="row">제보자정보</th>
+									<td>
+										<div class="from-area">							
+											<span class="radio-area">
+												<input type="radio" name="r4" id="r4-1">
+												<label for="r4-1">공개</label>
+											</span>
+											<span class="radio-area">
+												<input type="radio" name="r4" id="r4-2">
+												<label for="r4-2">비공개</label>
+											</span>
+										</div>
+									</td>
+									<th scope="row">중요도</th>
+									<td>
+										<div class="from-area">
+											<select name="" id="">
+												<option value="">선택</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<article class="table-row-area">
+						<table class="table-row">
+							<colgroup>
+								<col width="140">
+								<col width="140">
+								<col width="">
+								<col width="140">
+								<col width="">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row" rowspan="6">내용</th>
+									<th scope="row">진행상태</th>
+									<td>
+										<div class="from-area">							
+											<span class="space">반려</span>
+											<select name="" id="">
+												<option value="">선택</option>
+											</select>
+										</div>
+									</td>
+									<th scope="row">반려구분</th>
+									<td>
+										<div class="from-area">							
+											<span class="space">반려</span>
+											<select name="" id="">
+												<option value="">선택</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">담당자</th>
+									<td colspan="3">
+										<div class="from-area">							
+											<select name="" id="">
+												<option value="">선택</option>
+											</select>
+											<select name="" id="">
+												<option value="">선택</option>
+											</select>
+											<input type="text" name="" id="" style="width: 100px;" value="" placeholder="담당자 명">
+											<button class="type-4">검색</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">처리내용</th>
+									<td colspan="3">
+										<div class="from-area">							
+											<span class="textarea-area">
+												<textarea name="" id="" cols="30" rows="10"></textarea>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">반려(폐기)사유</th>
+									<td colspan="3">
+										<div class="from-area">							
+											<span class="textarea-area">
+												<textarea name="" id="" cols="30" rows="10"></textarea>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">첨부파일</th>
+									<td colspan="3">
+										<div class="from-area">	
+											<span class="file-area">
+												<input type="file" name="" id="">
+											</span>
+										</div>
+		
+										<ul class="file-list">
+											<li><a href="#">첨부파일1.zip</a></li>
+											<li><a href="#">첨부파일2.jpg</a></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<article class="real-grid-control">
+						<span>전체 43개</span>
+					</article>
+
+					<article class="real-grid-area">
+						<!-- 리얼그리드 영역 -->
+					</article>
+
+					<div class="register-area">
+						<button class="type-5" onclick="myFunc.modal.open('modal-pop-2', 'zIndex-2');">확인</button>
+						<button class="type-1">취소</button>
+					</div>
+				</div><!-- / content -->
+			</div><!-- / modal-content -->
+		</div><!-- / modal-dialog -->
+	</div><!-- / modal -->
+
+	<div class="modal" id="modal-pop-2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<h1>담당자 검색</h1>
+				<button class="close" onclick="myFunc.modal.close('modal-pop-2', 'zIndex-2');"><span class="blind">닫기</span></button>
+				<div class="content">
+
+					<article class="table-row-area">
+						<table class="table-row">
+							<colgroup>
+								<col width="140">
+								<col width="">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">검색어</th>
+									<td>
+										<div class="from-area">
+											<input type="text" name="" id="" style="width: 400px;">
+											<button class="type-2">검색</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<div class="register-area">
+						<button class="type-5">확인</button>
+						<button class="type-1">취소</button>
+					</div>
+				</div><!-- / content -->
+			</div><!-- / modal-content -->
+		</div><!-- / modal-dialog -->
+	</div><!-- / modal -->
+
+	<div class="loader"><i></i></div>
+	<div class="modal-backdrop"></div>
+
+	<script>
+		$( function () {
+			$("#datepicker-1").datepicker();
+			$("#datepicker-2").datepicker();
+			$("#datepicker-3").datepicker();
+
+			// 해당 id값으로 팝업 호출
+			myFunc.modal.open('modal-pop-1');
+
+			// 해당 id값으로 팝업 닫기
+			// myFunc.modal.close('modal-pop-1');
+		});
+	</script>
+</body>
+</html>

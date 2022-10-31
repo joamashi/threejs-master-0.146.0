@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>신문고 관리자</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/app.min.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/app.js"></script>
+</head>
+<body>
+	<div class="login-wrap">
+		<h1>잘못된 형식의 접근방식 입니다.</h1>
+		<p class="int">인증되지 않은 IP거나 잘못된 주소로의 접근입니다. <br>해당 관리자에 문의하시기 바랍니다.</p>
+
+		<h1>롯데지주 경영개선실 신문고</h1>
+		<p class="int">1차 인증 로그인</p>
+
+		<span class="text-area">
+			세션이 종료되어 재로그인이 필요합니다.<br>
+			이전페이지로 돌아가서 재접속 하시기 바랍니다.
+		</span>
+
+		<p class="int">2차 인증 로그인</p>
+
+		<fieldset>
+			<ul>
+				<li>
+					<label for="">발급ID</label>
+					<input type="text" value="****@lotteaudit" disabled>
+				</li>
+				<li>
+					<label for="">CODE</label>
+					<input type="text" value="AAA11223344" disabled>
+				</li>
+				<li>
+					<label for="">OTP</label>
+					<input type="text">
+				</li>
+			</ul>
+	
+			<button class="type-7">로그인</button>
+			<button class="type-8">OTP 초기화</button>
+
+			<div class="qrcode-area">
+				<img src="/images/simple-example.png" alt="" width="100" height="100">
+			</div>
+		</fieldset>
+
+
+		<p class="text">OTP앱이 설치된 디바이스를 통해 OTP가 부여됩니다.</p>
+		
+		<p class="text-2">스마트폰에 구글 OTP앱을 설치하시고,<br> QR코드를 스캔하시거나 CODE를 입력하시어<br> OTP를 발행받으신 후 입력 하시기 바랍니다.</p>
+		
+		<footer>
+			<p>Copyright © LOTTE. All Rights reserved.</p>
+		</footer>
+	</div><!-- / wrap -->
+
+	<div class="loader"><i></i></div>
+	<div class="modal-backdrop"></div>
+
+	<script>
+		$( function () {
+			
+		});
+	</script>
+</body>
+</html>

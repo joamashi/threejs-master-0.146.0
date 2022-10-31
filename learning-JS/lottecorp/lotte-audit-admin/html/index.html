@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>신문고 관리자</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/app.min.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	<link rel="stylesheet" href="/css/chartist.min.css">
+	
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/charts/chartist.min.js"></script>
+	<script src="/js/app.js"></script>
+</head>
+<body>
+	<header>
+		<section>
+			<h1><a href="index.html">롯데지주 신문고 관리 시스템</a></h1>
+			<ul>
+				<li>홍길동 수석님</li>
+				<li>TODO: 신구접수 건 00</li>
+				<li>승인대기 00</li>
+				<li>2022-02-16 18:00 접속</li>
+				<li><button class="type-1">로그아웃</button></li>
+				<li><button class="type-1">정보수정</button></li>
+			</ul>
+		</section>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="menu-1.html">기본정보관리</a>
+					<ul>
+						<li><a href="#">코드 관리</a></li>
+						<li><a href="#">계열사 관리</a></li>
+						<li><a href="#">사용자 관리</a></li>
+						<li><a href="#">권한권리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-2.html">제보관리</a>
+					<ul>
+						<li><a href="#">제보관리</a></li>
+						<li><a href="#">제보등록</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-3.html">콘텐츠 관리</a>
+					<ul>
+						<li><a href="#">개인정보 처리방침</a></li>
+						<li><a href="#">문자메시지 설정</a></li>
+						<li><a href="#">이메일 설정</a></li>
+						<li><a href="#">전송내역 조회</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-4.html">통계</a>
+					<ul>
+						<li><a href="#">접속로그</a></li>
+						<li><a href="#">제보통계</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<script>
+			// myFunc.nav(0, 0); // myFunc.nav(1depth, 2depth)
+		</script>
+	</header>
+
+	<div class="wrap">
+		<section class="container">
+			<h2>지주사</h2>
+
+			<article class="table-row-area">
+				<h3>제보현황</h3>
+				
+				<table class="table-row">
+					<colgroup>
+						<col width="140">
+						<col width="">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th scope="row">누적 처리 건 수</th>
+							<td>
+								<div class="from-area">
+									<span class="space">총 00건 : 접수 등록 건 00건</span>/
+									<span class="space">계열사 이관 건 00건</span>/
+									<span class="space">조사 건 00건</span>/
+									<span class="space">종결처리 건 00건</span>/
+									<span class="space">폐기 건 00건</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">차트 조건</th>
+							<td>
+								<div class="from-area">
+									<select name="" id="">
+										<option value="">전체</option>
+									</select>
+									<select name="" id="">
+										<option value="">전체</option>
+									</select>
+									<select name="" id="">
+										<option value="">전체</option>
+									</select>
+									<input type="text" class="datepicker" id="datepicker-1">
+									<span class="space">~</span>
+									<input type="text" class="datepicker" id="datepicker-2">
+									<button class="type-1">당월</button>
+									<button class="type-1">과월</button>
+									<button class="type-1">3개월</button>
+									<button class="type-1">6개월</button>
+									<button class="type-1">1년</button>
+									
+									<button class="type-4">검색</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<article class="chart-area">
+					<div class="f-row">
+						<div class="title">
+							<span>접수별분포율</span>
+						</div>
+						<div class="chart-donut ct-chart-1" style="width: 320px;"></div>
+
+						<div class="real-grid-area-container">
+							<h4>유형별</h4>
+							<article class="real-grid-area">
+								<table class="table-row-2">
+									<colgroup>
+										<col width="140">
+										<col width="">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th scope="row">금품/향응수수</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">자산횡령/유용</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">불공정거래</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">불공정채용</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">문서/계수조작</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">환경/안정사고</th>
+											<td>00</td>
+										</tr>
+										<tr>
+											<th scope="row">성희롱/괴롭힘</th>
+											<td>00</td>
+										</tr>
+									</tbody>
+								</table>
+							</article>
+						</div>
+					</div>
+					<!-- <div class="f-row">
+						<div class="chart-donut ct-chart-2" style="width: 320px;"></div>
+
+						<div class="real-grid-area-container">
+							<h4>형태별</h4>
+							<article class="real-grid-area">
+							</article>
+						</div>
+					</div> -->
+					<div class="f-row">
+						<div class="title">
+							<span>진행상태별</span>
+							<em>누계 2022-01-01 ~ 2022-01</em>
+						</div>
+						<div class="chart-bar ct-chart-3" style="width: 100%; height: 100%;"></div>
+					</div>
+				</article>
+
+				<script>
+					var data1 = {
+						labels: ['환경/안전사고', '불공정거래', '불공정채용', '자산횡령/유용', '성희롱/괴롭힘', '문서/계수조작', '금품/향웅수수'],
+						series: [2, 1, 10, 20, 13, 4, 30]
+					};
+
+					// var data2 = {
+					// 	labels: ['온라인(신문고)', '우편', '전화', '이메일', '기타'],
+					// 	series: [20, 15, 10, 20, 40]
+					// };
+
+					var data3 = {
+						labels: ['접수(등록대기)', '접수등록', '이관', '내부검토', '승인대기', '조사중', '종결'],
+						series: [
+							[400, 4, 3, 7, 5, 10, 200]
+						]
+					};
+
+					var data4 = {
+						labels: ['식품', '유통', '관광', '서비스', '화학', '건설/제조', '금융', '지주'],
+						series: [
+							[5, 4, 3, 7, 5, 4, 3, 7],
+							[3, 2, 9, 5, 2, 8, 1, 8],
+							[1, 5, 8, 4, 1, 2, 4, 2],
+							[1, 4, 8, 4, 3, 4, 5, 2],
+							[1, 3, 8, 4, 1, 2, 4, 2],
+							[1, 2, 2, 3, 0, 0, 0, 0],
+							[1, 5, 1, 0, 0, 0, 0, 0],
+						]
+					};
+
+					var options = {
+						donut: true,
+						donutWidth: 50,
+						startAngle: 0,
+						width: 200,
+  						height: 200,
+						labelOffset: 30,
+					};
+
+					var responsiveOptions = [
+						['screen and (min-width: 640px)', {
+							labelOffset: -10,
+							chartPadding: 0,
+							labelDirection: 'explode',
+							labelInterpolationFnc: function(value) {
+								return value;
+							}
+						}],
+						['screen and (min-width: 1024px)', {
+							labelOffset: -10,
+							chartPadding: 0,
+							labelDirection: 'explode',
+							labelInterpolationFnc: function(value) {
+								return value;
+							}
+						}]
+					];
+					
+					new Chartist.Pie('.ct-chart-1', data1, options);
+					// new Chartist.Pie('.ct-chart-2', data2, options, responsiveOptions);
+					
+					// ----------------------------------------------------------------
+
+					new Chartist.Bar('.ct-chart-3', data3, {
+						seriesBarDistance: 10,
+						reverseData: true,
+						horizontalBars: true,
+						axisY: {
+							offset: 100
+						},
+						width: '100%',
+						// axisX: { // 숫자 자릿수 수정
+						// 	labelInterpolationFnc: function (value) {
+						// 		return String(value).replace('.', ' ').slice(0, 2);
+						// 	}
+						// }
+					});
+				</script>
+
+				
+				<article class="real-grid-control">
+					<span>미처리현황</span>
+				</article>
+				<article class="real-grid-area">
+					<!-- 리얼그리드 영역 -->
+				</article>
+
+				<div class="pagination-area">
+				<ul class="pagination">
+					<li class="page-item first disabled"><a href="#" class="page-link">처음</a></li>
+					<li class="page-item prev disabled"><a href="#" class="page-link">이전</a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">6</a></li>
+					<li class="page-item"><a href="#" class="page-link">7</a></li>
+					<li class="page-item next"><a href="#" class="page-link">다음</a></li>
+					<li class="page-item last"><a href="#" class="page-link">마지막</a></li>
+				</ul>
+			</div>
+			</article>			
+		</section><!-- / container -->
+	</div><!-- / wrap -->
+
+	<div class="loader"><i></i></div>
+	<div class="modal-backdrop"></div>
+	
+	<script>
+	$( function () {
+		$("#datepicker-1").datepicker();
+		$("#datepicker-2").datepicker();
+	});
+	</script>
+</body>
+</html>

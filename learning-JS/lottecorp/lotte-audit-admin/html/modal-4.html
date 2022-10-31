@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>신문고 관리자</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/app.min.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/app.js"></script>
+</head>
+<body>
+	<header>
+		<section>
+			<h1><a href="index.html">지주 신문고 관리 시스템</a></h1>
+			<ul>
+				<li>홍길동 수석님</li>
+				<li>TODO: 신구접수 건 00</li>
+				<li>승인대기 00</li>
+				<li>2022-02-16 18:00 접속</li>
+				<li><button class="type-1">로그아웃</button></li>
+				<li><button class="type-1">정보수정</button></li>
+			</ul>
+		</section>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="menu-1.html">기본정보관리</a>
+					<ul>
+						<li><a href="#">코드관리</a></li>
+						<li><a href="#">계열사 관리</a></li>
+						<li><a href="#">사용자 관리</a></li>
+						<li><a href="#">권한권리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-2.html">제보관리</a>
+					<ul>
+						<li><a href="#">제보관리</a></li>
+						<li><a href="#">제보등록</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-3.html">콘텐츠 관리</a>
+					<ul>
+						<li><a href="#">개인정보 처리방침</a></li>
+						<li><a href="#">문자메시지 설정</a></li>
+						<li><a href="#">이메일 설정</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="menu-4.html">통계</a>
+					<ul>
+						<li><a href="#">접속로그</a></li>
+						<li><a href="#">제보통계</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<script>
+			myFunc.nav(1, 0); // myFunc.nav(1depth, 2depth)
+		</script>
+	</header>
+
+	<div class="wrap">
+
+	</div><!-- / wrap -->
+
+	<div class="modal" id="modal-pop-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<h1>계열사 선택</h1>
+				<button class="close" onclick="myFunc.modal.close('modal-pop-1');"><span class="blind">닫기</span></button>
+				<div class="content">
+
+					<article class="table-row-area">
+						<table class="table-column">
+							<colgroup>
+								<col width="">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>
+										<span class="checkbox-area">
+											식품
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											유통
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											광관
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											서비스
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											화학
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											건설/제조
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											금융
+										</span>
+									</th>
+									<th>
+										<span class="checkbox-area">
+											지주
+										</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody class="subsidiary">
+								<tr>
+									<td>
+										<span class="checkbox-area">
+											
+										</span>
+										<span class="checkbox-area">
+											주류
+										</span>
+										<span class="checkbox-area">
+											지알에스
+										</span>
+										<span class="checkbox-area">
+											중앙연구소
+										</span>
+										<span class="checkbox-area">
+											제과
+										</span>
+										<span class="checkbox-area">
+											푸드
+										</span>
+										<span class="checkbox-area">
+											유통사업본부
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">e커머스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">백화점</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">마트</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">하이마트</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">면세점</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">슈퍼</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">코리아세븐</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">홈쇼핑</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">지에프알</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">엠버스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">쇼핑</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">호텔</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">월드</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">리조트</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">부산호텔</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">제이티비</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">글로벌로지스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">대흥기획</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">물산</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">상사</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">자이언츠</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">컬처웍스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">정보통신</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">렌탈</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">장학/복지재단</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">문화재단</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">오토리스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">벤처스</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">미래전략연구소</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">케미칼</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">엠시시</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">정밀화학</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">이네오스화확</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">건설</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">CM사업본부</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">알미늄</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">캐논코리아</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">한국후지필름</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">캐피탈</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">자산개발</label>
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">AMC(리츠/자산관리)</label>
+										</span>
+									</td>
+									<td>
+										<span class="checkbox-area">
+											ssdfgsdfgsdfgsdfgsdfgsdfgs
+										</span>
+										<span class="checkbox-area">
+											<input type="checkbox" name="" id="">
+											<label for="">인재개발원</label>
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article><!-- / table-row-area -->
+
+					<div class="register-area">
+						<button class="type-5">확인</button>
+					</div>
+				</div><!-- / content -->
+			</div><!-- / modal-content -->
+		</div><!-- / modal-dialog -->
+	</div><!-- / modal -->
+
+	<div class="loader"><i></i></div>
+	<div class="modal-backdrop"></div>
+
+	<script>
+		$( function () {
+			$("#datepicker-1").datepicker();
+			$("#datepicker-2").datepicker();
+
+			// 해당 id값으로 팝업 호출
+			myFunc.modal.open('modal-pop-1');
+
+			// 해당 id값으로 팝업 닫기
+			// myFunc.modal.close('modal-pop-1');
+		});
+	</script>
+</body>
+</html>

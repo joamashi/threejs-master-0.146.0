@@ -1,0 +1,30 @@
+
+// font Regular
+@mixin Medium () {
+    font-weight: 500;
+}
+
+// font Bold
+@mixin Bold () {
+    font-weight: 700;
+}
+
+// font 한 줄 일 때
+@mixin fontSize ($size) { 
+    font-size: (#{$size}px); 
+    line-height: (#{$size}px);
+    * {
+        font-size: (#{$size}px); 
+        line-height: (#{$size}px);
+    }
+}
+
+// font 간격 2줄 이상
+@mixin fontLine ($size, $height) { 
+    font-size: (#{$size}px); 
+    line-height: (#{$height}px);
+    * {
+        font-size: (#{$size}px); 
+        line-height: (#{$height}px);
+    }
+}

@@ -1,0 +1,157 @@
+// 풋터
+footer {
+    background-color: #262626;
+    margin-top: 160px;
+
+    .footer-content {
+        position: relative;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        height: 146px;
+        padding-top: 40px;
+
+        .area {
+            margin-right: auto;
+            h2 {
+                display: flex;
+                align-items: center;
+            
+                img {
+                    height: 28px;
+                    margin-right: 14px;
+                }
+
+                a {
+                    font-size: 15px;
+                    color: #e92d0e;
+                }
+            }
+            p {
+                font-size: 14px;
+                color: #fff;
+                opacity: 0.32;
+                margin-top: 10px;
+            }
+        }
+
+        ul {
+            display: flex;
+            margin-right: 0;
+            li {
+                // &:first-child {
+                //     a {
+                //         margin-right: 14px;
+                //         img {
+                //             width: 51px;
+                //             height: 36px;
+                //         }
+                //     }
+                // }
+                a {
+                    display: block;
+                    margin-left: 7px;
+                    img {
+                        width: 30px;
+                    }
+                }
+            }
+        }
+
+        .select-area {
+            select {
+                border: none;
+                appearance: none;
+                -webkit-appearance: none;
+                background-color: transparent;
+                font-size: 15px;
+                color: #fff;
+                
+                background: url(../images/ic-f-4.png) no-repeat left top;
+                background-position: right center;
+                background-size: 24px 24px;
+                display: inline-block;
+                width: 130px;
+                padding: 2px 0;
+                option {
+                    color: #000;
+                }
+                &::-ms-expand {
+                    display:none
+                }
+            }
+        }
+    }
+
+    @include mobile () {
+        margin-top: 80px;
+        
+        .footer-content {
+            width: 100%;
+            height: inherit;
+            padding: 18px 18px 20px;
+            flex-direction: column;
+            align-items: center;
+
+            .area {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin: 0 0 20px;
+                h2 {                
+                    img {
+                        height: 22px;
+                        margin-right: 10px;
+                    }
+
+                    a {
+                        font-size: 13px;
+                    }
+                }
+                
+                p {
+                    font-size: 11px;
+                    margin-top: 4px;
+                }
+            }
+
+            ul {
+                margin-right: 0;
+                li {
+                    // &:first-child {
+                    //     a {
+                    //         margin-right: 0;
+                    //         img {
+                    //             width: 34px;
+                    //             height: 24px;
+                    //         }
+                    //     }
+                    // }
+                    a {
+                        display: block;
+                        margin-left: 10px;
+                        img {
+                            width: 23px;
+                        }
+                    }
+                }
+            }
+
+            .select-area {
+                position: absolute;
+                left: 18px;
+                right: 18px;
+                top: 18px;
+                padding-bottom: 13px;
+                border-bottom: 1px #333 solid;
+                select {
+                    font-size: 14px;
+                    background-size: 20px 20px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
